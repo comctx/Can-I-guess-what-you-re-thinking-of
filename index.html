@@ -33,9 +33,9 @@ body{
   color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   background:
-    radial-gradient(circle at 75% 8%, rgba(255,55,65,.62), transparent 24%),
-    radial-gradient(circle at 18% 28%, rgba(177,0,12,.62), transparent 28%),
-    radial-gradient(circle at 78% 68%, rgba(118,0,7,.82), transparent 33%),
+    radial-gradient(circle at 75% 8%,rgba(255,55,65,.62),transparent 24%),
+    radial-gradient(circle at 18% 28%,rgba(177,0,12,.62),transparent 28%),
+    radial-gradient(circle at 78% 68%,rgba(118,0,7,.82),transparent 33%),
     linear-gradient(160deg,#350003 0%,#760006 28%,#b30611 58%,#5a0005 100%);
   overflow-x:hidden;
   position:relative;
@@ -50,13 +50,7 @@ body:before{
   background:
     radial-gradient(circle at 50% -15%,rgba(255,255,255,.08),transparent 42%),
     radial-gradient(circle at 50% 115%,rgba(0,0,0,.48),transparent 48%),
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.30),
-      transparent 16%,
-      transparent 84%,
-      rgba(0,0,0,.30)
-    );
+    linear-gradient(90deg,rgba(0,0,0,.30),transparent 16%,transparent 84%,rgba(0,0,0,.30));
 }
 
 body:after{
@@ -100,149 +94,24 @@ body:after{
   font-size:var(--s,120px);
 }
 
-.question-bg span:nth-child(1){
-  left:-2%;
-  top:14%;
-  --s:205px;
-  --o:.52;
-  --r:-8deg;
-}
-
-.question-bg span:nth-child(2){
-  left:15%;
-  top:2%;
-  --s:94px;
-  --o:.56;
-  --r:5deg;
-}
-
-.question-bg span:nth-child(3){
-  left:28%;
-  top:9%;
-  --s:176px;
-  --o:.54;
-  --r:9deg;
-}
-
-.question-bg span:nth-child(4){
-  left:48%;
-  top:-2%;
-  --s:155px;
-  --o:.64;
-  --r:-3deg;
-}
-
-.question-bg span:nth-child(5){
-  right:13%;
-  top:2%;
-  --s:142px;
-  --o:.58;
-  --r:8deg;
-}
-
-.question-bg span:nth-child(6){
-  right:-1%;
-  top:14%;
-  --s:188px;
-  --o:.63;
-  --r:-7deg;
-}
-
-.question-bg span:nth-child(7){
-  left:8%;
-  top:37%;
-  --s:88px;
-  --o:.52;
-  --r:-10deg;
-}
-
-.question-bg span:nth-child(8){
-  right:17%;
-  top:29%;
-  --s:102px;
-  --o:.50;
-  --r:4deg;
-}
-
-.question-bg span:nth-child(9){
-  right:-4%;
-  top:46%;
-  --s:172px;
-  --o:.62;
-  --r:7deg;
-}
-
-.question-bg span:nth-child(10){
-  left:-1%;
-  top:56%;
-  --s:174px;
-  --o:.59;
-  --r:-7deg;
-}
-
-.question-bg span:nth-child(11){
-  left:25%;
-  top:63%;
-  --s:96px;
-  --o:.48;
-  --r:8deg;
-}
-
-.question-bg span:nth-child(12){
-  right:21%;
-  top:61%;
-  --s:124px;
-  --o:.55;
-  --r:-8deg;
-}
-
-.question-bg span:nth-child(13){
-  left:7%;
-  bottom:-1%;
-  --s:190px;
-  --o:.66;
-  --r:-5deg;
-}
-
-.question-bg span:nth-child(14){
-  left:43%;
-  bottom:2%;
-  --s:102px;
-  --o:.56;
-  --r:5deg;
-}
-
-.question-bg span:nth-child(15){
-  right:4%;
-  bottom:-3%;
-  --s:175px;
-  --o:.62;
-  --r:9deg;
-}
-
-.question-bg span:nth-child(16){
-  right:1%;
-  top:74%;
-  --s:84px;
-  --o:.51;
-  --r:-6deg;
-}
-
-.question-bg span:nth-child(17){
-  left:35%;
-  top:42%;
-  --s:66px;
-  --o:.25;
-  --r:6deg;
-}
-
-.question-bg span:nth-child(18){
-  right:34%;
-  top:49%;
-  --s:72px;
-  --o:.24;
-  --r:-6deg;
-}
+.question-bg span:nth-child(1){left:-2%;top:14%;--s:205px;--o:.52;--r:-8deg}
+.question-bg span:nth-child(2){left:15%;top:2%;--s:94px;--o:.56;--r:5deg}
+.question-bg span:nth-child(3){left:28%;top:9%;--s:176px;--o:.54;--r:9deg}
+.question-bg span:nth-child(4){left:48%;top:-2%;--s:155px;--o:.64;--r:-3deg}
+.question-bg span:nth-child(5){right:13%;top:2%;--s:142px;--o:.58;--r:8deg}
+.question-bg span:nth-child(6){right:-1%;top:14%;--s:188px;--o:.63;--r:-7deg}
+.question-bg span:nth-child(7){left:8%;top:37%;--s:88px;--o:.52;--r:-10deg}
+.question-bg span:nth-child(8){right:17%;top:29%;--s:102px;--o:.50;--r:4deg}
+.question-bg span:nth-child(9){right:-4%;top:46%;--s:172px;--o:.62;--r:7deg}
+.question-bg span:nth-child(10){left:-1%;top:56%;--s:174px;--o:.59;--r:-7deg}
+.question-bg span:nth-child(11){left:25%;top:63%;--s:96px;--o:.48;--r:8deg}
+.question-bg span:nth-child(12){right:21%;top:61%;--s:124px;--o:.55;--r:-8deg}
+.question-bg span:nth-child(13){left:7%;bottom:-1%;--s:190px;--o:.66;--r:-5deg}
+.question-bg span:nth-child(14){left:43%;bottom:2%;--s:102px;--o:.56;--r:5deg}
+.question-bg span:nth-child(15){right:4%;bottom:-3%;--s:175px;--o:.62;--r:9deg}
+.question-bg span:nth-child(16){right:1%;top:74%;--s:84px;--o:.51;--r:-6deg}
+.question-bg span:nth-child(17){left:35%;top:42%;--s:66px;--o:.25;--r:6deg}
+.question-bg span:nth-child(18){right:34%;top:49%;--s:72px;--o:.24;--r:-6deg}
 
 .app{
   max-width:760px;
@@ -261,12 +130,7 @@ header{
   padding:15px 16px;
   border:1px solid var(--glass-border);
   border-radius:26px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.16),
-      rgba(72,0,5,.42)
-    );
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(72,0,5,.42));
   box-shadow:
     var(--shadow),
     inset 0 1px 0 rgba(255,255,255,.36),
@@ -302,9 +166,7 @@ button{
   -webkit-tap-highlight-color:transparent;
 }
 
-button:active{
-  transform:scale(.985);
-}
+button:active{transform:scale(.985)}
 
 button:focus-visible{
   outline:3px solid rgba(255,222,222,.45);
@@ -317,9 +179,7 @@ button:focus-visible{
   padding:9px 12px;
   font-size:13px;
   color:#fff;
-  box-shadow:
-    var(--soft-shadow),
-    inset 0 1px 0 rgba(255,255,255,.18);
+  box-shadow:var(--soft-shadow),inset 0 1px 0 rgba(255,255,255,.18);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
 }
@@ -330,17 +190,11 @@ button:focus-visible{
   color:#fff;
 }
 
-main{
-  padding-top:22px;
-}
+main{padding-top:22px}
 
-.screen{
-  display:none;
-}
+.screen{display:none}
 
-.screen.active{
-  display:block;
-}
+.screen.active{display:block}
 
 .hero{
   padding:30px 10px 19px;
@@ -357,12 +211,7 @@ main{
   color:#fff;
   font-size:0;
   font-weight:900;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.18),
-      rgba(145,0,8,.34)
-    );
+  background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(145,0,8,.34));
   border:1px solid rgba(255,255,255,.46);
   box-shadow:
     0 18px 40px rgba(31,0,0,.36),
@@ -398,9 +247,7 @@ main{
 }
 
 @keyframes shine{
-  to{
-    transform:translateX(130%);
-  }
+  to{transform:translateX(130%)}
 }
 
 h2{
@@ -425,12 +272,7 @@ h2{
 .win{
   position:relative;
   overflow:hidden;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(126,0,8,.46),
-      rgba(38,0,2,.48)
-    );
+  background:linear-gradient(145deg,rgba(126,0,8,.46),rgba(38,0,2,.48));
   border:1px solid var(--glass-border);
   border-radius:28px;
   box-shadow:
@@ -441,9 +283,7 @@ h2{
   -webkit-backdrop-filter:blur(28px) saturate(145%);
 }
 
-.panel{
-  padding:22px;
-}
+.panel{padding:22px}
 
 .panel:before,
 .question-card:before,
@@ -455,12 +295,7 @@ h2{
   width:55%;
   height:55%;
   border-radius:50%;
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,.18),
-      transparent 68%
-    );
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 68%);
   pointer-events:none;
 }
 
@@ -487,12 +322,7 @@ h2{
   text-align:left;
   font-weight:750;
   color:#fff;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.13),
-      rgba(255,255,255,.07)
-    );
+  background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.07));
   border:1px solid rgba(255,255,255,.27);
   box-shadow:
     0 7px 18px rgba(20,0,0,.18),
@@ -517,12 +347,7 @@ h2{
 }
 
 .category.selected{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(230,38,49,.42),
-      rgba(119,0,8,.42)
-    );
+  background:linear-gradient(180deg,rgba(230,38,49,.42),rgba(119,0,8,.42));
   border-color:rgba(255,224,226,.68);
   box-shadow:
     0 0 0 2px rgba(255,255,255,.08),
@@ -537,13 +362,7 @@ h2{
   font-weight:800;
   font-size:17px;
   margin-top:15px;
-  background:
-    linear-gradient(
-      180deg,
-      #e92d38 0%,
-      #bd0a14 55%,
-      #8e0008 100%
-    );
+  background:linear-gradient(180deg,#e92d38 0%,#bd0a14 55%,#8e0008 100%);
   border:1px solid rgba(255,201,205,.55);
   box-shadow:
     0 11px 26px rgba(67,0,4,.38),
@@ -562,13 +381,7 @@ h2{
   left:-35%;
   width:36%;
   transform:skewX(-18deg);
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.26),
-      transparent
-    );
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.26),transparent);
   transition:transform .38s ease;
 }
 
@@ -592,8 +405,7 @@ h2{
   font-weight:700;
   background:rgba(255,255,255,.10);
   border:1px solid rgba(255,255,255,.29);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
 }
@@ -611,9 +423,7 @@ h2{
   z-index:1;
 }
 
-.learning-line b{
-  color:#fff;
-}
+.learning-line b{color:#fff}
 
 .game-head{
   display:flex;
@@ -636,22 +446,14 @@ h2{
   border-radius:999px;
   overflow:hidden;
   margin-bottom:20px;
-  box-shadow:
-    inset 0 2px 5px rgba(0,0,0,.28);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.28);
 }
 
 .progress>div{
   height:100%;
   width:5%;
-  background:
-    linear-gradient(
-      90deg,
-      #ff7078,
-      #f1202d,
-      #a6000a
-    );
-  box-shadow:
-    0 0 15px rgba(255,58,69,.52);
+  background:linear-gradient(90deg,#ff7078,#f1202d,#a6000a);
+  box-shadow:0 0 15px rgba(255,58,69,.52);
   transition:width .25s ease;
 }
 
@@ -723,32 +525,17 @@ h2{
 }
 
 .answer.yes{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(19,136,78,.70),
-      rgba(7,72,40,.78)
-    );
+  background:linear-gradient(180deg,rgba(19,136,78,.70),rgba(7,72,40,.78));
   border-color:rgba(178,255,215,.40);
 }
 
 .answer.no{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(194,27,39,.72),
-      rgba(112,0,7,.82)
-    );
+  background:linear-gradient(180deg,rgba(194,27,39,.72),rgba(112,0,7,.82));
   border-color:rgba(255,185,190,.43);
 }
 
 .answer.sometimes{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(159,107,12,.72),
-      rgba(85,54,0,.82)
-    );
+  background:linear-gradient(180deg,rgba(159,107,12,.72),rgba(85,54,0,.82));
   border-color:rgba(255,230,167,.40);
 }
 
@@ -758,15 +545,9 @@ h2{
   padding:13px;
   color:#fff;
   font-weight:750;
-  background:
-    linear-gradient(
-      180deg,
-      #2a0a0c,
-      #160103
-    );
+  background:linear-gradient(180deg,#2a0a0c,#160103);
   border:1px solid rgba(255,255,255,.23);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.25);
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
   position:relative;
   overflow:hidden;
 }
@@ -793,12 +574,7 @@ h2{
   border-radius:50%;
   font-size:39px;
   color:#fff;
-  background:
-    linear-gradient(
-      145deg,
-      #ef3944,
-      #8a0008
-    );
+  background:linear-gradient(145deg,#ef3944,#8a0008);
   border:1px solid rgba(255,255,255,.42);
   box-shadow:
     0 12px 25px rgba(45,0,2,.32),
@@ -866,8 +642,7 @@ input::placeholder{
 
 input:focus{
   border-color:rgba(255,190,194,.75);
-  box-shadow:
-    0 0 0 3px rgba(255,77,87,.15);
+  box-shadow:0 0 0 3px rgba(255,77,87,.15);
 }
 
 .learned-list{
@@ -912,8 +687,7 @@ footer{
   transition:.2s;
   pointer-events:none;
   z-index:20;
-  box-shadow:
-    0 10px 28px rgba(0,0,0,.32);
+  box-shadow:0 10px 28px rgba(0,0,0,.32);
   border:1px solid rgba(255,255,255,.16);
 }
 
@@ -956,354 +730,252 @@ footer{
   }
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="question-bg" aria-hidden="true">
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
-  <span>?</span>
+  <span>?</span><span>?</span><span>?</span><span>?</span>
+  <span>?</span><span>?</span><span>?</span><span>?</span>
+  <span>?</span><span>?</span><span>?</span><span>?</span>
+  <span>?</span><span>?</span><span>?</span><span>?</span>
+  <span>?</span><span>?</span>
 </div>
 
 <div class="app">
 
 <header>
+  <div class="brand">
+    <h1>20 Questions</h1>
+    <p>Think of something. I’ll try to guess it.</p>
+  </div>
 
-<div class="brand">
-<h1>20 Questions</h1>
-<p>Think of something. I’ll try to guess it.</p>
-</div>
-
-<button
-  id="voiceToggle"
-  class="mini on"
-  type="button">
-Voice On
-</button>
-
+  <button id="voiceToggle" class="mini on" type="button">
+    Voice On
+  </button>
 </header>
 
 <main>
 
-<section
-  id="startScreen"
-  class="screen active">
+<section id="startScreen" class="screen active">
 
 <div class="hero">
+  <div class="mark">20?</div>
 
-<div class="mark">
-20?
-</div>
+  <h2>Can I guess what you’re thinking of?</h2>
 
-<h2>
-Can I guess what you’re thinking of?
-</h2>
-
-<p class="lead">
-Pick a category, think of one thing,
-and answer up to 20 questions.
-Don’t tell me what it is.
-</p>
-
+  <p class="lead">
+    Pick a category, think of one thing, and answer up to
+    20 questions. Don’t tell me what it is.
+  </p>
 </div>
 
 <div class="panel">
 
-<strong>
-Choose a category
-</strong>
+<strong>Choose a category</strong>
 
 <div class="category-grid">
 
-<button
-  class="category selected"
-  data-cat="anything">
-Anything
-<small>Classic mode</small>
+<button class="category selected" data-cat="anything">
+  Anything
+  <small>Classic mode</small>
 </button>
 
-<button
-  class="category"
-  data-cat="animal">
-Animals
-<small>Pets, wildlife & more</small>
+<button class="category" data-cat="animal">
+  Animals
+  <small>Pets, wildlife & more</small>
 </button>
 
-<button
-  class="category"
-  data-cat="food">
-Food
-<small>Meals, snacks & produce</small>
+<button class="category" data-cat="food">
+  Food
+  <small>Meals, snacks & produce</small>
 </button>
 
-<button
-  class="category"
-  data-cat="household">
-Household
-<small>Things around the home</small>
+<button class="category" data-cat="household">
+  Household
+  <small>Things around the home</small>
 </button>
 
-<button
-  class="category"
-  data-cat="vehicle">
-Vehicles
-<small>Things that move</small>
+<button class="category" data-cat="vehicle">
+  Vehicles
+  <small>Things that move</small>
 </button>
 
-<button
-  class="category"
-  data-cat="nature">
-Nature
-<small>Places & natural things</small>
+<button class="category" data-cat="nature">
+  Nature
+  <small>Places & natural things</small>
 </button>
 
 </div>
 
-<button
-  id="startBtn"
-  class="primary">
-Start Game
+<button id="startBtn" class="primary">
+  Start Game
 </button>
 
 <div class="learning-line">
-Built-in answers:
-<b>175</b>
-· Learned from you:
-<b id="learnedHome">0</b>
+  Built-in answers:
+  <b id="builtInCount">0</b>
+  · Learned from you:
+  <b id="learnedHome">0</b>
 </div>
 
-<button
-  id="learnedBtn"
-  class="secondary">
-View Learned Items
+<button id="learnedBtn" class="secondary">
+  View Learned Items
 </button>
 
 </div>
 
 </section>
 
-<section
-  id="gameScreen"
-  class="screen">
+<section id="gameScreen" class="screen">
 
 <div class="game-head">
 
-<button
-  id="quitBtn"
-  class="mini">
-New Game
+<button id="quitBtn" class="mini">
+  New Game
 </button>
 
-<div
-  class="counter"
-  id="counter">
-Question 1 of 20
+<div class="counter" id="counter">
+  Question 1 of 20
 </div>
 
 </div>
 
 <div class="progress">
-<div id="progressBar"></div>
+  <div id="progressBar"></div>
 </div>
 
 <div class="question-card">
 
-<div
-  class="q-label"
-  id="qLabel">
-Question
+<div class="q-label" id="qLabel">
+  Question
 </div>
 
-<div
-  class="question"
-  id="questionText">
-Is it alive?
+<div class="question" id="questionText">
+  Is it alive?
 </div>
 
 <div class="speak-row">
-
-<button
-  id="repeatBtn"
-  class="mini">
-Hear Again
-</button>
-
+  <button id="repeatBtn" class="mini">
+    Hear Again
+  </button>
 </div>
 
 </div>
 
 <div class="answers">
 
-<button
-  class="answer yes"
-  data-answer="yes">
-Yes
+<button class="answer yes" data-answer="yes">
+  Yes
 </button>
 
-<button
-  class="answer no"
-  data-answer="no">
-No
+<button class="answer no" data-answer="no">
+  No
 </button>
 
-<button
-  class="answer sometimes"
-  data-answer="sometimes">
-Sometimes
+<button class="answer sometimes" data-answer="sometimes">
+  Sometimes
 </button>
 
-<button
-  class="answer"
-  data-answer="unknown">
-Don’t Know
+<button class="answer" data-answer="unknown">
+  Don’t Know
 </button>
 
 </div>
 
-<button
-  id="micBtn"
-  class="mic-answer">
-🎙 Answer by Voice
+<button id="micBtn" class="mic-answer">
+  🎙 Answer by Voice
 </button>
 
-<div
-  id="voiceStatus"
-  class="status">
-</div>
+<div id="voiceStatus" class="status"></div>
 
 </section>
 
-<section
-  id="resultScreen"
-  class="screen">
+<section id="resultScreen" class="screen">
 
 <div class="win">
 
-<div
-  class="big"
-  id="resultIcon">
-✓
+<div class="big" id="resultIcon">
+  ✓
 </div>
 
 <h2 id="resultTitle">
-I got it!
+  I got it!
 </h2>
 
-<p
-  class="lead"
-  id="resultText">
-</p>
+<p class="lead" id="resultText"></p>
 
 <div class="stats">
 
 <div class="stat">
-<b id="gamesStat">0</b>
-<span>Games</span>
+  <b id="gamesStat">0</b>
+  <span>Games</span>
 </div>
 
 <div class="stat">
-<b id="winsStat">0</b>
-<span>Guessed</span>
+  <b id="winsStat">0</b>
+  <span>Guessed</span>
 </div>
 
 <div class="stat">
-<b id="rateStat">0%</b>
-<span>Success</span>
+  <b id="rateStat">0%</b>
+  <span>Success</span>
 </div>
 
 <div class="stat">
-<b id="learnedStat">0</b>
-<span>Learned</span>
+  <b id="learnedStat">0</b>
+  <span>Learned</span>
 </div>
 
 </div>
 
-<div
-  id="missBox"
-  class="miss-form"
-  style="display:none">
+<div id="missBox" class="miss-form" style="display:none">
 
 <label for="missedItem">
-What were you thinking of?
+  What were you thinking of?
 </label>
 
-<input
-  id="missedItem"
-  placeholder="Type it here">
+<input id="missedItem" placeholder="Type it here">
 
-<button
-  id="saveMissBtn"
-  class="secondary">
-Teach the Game This Item
+<button id="saveMissBtn" class="secondary">
+  Teach the Game This Item
 </button>
 
 <div class="learning-line">
-Your answers from this round will be saved
-with the item, so the game can recognize
-it later.
+  Your answers from this round will be saved with the item,
+  so the game can recognize it later.
 </div>
 
 </div>
 
-<button
-  id="playAgainBtn"
-  class="primary">
-Play Again
+<button id="playAgainBtn" class="primary">
+  Play Again
 </button>
 
 </div>
 
 </section>
 
-<section
-  id="learnedScreen"
-  class="screen">
+<section id="learnedScreen" class="screen">
 
 <div class="panel learnedScreenPanel">
 
 <h2 style="font-size:22px">
-Learned Items
+  Learned Items
 </h2>
 
-<p
-  class="lead"
-  style="margin-bottom:10px">
-These are things the game learned
-when you stumped it.
+<p class="lead" style="margin-bottom:10px">
+  These are things the game learned when you stumped it.
 </p>
 
-<div
-  id="learnedList"
-  class="learned-list">
-</div>
+<div id="learnedList" class="learned-list"></div>
 
-<button
-  id="backHomeBtn"
-  class="primary">
-Back
+<button id="backHomeBtn" class="primary">
+  Back
 </button>
 
-<button
-  id="clearLearnedBtn"
-  class="secondary">
-Clear Learned Items
+<button id="clearLearnedBtn" class="secondary">
+  Clear Learned Items
 </button>
 
 </div>
@@ -1313,1733 +985,1285 @@ Clear Learned Items
 </main>
 
 <footer>
-A DONCO-BAYCITY™ Game
+  A DONCO-BAYCITY™ Game
 </footer>
 
 </div>
 
-<div
-  id="toast"
-  class="toast">
-</div>
+<div id="toast" class="toast"></div>
 
 <script>
-
 (() => {
 
 const baseCandidates=[];
 
-function add(cat,names,a){
-  names
-    .split("|")
-    .forEach(n=>
-      baseCandidates.push({
-        n,
-        cat,
-        a:{...a}
-      })
-    );
+function add(cat,names,a,meta={}){
+  names.split("|").forEach(n=>{
+    baseCandidates.push({
+      n,
+      cat,
+      a:{...a},
+      ...meta
+    });
+  });
 }
 
 /* ANIMALS */
 
-add(
-  "animal",
-  "dog|cat",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    indoors:1,
-    pet:1
-  }
-);
+add("animal","dog|cat",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  indoors:1,
+  pet:1
+});
 
-add(
-  "animal",
-  "horse",
-  {
-    alive:1,
-    animal:1,
-    farm:1,
-    fourlegs:1,
-    fur:1,
-    large:1,
-    outdoors:1,
-    ride:1
-  }
-);
+add("animal","horse",{
+  alive:1,
+  animal:1,
+  farm:1,
+  fourlegs:1,
+  fur:1,
+  large:1,
+  outdoors:1,
+  ride:1
+});
 
-add(
-  "animal",
-  "cow",
-  {
-    alive:1,
-    animal:1,
-    farm:1,
-    fourlegs:1,
-    large:1,
-    outdoors:1
-  }
-);
+add("animal","cow",{
+  alive:1,
+  animal:1,
+  farm:1,
+  fourlegs:1,
+  large:1,
+  outdoors:1
+});
 
-add(
-  "animal",
-  "pig|goat",
-  {
-    alive:1,
-    animal:1,
-    farm:1,
-    fourlegs:1,
-    outdoors:1
-  }
-);
+add("animal","pig|goat",{
+  alive:1,
+  animal:1,
+  farm:1,
+  fourlegs:1,
+  outdoors:1
+});
 
-add(
-  "animal",
-  "sheep",
-  {
-    alive:1,
-    animal:1,
-    farm:1,
-    fourlegs:1,
-    fur:1,
-    outdoors:1
-  }
-);
+add("animal","sheep",{
+  alive:1,
+  animal:1,
+  farm:1,
+  fourlegs:1,
+  fur:1,
+  outdoors:1
+});
 
-add(
-  "animal",
-  "chicken",
-  {
-    alive:1,
-    animal:1,
-    bird:1,
-    farm:1,
-    flies:0,
-    outdoors:1
-  }
-);
+add("animal","chicken",{
+  alive:1,
+  animal:1,
+  bird:1,
+  farm:1,
+  flies:0,
+  outdoors:1
+});
 
-add(
-  "animal",
-  "turkey",
-  {
-    alive:1,
-    animal:1,
-    bird:1,
-    farm:1,
-    outdoors:1
-  }
-);
+add("animal","turkey",{
+  alive:1,
+  animal:1,
+  bird:1,
+  farm:1,
+  outdoors:1
+});
 
-add(
-  "animal",
-  "eagle|hawk",
-  {
-    alive:1,
-    animal:1,
-    bird:1,
-    flies:1,
-    outdoors:1,
-    wild:1
-  }
-);
+add("animal","eagle|hawk",{
+  alive:1,
+  animal:1,
+  bird:1,
+  flies:1,
+  outdoors:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "owl",
-  {
-    alive:1,
-    animal:1,
-    bird:1,
-    flies:1,
-    night:1,
-    outdoors:1,
-    wild:1
-  }
-);
+add("animal","owl",{
+  alive:1,
+  animal:1,
+  bird:1,
+  flies:1,
+  night:1,
+  outdoors:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "penguin",
-  {
-    alive:1,
-    animal:1,
-    bird:1,
-    cold:1,
-    flies:0,
-    water:1,
-    wild:1
-  }
-);
+add("animal","penguin",{
+  alive:1,
+  animal:1,
+  bird:1,
+  cold:1,
+  flies:0,
+  water:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "duck|goose",
-  {
-    alive:1,
-    animal:1,
-    bird:1,
-    flies:1,
-    outdoors:1,
-    water:1
-  }
-);
+add("animal","duck|goose",{
+  alive:1,
+  animal:1,
+  bird:1,
+  flies:1,
+  outdoors:1,
+  water:1
+});
 
-add(
-  "animal",
-  "parrot",
-  {
-    alive:1,
-    animal:1,
-    bird:1,
-    flies:1,
-    indoors:1,
-    pet:1
-  }
-);
+add("animal","parrot",{
+  alive:1,
+  animal:1,
+  bird:1,
+  flies:1,
+  indoors:1,
+  pet:1
+});
 
-add(
-  "animal",
-  "fish",
-  {
-    alive:1,
-    animal:1,
-    pet:1,
-    water:1
-  }
-);
+add("animal","fish",{
+  alive:1,
+  animal:1,
+  pet:1,
+  water:1
+});
 
-add(
-  "animal",
-  "goldfish",
-  {
-    alive:1,
-    animal:1,
-    pet:1,
-    small:1,
-    water:1
-  }
-);
+add("animal","goldfish",{
+  alive:1,
+  animal:1,
+  pet:1,
+  small:1,
+  water:1
+});
 
-add(
-  "animal",
-  "shark|dolphin|whale",
-  {
-    alive:1,
-    animal:1,
-    large:1,
-    water:1,
-    wild:1
-  }
-);
+add("animal","shark|dolphin|whale",{
+  alive:1,
+  animal:1,
+  large:1,
+  water:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "octopus",
-  {
-    alive:1,
-    animal:1,
-    nolegs:1,
-    water:1,
-    wild:1
-  }
-);
+add("animal","octopus",{
+  alive:1,
+  animal:1,
+  nolegs:1,
+  water:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "crab|lobster",
-  {
-    alive:1,
-    animal:1,
-    shell:1,
-    water:1,
-    wild:1
-  }
-);
+add("animal","crab|lobster",{
+  alive:1,
+  animal:1,
+  shell:1,
+  water:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "snake",
-  {
-    alive:1,
-    animal:1,
-    nolegs:1,
-    reptile:1,
-    wild:1
-  }
-);
+add("animal","snake",{
+  alive:1,
+  animal:1,
+  nolegs:1,
+  reptile:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "turtle",
-  {
-    alive:1,
-    animal:1,
-    pet:1,
-    reptile:1,
-    shell:1,
-    water:1
-  }
-);
+add("animal","turtle",{
+  alive:1,
+  animal:1,
+  pet:1,
+  reptile:1,
+  shell:1,
+  water:1
+});
 
-add(
-  "animal",
-  "lizard",
-  {
-    alive:1,
-    animal:1,
-    pet:1,
-    reptile:1,
-    wild:1
-  }
-);
+add("animal","lizard",{
+  alive:1,
+  animal:1,
+  pet:1,
+  reptile:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "crocodile",
-  {
-    alive:1,
-    animal:1,
-    large:1,
-    reptile:1,
-    water:1,
-    wild:1
-  }
-);
+add("animal","crocodile",{
+  alive:1,
+  animal:1,
+  large:1,
+  reptile:1,
+  water:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "frog",
-  {
-    alive:1,
-    animal:1,
-    jumps:1,
-    water:1,
-    wild:1
-  }
-);
+add("animal","frog",{
+  alive:1,
+  animal:1,
+  jumps:1,
+  water:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "elephant|zebra",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    large:1,
-    wild:1
-  }
-);
+add("animal","elephant|zebra",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  large:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "lion|tiger|bear",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    large:1,
-    wild:1
-  }
-);
+add("animal","lion|tiger|bear",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  large:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "wolf|fox",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    wild:1
-  }
-);
+add("animal","wolf|fox",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "deer",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    outdoors:1,
-    wild:1
-  }
-);
+add("animal","deer",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  outdoors:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "moose",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    large:1,
-    outdoors:1,
-    wild:1
-  }
-);
+add("animal","moose",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  large:1,
+  outdoors:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "rabbit",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    jumps:1,
-    pet:1
-  }
-);
+add("animal","rabbit",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  jumps:1,
+  pet:1
+});
 
-add(
-  "animal",
-  "squirrel",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    outdoors:1,
-    small:1,
-    wild:1
-  }
-);
+add("animal","squirrel",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  outdoors:1,
+  small:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "mouse",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    small:1
-  }
-);
+add("animal","mouse",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  small:1
+});
 
-add(
-  "animal",
-  "hamster",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    fur:1,
-    indoors:1,
-    pet:1,
-    small:1
-  }
-);
+add("animal","hamster",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  fur:1,
+  indoors:1,
+  pet:1,
+  small:1
+});
 
-add(
-  "animal",
-  "monkey",
-  {
-    alive:1,
-    animal:1,
-    fur:1,
-    wild:1
-  }
-);
+add("animal","monkey",{
+  alive:1,
+  animal:1,
+  fur:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "gorilla",
-  {
-    alive:1,
-    animal:1,
-    fur:1,
-    large:1,
-    wild:1
-  }
-);
+add("animal","gorilla",{
+  alive:1,
+  animal:1,
+  fur:1,
+  large:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "giraffe",
-  {
-    alive:1,
-    animal:1,
-    fourlegs:1,
-    large:1,
-    tall:1,
-    wild:1
-  }
-);
+add("animal","giraffe",{
+  alive:1,
+  animal:1,
+  fourlegs:1,
+  large:1,
+  tall:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "kangaroo",
-  {
-    alive:1,
-    animal:1,
-    jumps:1,
-    wild:1
-  }
-);
+add("animal","kangaroo",{
+  alive:1,
+  animal:1,
+  jumps:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "bat",
-  {
-    alive:1,
-    animal:1,
-    flies:1,
-    night:1,
-    wild:1
-  }
-);
+add("animal","bat",{
+  alive:1,
+  animal:1,
+  flies:1,
+  night:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "butterfly|bee",
-  {
-    alive:1,
-    animal:1,
-    flies:1,
-    small:1,
-    wild:1
-  }
-);
+add("animal","butterfly|bee",{
+  alive:1,
+  animal:1,
+  flies:1,
+  small:1,
+  wild:1
+});
 
-add(
-  "animal",
-  "spider",
-  {
-    alive:1,
-    animal:1,
-    small:1,
-    wild:1
-  }
-);
+add("animal","spider",{
+  alive:1,
+  animal:1,
+  small:1,
+  wild:1
+});
 
 /* FOOD */
 
-add(
-  "food",
-  "apple|orange|peach",
-  {
-    food:1,
-    fruit:1,
-    raw:1,
-    round:1,
-    sweet:1
-  }
-);
+add("food","apple|orange|peach",{
+  food:1,
+  fruit:1,
+  raw:1,
+  round:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "banana|pear|pineapple",
-  {
-    food:1,
-    fruit:1,
-    raw:1,
-    sweet:1
-  }
-);
+add("food","banana|pear|pineapple",{
+  food:1,
+  fruit:1,
+  raw:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "strawberry",
-  {
-    food:1,
-    fruit:1,
-    raw:1,
-    small:1,
-    sweet:1
-  }
-);
+add("food","strawberry",{
+  food:1,
+  fruit:1,
+  raw:1,
+  small:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "grape",
-  {
-    food:1,
-    fruit:1,
-    raw:1,
-    round:1,
-    small:1,
-    sweet:1
-  }
-);
+add("food","grape",{
+  food:1,
+  fruit:1,
+  raw:1,
+  round:1,
+  small:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "watermelon",
-  {
-    food:1,
-    fruit:1,
-    large:1,
-    raw:1,
-    round:1,
-    sweet:1
-  }
-);
+add("food","watermelon",{
+  food:1,
+  fruit:1,
+  large:1,
+  raw:1,
+  round:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "carrot",
-  {
-    food:1,
-    raw:1,
-    vegetable:1
-  }
-);
+add("food","carrot",{
+  food:1,
+  raw:1,
+  vegetable:1
+});
 
-add(
-  "food",
-  "potato|broccoli",
-  {
-    cooked:1,
-    food:1,
-    vegetable:1
-  }
-);
+add("food","potato|broccoli",{
+  cooked:1,
+  food:1,
+  vegetable:1
+});
 
-add(
-  "food",
-  "corn",
-  {
-    cooked:1,
-    farm:1,
-    food:1,
-    vegetable:1
-  }
-);
+add("food","corn",{
+  cooked:1,
+  farm:1,
+  food:1,
+  vegetable:1
+});
 
-add(
-  "food",
-  "tomato",
-  {
-    food:1,
-    fruit:1,
-    raw:1,
-    round:1
-  }
-);
+add("food","tomato",{
+  food:1,
+  fruit:1,
+  raw:1,
+  round:1
+});
 
-add(
-  "food",
-  "pizza",
-  {
-    cheese:1,
-    cooked:1,
-    food:1,
-    meal:1,
-    round:1
-  }
-);
+add("food","pizza",{
+  cheese:1,
+  cooked:1,
+  food:1,
+  meal:1,
+  round:1
+});
 
-add(
-  "food",
-  "hamburger|hot dog|taco|fried chicken|steak",
-  {
-    cooked:1,
-    food:1,
-    meal:1,
-    meat:1
-  }
-);
+add("food","hamburger|hot dog|taco|fried chicken|steak",{
+  cooked:1,
+  food:1,
+  meal:1,
+  meat:1
+});
 
-add(
-  "food",
-  "spaghetti",
-  {
-    cooked:1,
-    food:1,
-    meal:1
-  }
-);
+add("food","spaghetti",{
+  cooked:1,
+  food:1,
+  meal:1
+});
 
-add(
-  "food",
-  "ice cream",
-  {
-    cold:1,
-    dessert:1,
-    food:1,
-    sweet:1
-  }
-);
+add("food","ice cream",{
+  cold:1,
+  dessert:1,
+  food:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "cake",
-  {
-    baked:1,
-    dessert:1,
-    food:1,
-    sweet:1
-  }
-);
+add("food","cake",{
+  baked:1,
+  dessert:1,
+  food:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "cookie",
-  {
-    baked:1,
-    dessert:1,
-    food:1,
-    small:1,
-    sweet:1
-  }
-);
+add("food","cookie",{
+  baked:1,
+  dessert:1,
+  food:1,
+  small:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "pie|donut",
-  {
-    baked:1,
-    dessert:1,
-    food:1,
-    round:1,
-    sweet:1
-  }
-);
+add("food","pie|donut",{
+  baked:1,
+  dessert:1,
+  food:1,
+  round:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "bread",
-  {
-    baked:1,
-    food:1
-  }
-);
+add("food","bread",{
+  baked:1,
+  food:1
+});
 
-add(
-  "food",
-  "egg",
-  {
-    breakfast:1,
-    cooked:1,
-    food:1,
-    round:1
-  }
-);
+add("food","egg",{
+  breakfast:1,
+  cooked:1,
+  food:1,
+  round:1
+});
 
-add(
-  "food",
-  "bacon",
-  {
-    breakfast:1,
-    cooked:1,
-    food:1,
-    meat:1
-  }
-);
+add("food","bacon",{
+  breakfast:1,
+  cooked:1,
+  food:1,
+  meat:1
+});
 
-add(
-  "food",
-  "pancakes",
-  {
-    breakfast:1,
-    cooked:1,
-    food:1,
-    sweet:1
-  }
-);
+add("food","pancakes",{
+  breakfast:1,
+  cooked:1,
+  food:1,
+  sweet:1
+});
 
-add(
-  "food",
-  "cereal",
-  {
-    breakfast:1,
-    food:1
-  }
-);
+add("food","cereal",{
+  breakfast:1,
+  food:1
+});
 
-add(
-  "food",
-  "popcorn",
-  {
-    cooked:1,
-    food:1,
-    snack:1
-  }
-);
+add("food","popcorn",{
+  cooked:1,
+  food:1,
+  snack:1
+});
 
-add(
-  "food",
-  "potato chips",
-  {
-    food:1,
-    snack:1
-  }
-);
+add("food","potato chips",{
+  food:1,
+  snack:1
+});
 
-add(
-  "food",
-  "pretzel",
-  {
-    baked:1,
-    food:1,
-    snack:1
-  }
-);
+add("food","pretzel",{
+  baked:1,
+  food:1,
+  snack:1
+});
 
-add(
-  "food",
-  "cheese",
-  {
-    cold:1,
-    food:1
-  }
-);
+add("food","cheese",{
+  cold:1,
+  food:1
+});
 
 /* HOUSEHOLD */
 
+add("household","television",{
+  electronic:1,
+  household:1,
+  indoors:1,
+  large:1,
+  screen:1
+});
+
+add("household","phone|tablet",{
+  battery:1,
+  electronic:1,
+  handheld:1,
+  household:1,
+  indoors:1,
+  screen:1
+});
+
+add("household","laptop",{
+  battery:1,
+  electronic:1,
+  household:1,
+  indoors:1,
+  screen:1
+});
+
+add("household","desktop computer",{
+  electronic:1,
+  household:1,
+  indoors:1,
+  screen:1
+});
+
+add("household","radio|fan",{
+  electronic:1,
+  household:1,
+  indoors:1
+});
+
+add("household","refrigerator",{
+  cold:1,
+  electronic:1,
+  household:1,
+  indoors:1,
+  kitchen:1,
+  large:1
+});
+
+add("household","microwave",{
+  cooked:1,
+  electronic:1,
+  household:1,
+  indoors:1,
+  kitchen:1
+});
+
+add("household","toaster|coffee maker",{
+  electronic:1,
+  household:1,
+  indoors:1,
+  kitchen:1
+});
+
+add("household","dishwasher",{
+  electronic:1,
+  household:1,
+  indoors:1,
+  kitchen:1,
+  large:1
+});
+
+add("household","washing machine",{
+  clean:1,
+  electronic:1,
+  household:1,
+  indoors:1,
+  large:1
+});
+
+add("household","dryer",{
+  electronic:1,
+  household:1,
+  indoors:1,
+  large:1
+});
+
+add("household","chair",{
+  furniture:1,
+  household:1,
+  indoors:1,
+  sit:1
+});
+
+/* TABLE FAMILY */
+
 add(
   "household",
-  "television",
+  "table",
   {
-    electronic:1,
+    furniture:1,
     household:1,
     indoors:1,
+    surface:1
+  },
+  {
+    family:"table",
+    generic:true
+  }
+);
+
+add(
+  "household",
+  "coffee table",
+  {
+    furniture:1,
+    household:1,
+    indoors:1,
+    surface:1,
+    low:1,
+    livingroom:1,
+    sofa:1
+  },
+  {
+    family:"table"
+  }
+);
+
+add(
+  "household",
+  "dining table",
+  {
+    furniture:1,
+    household:1,
+    indoors:1,
+    surface:1,
     large:1,
-    screen:1
+    dining:1
+  },
+  {
+    family:"table"
   }
 );
 
 add(
   "household",
-  "phone|tablet",
+  "kitchen table",
   {
-    battery:1,
-    electronic:1,
-    handheld:1,
+    furniture:1,
     household:1,
     indoors:1,
-    screen:1
-  }
-);
-
-add(
-  "household",
-  "laptop",
-  {
-    battery:1,
-    electronic:1,
-    household:1,
-    indoors:1,
-    screen:1
-  }
-);
-
-add(
-  "household",
-  "desktop computer",
-  {
-    electronic:1,
-    household:1,
-    indoors:1,
-    screen:1
-  }
-);
-
-add(
-  "household",
-  "radio|fan",
-  {
-    electronic:1,
-    household:1,
-    indoors:1
-  }
-);
-
-add(
-  "household",
-  "refrigerator",
-  {
-    cold:1,
-    electronic:1,
-    household:1,
-    indoors:1,
+    surface:1,
     kitchen:1,
-    large:1
-  }
-);
-
-add(
-  "household",
-  "microwave",
+    dining:1
+  },
   {
-    cooked:1,
-    electronic:1,
-    household:1,
-    indoors:1,
-    kitchen:1
+    family:"table"
   }
 );
 
 add(
   "household",
-  "toaster|coffee maker",
-  {
-    electronic:1,
-    household:1,
-    indoors:1,
-    kitchen:1
-  }
-);
-
-add(
-  "household",
-  "dishwasher",
-  {
-    electronic:1,
-    household:1,
-    indoors:1,
-    kitchen:1,
-    large:1
-  }
-);
-
-add(
-  "household",
-  "washing machine",
-  {
-    clean:1,
-    electronic:1,
-    household:1,
-    indoors:1,
-    large:1
-  }
-);
-
-add(
-  "household",
-  "dryer",
-  {
-    electronic:1,
-    household:1,
-    indoors:1,
-    large:1
-  }
-);
-
-add(
-  "household",
-  "chair",
+  "end table",
   {
     furniture:1,
     household:1,
     indoors:1,
-    sit:1
+    surface:1,
+    low:1,
+    livingroom:1
+  },
+  {
+    family:"table"
   }
 );
 
 add(
   "household",
-  "table|desk|dresser",
+  "nightstand",
   {
     furniture:1,
     household:1,
     indoors:1,
-    large:1
+    surface:1,
+    low:1,
+    bedroom:1,
+    drawers:1
+  },
+  {
+    family:"table"
   }
 );
 
 add(
   "household",
-  "bed",
+  "picnic table",
   {
     furniture:1,
     household:1,
-    indoors:1,
+    outdoors:1,
+    surface:1,
     large:1,
-    sleep:1
+    dining:1
+  },
+  {
+    family:"table"
   }
 );
 
 add(
   "household",
-  "couch",
+  "card table",
   {
     furniture:1,
     household:1,
     indoors:1,
-    large:1,
-    sit:1
+    surface:1,
+    folding:1
+  },
+  {
+    family:"table"
   }
 );
 
-add(
-  "household",
-  "lamp",
-  {
-    electronic:1,
-    household:1,
-    indoors:1,
-    light:1
-  }
-);
+add("household","desk",{
+  furniture:1,
+  household:1,
+  indoors:1,
+  surface:1,
+  work:1,
+  drawers:.5
+});
 
-add(
-  "household",
-  "vacuum cleaner",
-  {
-    clean:1,
-    electronic:1,
-    household:1,
-    indoors:1,
-    wheels:1
-  }
-);
+add("household","dresser",{
+  furniture:1,
+  household:1,
+  indoors:1,
+  large:1,
+  bedroom:1,
+  drawers:1
+});
 
-add(
-  "household",
-  "broom",
-  {
-    clean:1,
-    handheld:1,
-    household:1,
-    indoors:1
-  }
-);
+add("household","bed",{
+  furniture:1,
+  household:1,
+  indoors:1,
+  large:1,
+  sleep:1
+});
 
-add(
-  "household",
-  "hammer|screwdriver|saw",
-  {
-    garage:1,
-    handheld:1,
-    household:1,
-    tool:1
-  }
-);
+add("household","couch",{
+  furniture:1,
+  household:1,
+  indoors:1,
+  large:1,
+  sit:1
+});
 
-add(
-  "household",
-  "wrench",
-  {
-    garage:1,
-    handheld:1,
-    household:1,
-    metal:1,
-    tool:1
-  }
-);
+add("household","lamp",{
+  electronic:1,
+  household:1,
+  indoors:1,
+  light:1
+});
 
-add(
-  "household",
-  "drill",
-  {
-    battery:1,
-    electronic:1,
-    garage:1,
-    handheld:1,
-    household:1,
-    tool:1
-  }
-);
+add("household","vacuum cleaner",{
+  clean:1,
+  electronic:1,
+  household:1,
+  indoors:1,
+  wheels:1
+});
 
-add(
-  "household",
-  "flashlight",
-  {
-    battery:1,
-    electronic:1,
-    handheld:1,
-    household:1,
-    light:1
-  }
-);
+add("household","broom",{
+  clean:1,
+  handheld:1,
+  household:1,
+  indoors:1
+});
 
-add(
-  "household",
-  "keys|scissors",
-  {
-    handheld:1,
-    household:1,
-    metal:1,
-    small:1
-  }
-);
+add("household","hammer|screwdriver|saw",{
+  garage:1,
+  handheld:1,
+  household:1,
+  tool:1
+});
 
-add(
-  "household",
-  "wallet",
-  {
-    carry:1,
-    handheld:1,
-    household:1,
-    small:1
-  }
-);
+add("household","wrench",{
+  garage:1,
+  handheld:1,
+  household:1,
+  metal:1,
+  tool:1
+});
 
-add(
-  "household",
-  "purse",
-  {
-    carry:1,
-    handheld:1,
-    household:1
-  }
-);
+add("household","drill",{
+  battery:1,
+  electronic:1,
+  garage:1,
+  handheld:1,
+  household:1,
+  tool:1
+});
 
-add(
-  "household",
-  "watch",
-  {
-    carry:1,
-    electronic:1,
-    household:1,
-    small:1
-  }
-);
+add("household","flashlight",{
+  battery:1,
+  electronic:1,
+  handheld:1,
+  household:1,
+  light:1
+});
 
-add(
-  "household",
-  "glasses",
-  {
-    carry:1,
-    household:1,
-    small:1
-  }
-);
+add("household","keys|scissors",{
+  handheld:1,
+  household:1,
+  metal:1,
+  small:1
+});
 
-add(
-  "household",
-  "book",
-  {
-    handheld:1,
-    household:1,
-    indoors:1
-  }
-);
+add("household","wallet",{
+  carry:1,
+  handheld:1,
+  household:1,
+  small:1
+});
 
-add(
-  "household",
-  "pen|pencil|toothbrush",
-  {
-    handheld:1,
-    household:1,
-    small:1
-  }
-);
+add("household","purse",{
+  carry:1,
+  handheld:1,
+  household:1
+});
 
-add(
-  "household",
-  "remote control",
-  {
-    battery:1,
-    electronic:1,
-    handheld:1,
-    household:1,
-    small:1
-  }
-);
+add("household","watch",{
+  carry:1,
+  electronic:1,
+  household:1,
+  small:1
+});
 
-add(
-  "household",
-  "clock|mirror",
-  {
-    household:1,
-    indoors:1
-  }
-);
+add("household","glasses",{
+  carry:1,
+  household:1,
+  small:1
+});
 
-add(
-  "household",
-  "shoes|hat",
-  {
-    carry:1,
-    household:1
-  }
-);
+add("household","book",{
+  handheld:1,
+  household:1,
+  indoors:1
+});
+
+add("household","pen|pencil|toothbrush",{
+  handheld:1,
+  household:1,
+  small:1
+});
+
+add("household","remote control",{
+  battery:1,
+  electronic:1,
+  handheld:1,
+  household:1,
+  small:1
+});
+
+add("household","clock|mirror",{
+  household:1,
+  indoors:1
+});
+
+add("household","shoes|hat",{
+  carry:1,
+  household:1
+});
 
 /* VEHICLES */
 
-add(
-  "vehicle",
-  "car",
-  {
-    fourwheels:1,
-    motor:1,
-    ride:1,
-    road:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","car",{
+  fourwheels:1,
+  motor:1,
+  ride:1,
+  road:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "pickup truck|suv|van",
-  {
-    fourwheels:1,
-    large:1,
-    motor:1,
-    ride:1,
-    road:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","pickup truck|suv|van",{
+  fourwheels:1,
+  large:1,
+  motor:1,
+  ride:1,
+  road:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "motorcycle",
-  {
-    motor:1,
-    ride:1,
-    road:1,
-    twowheels:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","motorcycle",{
+  motor:1,
+  ride:1,
+  road:1,
+  twowheels:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "bicycle",
-  {
-    motor:0,
-    ride:1,
-    road:1,
-    twowheels:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","bicycle",{
+  motor:0,
+  ride:1,
+  road:1,
+  twowheels:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "scooter",
-  {
-    ride:1,
-    road:1,
-    small:1,
-    twowheels:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","scooter",{
+  ride:1,
+  road:1,
+  small:1,
+  twowheels:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "bus|school bus",
-  {
-    large:1,
-    motor:1,
-    public:1,
-    ride:1,
-    road:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","bus|school bus",{
+  large:1,
+  motor:1,
+  public:1,
+  ride:1,
+  road:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "train",
-  {
-    large:1,
-    motor:1,
-    public:1,
-    rail:1,
-    ride:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","train",{
+  large:1,
+  motor:1,
+  public:1,
+  rail:1,
+  ride:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "subway train",
-  {
-    indoors:1,
-    large:1,
-    motor:1,
-    public:1,
-    rail:1,
-    ride:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","subway train",{
+  indoors:1,
+  large:1,
+  motor:1,
+  public:1,
+  rail:1,
+  ride:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "airplane",
-  {
-    flies:1,
-    large:1,
-    motor:1,
-    public:1,
-    ride:1,
-    vehicle:1
-  }
-);
+add("vehicle","airplane",{
+  flies:1,
+  large:1,
+  motor:1,
+  public:1,
+  ride:1,
+  vehicle:1
+});
 
-add(
-  "vehicle",
-  "helicopter",
-  {
-    flies:1,
-    motor:1,
-    ride:1,
-    vehicle:1
-  }
-);
+add("vehicle","helicopter",{
+  flies:1,
+  motor:1,
+  ride:1,
+  vehicle:1
+});
 
-add(
-  "vehicle",
-  "boat",
-  {
-    motor:1,
-    ride:1,
-    vehicle:1,
-    water:1
-  }
-);
+add("vehicle","boat",{
+  motor:1,
+  ride:1,
+  vehicle:1,
+  water:1
+});
 
-add(
-  "vehicle",
-  "sailboat|canoe",
-  {
-    motor:0,
-    ride:1,
-    vehicle:1,
-    water:1
-  }
-);
+add("vehicle","sailboat|canoe",{
+  motor:0,
+  ride:1,
+  vehicle:1,
+  water:1
+});
 
-add(
-  "vehicle",
-  "kayak",
-  {
-    motor:0,
-    ride:1,
-    small:1,
-    vehicle:1,
-    water:1
-  }
-);
+add("vehicle","kayak",{
+  motor:0,
+  ride:1,
+  small:1,
+  vehicle:1,
+  water:1
+});
 
-add(
-  "vehicle",
-  "tractor",
-  {
-    farm:1,
-    large:1,
-    motor:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","tractor",{
+  farm:1,
+  large:1,
+  motor:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "forklift",
-  {
-    large:1,
-    motor:1,
-    vehicle:1,
-    wheels:1,
-    work:1
-  }
-);
+add("vehicle","forklift",{
+  large:1,
+  motor:1,
+  vehicle:1,
+  wheels:1,
+  work:1
+});
 
-add(
-  "vehicle",
-  "golf cart",
-  {
-    motor:1,
-    ride:1,
-    small:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","golf cart",{
+  motor:1,
+  ride:1,
+  small:1,
+  vehicle:1,
+  wheels:1
+});
 
-add(
-  "vehicle",
-  "rv",
-  {
-    large:1,
-    motor:1,
-    ride:1,
-    road:1,
-    vehicle:1,
-    wheels:1
-  }
-);
+add("vehicle","rv",{
+  large:1,
+  motor:1,
+  ride:1,
+  road:1,
+  vehicle:1,
+  wheels:1
+});
 
 /* NATURE */
 
-add(
-  "nature",
-  "tree",
-  {
-    alive:1,
-    nature:1,
-    outdoors:1,
-    plant:1,
-    tall:1
-  }
-);
+add("nature","tree",{
+  alive:1,
+  nature:1,
+  outdoors:1,
+  plant:1,
+  tall:1
+});
 
-add(
-  "nature",
-  "flower|grass",
-  {
-    alive:1,
-    nature:1,
-    outdoors:1,
-    plant:1,
-    small:1
-  }
-);
+add("nature","flower|grass",{
+  alive:1,
+  nature:1,
+  outdoors:1,
+  plant:1,
+  small:1
+});
 
-add(
-  "nature",
-  "bush|cactus",
-  {
-    alive:1,
-    nature:1,
-    outdoors:1,
-    plant:1
-  }
-);
+add("nature","bush|cactus",{
+  alive:1,
+  nature:1,
+  outdoors:1,
+  plant:1
+});
 
-add(
-  "nature",
-  "mountain",
-  {
-    land:1,
-    large:1,
-    nature:1,
-    outdoors:1,
-    tall:1
-  }
-);
+add("nature","mountain",{
+  land:1,
+  large:1,
+  nature:1,
+  outdoors:1,
+  tall:1
+});
 
-add(
-  "nature",
-  "hill",
-  {
-    land:1,
-    nature:1,
-    outdoors:1
-  }
-);
+add("nature","hill",{
+  land:1,
+  nature:1,
+  outdoors:1
+});
 
-add(
-  "nature",
-  "river|waterfall",
-  {
-    moves:1,
-    nature:1,
-    outdoors:1,
-    water:1
-  }
-);
+add("nature","river|waterfall",{
+  moves:1,
+  nature:1,
+  outdoors:1,
+  water:1
+});
 
-add(
-  "nature",
-  "lake",
-  {
-    nature:1,
-    outdoors:1,
-    water:1
-  }
-);
+add("nature","lake",{
+  nature:1,
+  outdoors:1,
+  water:1
+});
 
-add(
-  "nature",
-  "pond",
-  {
-    nature:1,
-    outdoors:1,
-    small:1,
-    water:1
-  }
-);
+add("nature","pond",{
+  nature:1,
+  outdoors:1,
+  small:1,
+  water:1
+});
 
-add(
-  "nature",
-  "ocean",
-  {
-    large:1,
-    nature:1,
-    outdoors:1,
-    water:1
-  }
-);
+add("nature","ocean",{
+  large:1,
+  nature:1,
+  outdoors:1,
+  water:1
+});
 
-add(
-  "nature",
-  "beach|island",
-  {
-    land:1,
-    nature:1,
-    outdoors:1,
-    water:1
-  }
-);
+add("nature","beach|island",{
+  land:1,
+  nature:1,
+  outdoors:1,
+  water:1
+});
 
-add(
-  "nature",
-  "rock",
-  {
-    hard:1,
-    land:1,
-    nature:1,
-    outdoors:1
-  }
-);
+add("nature","rock",{
+  hard:1,
+  land:1,
+  nature:1,
+  outdoors:1
+});
 
-add(
-  "nature",
-  "sand",
-  {
-    land:1,
-    nature:1,
-    outdoors:1,
-    small:1
-  }
-);
+add("nature","sand",{
+  land:1,
+  nature:1,
+  outdoors:1,
+  small:1
+});
 
-add(
-  "nature",
-  "cloud",
-  {
-    nature:1,
-    outdoors:1,
-    sky:1
-  }
-);
+add("nature","cloud",{
+  nature:1,
+  outdoors:1,
+  sky:1
+});
 
-add(
-  "nature",
-  "rain",
-  {
-    nature:1,
-    outdoors:1,
-    sky:1,
-    water:1,
-    weather:1
-  }
-);
+add("nature","rain",{
+  nature:1,
+  outdoors:1,
+  sky:1,
+  water:1,
+  weather:1
+});
 
-add(
-  "nature",
-  "snow|hail",
-  {
-    cold:1,
-    nature:1,
-    outdoors:1,
-    weather:1
-  }
-);
+add("nature","snow|hail",{
+  cold:1,
+  nature:1,
+  outdoors:1,
+  weather:1
+});
 
-add(
-  "nature",
-  "sun",
-  {
-    hot:1,
-    light:1,
-    nature:1,
-    outdoors:1,
-    sky:1
-  }
-);
+add("nature","sun",{
+  hot:1,
+  light:1,
+  nature:1,
+  outdoors:1,
+  sky:1
+});
 
-add(
-  "nature",
-  "moon",
-  {
-    nature:1,
-    night:1,
-    outdoors:1,
-    sky:1
-  }
-);
+add("nature","moon",{
+  nature:1,
+  night:1,
+  outdoors:1,
+  sky:1
+});
 
-add(
-  "nature",
-  "star",
-  {
-    light:1,
-    nature:1,
-    night:1,
-    outdoors:1,
-    sky:1
-  }
-);
+add("nature","star",{
+  light:1,
+  nature:1,
+  night:1,
+  outdoors:1,
+  sky:1
+});
 
-add(
-  "nature",
-  "forest",
-  {
-    land:1,
-    large:1,
-    nature:1,
-    outdoors:1,
-    plant:1
-  }
-);
+add("nature","forest",{
+  land:1,
+  large:1,
+  nature:1,
+  outdoors:1,
+  plant:1
+});
 
-add(
-  "nature",
-  "desert",
-  {
-    hot:1,
-    land:1,
-    large:1,
-    nature:1,
-    outdoors:1
-  }
-);
+add("nature","desert",{
+  hot:1,
+  land:1,
+  large:1,
+  nature:1,
+  outdoors:1
+});
 
 /* QUESTIONS */
 
 const questions=[
 
 ["alive","Is it alive?"],
-
 ["animal","Is it an animal?"],
-
 ["food","Is it something you can eat?"],
-
 ["household","Would you normally find it around a home?"],
-
 ["vehicle","Is it a vehicle or something you ride in or on?"],
-
 ["nature","Is it something found in nature?"],
-
 ["indoors","Is it usually found indoors?"],
-
 ["outdoors","Is it usually found outdoors?"],
-
 ["handheld","Can you comfortably hold it in one hand?"],
-
 ["small","Is it usually smaller than a loaf of bread?"],
-
 ["large","Is it larger than a person?"],
-
 ["electronic","Does it use electricity or electronics?"],
-
 ["battery","Can it run on a battery?"],
-
 ["screen","Does it have a screen?"],
-
 ["water","Is it strongly associated with water?"],
-
 ["flies","Can it fly?"],
-
 ["wheels","Does it have wheels?"],
-
 ["motor","Does it have a motor?"],
-
 ["road","Is it commonly used on roads?"],
-
 ["twowheels","Does it normally have two wheels?"],
-
 ["fourwheels","Does it normally have four wheels?"],
-
 ["pet","Do people commonly keep it as a pet?"],
-
 ["wild","Is it usually wild rather than domesticated?"],
-
 ["fourlegs","Does it normally have four legs?"],
-
 ["bird","Is it a bird?"],
-
 ["reptile","Is it a reptile?"],
-
 ["fur","Does it have fur?"],
-
 ["farm","Is it commonly associated with a farm?"],
-
 ["night","Is it especially associated with nighttime?"],
-
 ["fruit","Is it a fruit?"],
-
 ["vegetable","Is it a vegetable?"],
-
 ["sweet","Is it usually sweet?"],
-
 ["dessert","Is it usually a dessert?"],
-
 ["meal","Is it commonly eaten as a meal?"],
-
 ["meat","Is meat a main part of it?"],
-
 ["cooked","Is it usually cooked before eating?"],
-
 ["cold","Is it normally cold when used, eaten, or found?"],
-
 ["breakfast","Is it commonly associated with breakfast?"],
-
 ["snack","Is it commonly eaten as a snack?"],
-
 ["kitchen","Would you usually find it in a kitchen?"],
-
 ["furniture","Is it furniture?"],
-
 ["tool","Is it a tool?"],
-
 ["garage","Would you commonly keep it in a garage or workshop?"],
-
 ["metal","Is it usually made mostly of metal?"],
-
 ["clean","Is it mainly used for cleaning?"],
-
 ["sit","Do people sit on it?"],
-
 ["sleep","Is it mainly used for sleeping?"],
-
 ["light","Does it produce light?"],
-
 ["round","Is it usually round?"],
-
 ["carry","Is it something people commonly carry with them?"],
-
 ["plant","Is it a plant?"],
-
 ["sky","Would you look up toward the sky to see it?"],
-
 ["weather","Is it a kind of weather?"],
-
 ["public","Is it commonly used for public transportation?"],
-
 ["rail","Does it travel on rails?"],
-
 ["ride","Do people ride in or on it?"],
-
 ["tall","Is it usually taller than a person?"],
-
 ["land","Is it mainly associated with land rather than water?"],
-
 ["hot","Is it strongly associated with heat?"],
-
 ["nolegs","Does it normally have no legs?"],
-
 ["shell","Does it have a shell?"],
-
 ["jumps","Is it known for jumping?"],
-
 ["baked","Is it usually baked?"],
-
 ["cheese","Is cheese a main part of it?"],
-
 ["hard","Is it usually hard or rigid?"],
-
 ["raw","Is it commonly eaten raw?"],
-
 ["moves","Does it move under its own power?"],
+["work","Is it mainly used for work or a job?"],
 
-["work","Is it mainly used for work or a job?"]
+/* TABLE QUESTIONS */
+
+["surface","Is it mainly used as a flat surface to put things on?"],
+["low","Is it usually about knee height or lower?"],
+["livingroom","Is it commonly found in a living room?"],
+["sofa","Is it commonly placed in front of a sofa?"],
+["dining","Is it mainly used for eating meals?"],
+["bedroom","Is it commonly kept in a bedroom?"],
+["drawers","Does it usually have drawers?"],
+["folding","Is it designed to fold up?"]
 
 ];
 
@@ -3048,8 +2272,7 @@ let state=null;
 let voiceOn=true;
 let recognition=null;
 
-const $=id=>
-  document.getElementById(id);
+const $=id=>document.getElementById(id);
 
 const screens=[
   "startScreen",
@@ -3060,14 +2283,12 @@ const screens=[
 
 function show(id){
 
-  screens.forEach(s=>
-    $(s)
-      .classList
-      .toggle(
-        "active",
-        s===id
-      )
-  );
+  screens.forEach(s=>{
+    $(s).classList.toggle(
+      "active",
+      s===id
+    );
+  });
 
   window.scrollTo({
     top:0,
@@ -3079,17 +2300,15 @@ function toast(m){
 
   $("toast").textContent=m;
 
-  $("toast")
-    .classList
-    .add("show");
-
-  setTimeout(
-    ()=>
-      $("toast")
-        .classList
-        .remove("show"),
-    1800
+  $("toast").classList.add(
+    "show"
   );
+
+  setTimeout(()=>{
+    $("toast").classList.remove(
+      "show"
+    );
+  },1800);
 }
 
 function loadStats(){
@@ -3100,7 +2319,7 @@ function loadStats(){
       localStorage.getItem(
         "donco20q_stats_v2"
       )
-    ) || {
+    )||{
       games:0,
       wins:0
     };
@@ -3130,7 +2349,7 @@ function loadLearned(){
       localStorage.getItem(
         "donco20q_learned_v2"
       )
-    ) || [];
+    )||[];
 
   }catch{
 
@@ -3154,6 +2373,9 @@ function renderCounts(){
 
   const l=loadLearned();
 
+  $("builtInCount").textContent=
+    baseCandidates.length;
+
   $("gamesStat").textContent=
     s.games||0;
 
@@ -3176,11 +2398,9 @@ function renderCounts(){
 
 function speak(t){
 
-  if(!voiceOn){
-    return;
-  }
-
   if(
+    !voiceOn
+    ||
     !(
       "speechSynthesis"
       in window
@@ -3226,26 +2446,24 @@ function speak(t){
 function allCandidates(){
 
   return baseCandidates.concat(
-    loadLearned()
-      .map(
-        x=>({
-          ...x,
-          learned:true
-        })
-      )
+    loadLearned().map(
+      x=>({
+        ...x,
+        learned:true
+      })
+    )
   );
 }
 
 function basePool(){
 
   const l=
-    allCandidates()
-      .filter(
-        c=>
-          selectedCategory==="anything"
-          ||
-          c.cat===selectedCategory
-      );
+    allCandidates().filter(
+      c=>
+        selectedCategory==="anything"
+        ||
+        c.cat===selectedCategory
+    );
 
   return l.map(
     c=>({
@@ -3258,27 +2476,21 @@ function basePool(){
 function startGame(){
 
   state={
-
     qCount:0,
-
     asked:new Set(),
-
     pool:basePool(),
-
     current:null,
-
     isGuess:false,
-
     guessedName:null,
-
     answers:{},
-
     guessAttempts:0
   };
 
   $("saveMissBtn").disabled=false;
 
-  show("gameScreen");
+  show(
+    "gameScreen"
+  );
 
   nextTurn();
 }
@@ -3293,7 +2505,10 @@ function ranked(){
   );
 }
 
-function answerValueFor(c,key){
+function answerValueFor(
+  c,
+  key
+){
 
   if(
     !(key in c.a)
@@ -3306,7 +2521,10 @@ function answerValueFor(c,key){
   );
 }
 
-function answerClassFor(c,key){
+function answerClassFor(
+  c,
+  key
+){
 
   const v=
     answerValueFor(
@@ -3360,16 +2578,17 @@ function informationScore(
     sometimes:0
   };
 
-  candidates
-    .forEach(
-      c=>
-        bins[
-          answerClassFor(
-            c,
-            key
-          )
-        ]++
-    );
+  candidates.forEach(
+    c=>{
+
+      bins[
+        answerClassFor(
+          c,
+          key
+        )
+      ]++;
+    }
+  );
 
   const total=
     candidates.length;
@@ -3377,8 +2596,7 @@ function informationScore(
   const active=
     Object.values(
       bins
-    )
-    .filter(
+    ).filter(
       n=>n>0
     );
 
@@ -3419,7 +2637,9 @@ function chooseQuestion(){
   ){
 
     if(
-      state.asked.has(key)
+      state.asked.has(
+        key
+      )
     ){
       continue;
     }
@@ -3580,10 +2800,11 @@ function nextTurn(){
   $("voiceStatus").textContent="";
 
   setTimeout(
-    ()=>
+    ()=>{
       speak(
         state.current.text
-      ),
+      );
+    },
     120
   );
 }
@@ -3629,6 +2850,10 @@ function answer(v){
     return;
   }
 
+  /*
+  IF THE PROGRAM MAKES A GUESS
+  */
+
   if(
     state.isGuess
   ){
@@ -3646,6 +2871,67 @@ function answer(v){
       v==="no"
     ){
 
+      const guessed=
+        state.pool.find(
+          c=>
+            c.n===
+            state.guessedName
+        );
+
+      /*
+      THIS IS THE COFFEE TABLE FEATURE.
+
+      If the program guesses the generic word
+      TABLE and the player says NO, it keeps
+      the more specific table possibilities.
+      */
+
+      if(
+        guessed?.generic
+        &&
+        guessed?.family
+      ){
+
+        const moreSpecific=
+          state.pool.filter(
+            c=>
+              c.family===
+              guessed.family
+              &&
+              c.n!==
+              state.guessedName
+          );
+
+        if(
+          moreSpecific.length
+        ){
+
+          state.pool=
+            moreSpecific;
+
+          state.isGuess=false;
+
+          $("voiceStatus").textContent=
+            "Close — I’ll get more specific.";
+
+          speak(
+            "Close. I'll get more specific."
+          );
+
+          setTimeout(
+            nextTurn,
+            450
+          );
+
+          return;
+        }
+      }
+
+      /*
+      FOR ANY OTHER WRONG GUESS,
+      REMOVE IT AND KEEP GOING.
+      */
+
       state.pool=
         state.pool.filter(
           c=>
@@ -3655,7 +2941,13 @@ function answer(v){
 
       state.isGuess=false;
 
-      nextTurn();
+      $("voiceStatus").textContent=
+        "Not quite — I’ll keep guessing.";
+
+      setTimeout(
+        nextTurn,
+        250
+      );
 
       return;
     }
@@ -3670,21 +2962,26 @@ function answer(v){
     return;
   }
 
+  /*
+  NORMAL QUESTION ANSWER
+  */
+
   const k=
     state.current.key;
 
   state.answers[k]=v;
 
-  state.pool
-    .forEach(
-      c=>
-        c.score+=
-          scoreOne(
-            c,
-            k,
-            v
-          )
-    );
+  state.pool.forEach(
+    c=>{
+
+      c.score+=
+        scoreOne(
+          c,
+          k,
+          v
+        );
+    }
+  );
 
   nextTurn();
 }
@@ -3698,6 +2995,7 @@ function finish(w){
     (s.games||0)+1;
 
   if(w){
+
     s.wins=
       (s.wins||0)+1;
   }
@@ -3777,17 +3075,22 @@ function teachItem(){
     )
   ){
 
-    if(v==="yes"){
+    if(
+      v==="yes"
+    ){
+
       attrs[k]=1;
-    }
 
-    else if(v==="no"){
+    }else if(
+      v==="no"
+    ){
+
       attrs[k]=0;
-    }
 
-    else if(
+    }else if(
       v==="sometimes"
     ){
+
       attrs[k]=.5;
     }
   }
@@ -3814,7 +3117,9 @@ function teachItem(){
         .toISOString()
   };
 
-  if(idx>=0){
+  if(
+    idx>=0
+  ){
 
     learned[idx]=item;
 
@@ -4001,38 +3306,38 @@ function setupRecognition(){
           .test(heard)
       ){
 
-        answer("yes");
+        answer(
+          "yes"
+        );
 
-      }
-
-      else if(
+      }else if(
         /\b(no|nope|nah|wrong)\b/
           .test(heard)
       ){
 
-        answer("no");
+        answer(
+          "no"
+        );
 
-      }
-
-      else if(
+      }else if(
         /\b(sometimes|maybe|occasionally)\b/
           .test(heard)
       ){
 
-        answer("sometimes");
+        answer(
+          "sometimes"
+        );
 
-      }
-
-      else if(
+      }else if(
         /don't know|do not know|not sure|unknown/
           .test(heard)
       ){
 
-        answer("unknown");
+        answer(
+          "unknown"
+        );
 
-      }
-
-      else{
+      }else{
 
         $("voiceStatus").textContent=
           "Please say yes, no, sometimes, or don't know.";
@@ -4059,16 +3364,14 @@ document
             )
             .forEach(
               x=>
-                x.classList
-                  .remove(
-                    "selected"
-                  )
+                x.classList.remove(
+                  "selected"
+                )
             );
 
-          b.classList
-            .add(
-              "selected"
-            );
+          b.classList.add(
+            "selected"
+          );
 
           selectedCategory=
             b.dataset.cat;
@@ -4082,10 +3385,11 @@ document
   .forEach(
     b=>
       b.onclick=
-        ()=>
+        ()=>{
           answer(
             b.dataset.answer
-          )
+          );
+        }
   );
 
 $("startBtn").onclick=
@@ -4098,6 +3402,7 @@ $("quitBtn").onclick=
       "speechSynthesis"
       in window
     ){
+
       speechSynthesis.cancel();
     }
 
@@ -4137,8 +3442,7 @@ $("voiceToggle").onclick=
         : "Voice Off";
 
     $("voiceToggle")
-      .classList
-      .toggle(
+      .classList.toggle(
         "on",
         voiceOn
       );
@@ -4232,8 +3536,9 @@ if(
 ){
 
   speechSynthesis.onvoiceschanged=
-    ()=>
+    ()=>{
       speechSynthesis.getVoices();
+    };
 }
 
 })();
