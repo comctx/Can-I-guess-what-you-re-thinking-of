@@ -1,4117 +1,638 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#8b0509">
-<title>20 Questions</title>
-
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#8b0509"><title>20 Questions</title>
 <style>
-:root{
-  --red-1:#4f0004;
-  --red-2:#7c0007;
-  --red-3:#a50810;
-  --red-4:#d21a24;
-  --ink:#fff8f8;
-  --muted:#efd2d2;
-  --soft:#cda8a8;
-  --glass:rgba(72,0,5,.48);
-  --glass-light:rgba(255,255,255,.13);
-  --glass-border:rgba(255,255,255,.34);
-  --glass-border-strong:rgba(255,255,255,.52);
-  --shadow:0 24px 70px rgba(20,0,0,.38);
-  --soft-shadow:0 10px 28px rgba(25,0,0,.28);
-}
-
-*{box-sizing:border-box}
-
-html{background:#650006}
-
-body{
-  margin:0;
-  min-height:100vh;
-  color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 75% 8%,rgba(255,55,65,.62),transparent 24%),
-    radial-gradient(circle at 18% 28%,rgba(177,0,12,.62),transparent 28%),
-    radial-gradient(circle at 78% 68%,rgba(118,0,7,.82),transparent 33%),
-    linear-gradient(160deg,#350003 0%,#760006 28%,#b30611 58%,#5a0005 100%);
-  overflow-x:hidden;
-  position:relative;
-}
-
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  background:
-    radial-gradient(circle at 50% -15%,rgba(255,255,255,.08),transparent 42%),
-    radial-gradient(circle at 50% 115%,rgba(0,0,0,.48),transparent 48%),
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.30),
-      transparent 16%,
-      transparent 84%,
-      rgba(0,0,0,.30)
-    );
-}
-
-body:after{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  opacity:.14;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,.055) 0,
-      rgba(255,255,255,.055) 1px,
-      transparent 1px,
-      transparent 3px
-    );
-  mix-blend-mode:overlay;
-}
-
-/* BLACK QUESTION MARK BACKGROUND */
-
-.question-bg{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  overflow:hidden;
-}
-
-.question-bg span{
-  position:absolute;
-  color:#050000;
-  font-family:Arial Black,Impact,system-ui,sans-serif;
-  font-weight:900;
-  line-height:.72;
-  user-select:none;
-  text-shadow:0 2px 10px rgba(0,0,0,.22);
-  transform:rotate(var(--r,0deg));
-  opacity:var(--o,.48);
-  font-size:var(--s,120px);
-}
-
-.question-bg span:nth-child(1){left:-2%;top:14%;--s:205px;--o:.52;--r:-8deg}
-.question-bg span:nth-child(2){left:15%;top:2%;--s:94px;--o:.56;--r:5deg}
-.question-bg span:nth-child(3){left:28%;top:9%;--s:176px;--o:.54;--r:9deg}
-.question-bg span:nth-child(4){left:48%;top:-2%;--s:155px;--o:.64;--r:-3deg}
-.question-bg span:nth-child(5){right:13%;top:2%;--s:142px;--o:.58;--r:8deg}
-.question-bg span:nth-child(6){right:-1%;top:14%;--s:188px;--o:.63;--r:-7deg}
-.question-bg span:nth-child(7){left:8%;top:37%;--s:88px;--o:.52;--r:-10deg}
-.question-bg span:nth-child(8){right:17%;top:29%;--s:102px;--o:.50;--r:4deg}
-.question-bg span:nth-child(9){right:-4%;top:46%;--s:172px;--o:.62;--r:7deg}
-.question-bg span:nth-child(10){left:-1%;top:56%;--s:174px;--o:.59;--r:-7deg}
-.question-bg span:nth-child(11){left:25%;top:63%;--s:96px;--o:.48;--r:8deg}
-.question-bg span:nth-child(12){right:21%;top:61%;--s:124px;--o:.55;--r:-8deg}
-.question-bg span:nth-child(13){left:7%;bottom:-1%;--s:190px;--o:.66;--r:-5deg}
-.question-bg span:nth-child(14){left:43%;bottom:2%;--s:102px;--o:.56;--r:5deg}
-.question-bg span:nth-child(15){right:4%;bottom:-3%;--s:175px;--o:.62;--r:9deg}
-.question-bg span:nth-child(16){right:1%;top:74%;--s:84px;--o:.51;--r:-6deg}
-.question-bg span:nth-child(17){left:35%;top:42%;--s:66px;--o:.25;--r:6deg}
-.question-bg span:nth-child(18){right:34%;top:49%;--s:72px;--o:.24;--r:-6deg}
-
-.app{
-  max-width:760px;
-  margin:0 auto;
-  min-height:100vh;
-  padding:22px 16px 36px;
-  position:relative;
-  z-index:2;
-}
-
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  padding:15px 16px;
-  border:1px solid var(--glass-border);
-  border-radius:26px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.16),
-      rgba(72,0,5,.42)
-    );
-  box-shadow:
-    var(--shadow),
-    inset 0 1px 0 rgba(255,255,255,.36),
-    inset 0 -1px 0 rgba(0,0,0,.16);
-  backdrop-filter:blur(24px) saturate(145%);
-  -webkit-backdrop-filter:blur(24px) saturate(145%);
-}
-
-.brand h1{
-  font-size:27px;
-  margin:0;
-  letter-spacing:-.5px;
-  color:#fff;
-  text-shadow:0 2px 12px rgba(0,0,0,.28);
-}
-
-.brand p{
-  margin:4px 0 0;
-  color:var(--muted);
-  font-size:13px;
-}
-
-button{
-  font:inherit;
-  border:0;
-  cursor:pointer;
-  border-radius:14px;
-  transition:
-    transform .14s ease,
-    box-shadow .14s ease,
-    background .14s ease,
-    border-color .14s ease;
-  -webkit-tap-highlight-color:transparent;
-}
-
-button:active{
-  transform:scale(.985);
-}
-
-button:focus-visible{
-  outline:3px solid rgba(255,222,222,.45);
-  outline-offset:2px;
-}
-
-.mini{
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.32);
-  padding:9px 12px;
-  font-size:13px;
-  color:#fff;
-  box-shadow:
-    var(--soft-shadow),
-    inset 0 1px 0 rgba(255,255,255,.18);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-}
-
-.mini.on{
-  background:rgba(216,29,39,.36);
-  border-color:rgba(255,216,219,.48);
-  color:#fff;
-}
-
-main{
-  padding-top:22px;
-}
-
-.screen{
-  display:none;
-}
-
-.screen.active{
-  display:block;
-}
-
-.hero{
-  padding:30px 10px 19px;
-  text-align:center;
-}
-
-.hero .mark{
-  width:94px;
-  height:94px;
-  border-radius:50%;
-  margin:0 auto 18px;
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:0;
-  font-weight:900;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.18),
-      rgba(145,0,8,.34)
-    );
-  border:1px solid rgba(255,255,255,.46);
-  box-shadow:
-    0 18px 40px rgba(31,0,0,.36),
-    inset 0 1px 0 rgba(255,255,255,.48),
-    0 0 24px rgba(255,44,55,.22);
-  position:relative;
-  overflow:hidden;
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-}
-
-.hero .mark:before{
-  content:"?";
-  font-size:58px;
-  line-height:1;
-  color:#fff;
-  text-shadow:0 4px 18px rgba(0,0,0,.28);
-}
-
-.hero .mark:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      125deg,
-      transparent 15%,
-      rgba(255,255,255,.26) 40%,
-      transparent 62%
-    );
-  transform:translateX(-120%);
-  animation:shine 5.7s linear infinite;
-}
-
-@keyframes shine{
-  to{
-    transform:translateX(130%);
-  }
-}
-
-h2{
-  font-size:30px;
-  line-height:1.14;
-  margin:0 0 10px;
-  letter-spacing:-.6px;
-  color:#fff;
-  text-shadow:0 2px 14px rgba(0,0,0,.24);
-}
-
-.lead{
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.55;
-  margin:0 auto 22px;
-  max-width:560px;
-}
-
-.panel,
-.question-card,
-.win{
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(126,0,8,.46),
-      rgba(38,0,2,.48)
-    );
-  border:1px solid var(--glass-border);
-  border-radius:28px;
-  box-shadow:
-    var(--shadow),
-    inset 0 1px 0 rgba(255,255,255,.28),
-    inset 0 -1px 0 rgba(0,0,0,.22);
-  backdrop-filter:blur(28px) saturate(145%);
-  -webkit-backdrop-filter:blur(28px) saturate(145%);
-}
-
-.panel{
-  padding:22px;
-}
-
-.panel:before,
-.question-card:before,
-.win:before{
-  content:"";
-  position:absolute;
-  left:-15%;
-  top:-28%;
-  width:55%;
-  height:55%;
-  border-radius:50%;
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,.18),
-      transparent 68%
-    );
-  pointer-events:none;
-}
-
-.panel>strong{
-  color:#fbecec;
-  font-size:14px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  position:relative;
-  z-index:1;
-}
-
-.category-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:11px;
-  margin:15px 0 8px;
-  position:relative;
-  z-index:1;
-}
-
-.category{
-  padding:15px 13px;
-  text-align:left;
-  font-weight:750;
-  color:#fff;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.13),
-      rgba(255,255,255,.07)
-    );
-  border:1px solid rgba(255,255,255,.27);
-  box-shadow:
-    0 7px 18px rgba(20,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.15);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  position:relative;
-  overflow:hidden;
-}
-
-.category small{
-  display:block;
-  color:#e7c4c4;
-  font-weight:450;
-  margin-top:4px;
-  line-height:1.25;
-}
-
-.category:hover{
-  border-color:rgba(255,255,255,.48);
-  background:rgba(255,255,255,.15);
-}
-
-.category.selected{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(230,38,49,.42),
-      rgba(119,0,8,.42)
-    );
-  border-color:rgba(255,224,226,.68);
-  box-shadow:
-    0 0 0 2px rgba(255,255,255,.08),
-    0 8px 22px rgba(30,0,0,.24),
-    inset 4px 0 0 #ff5962;
-}
-
-.primary{
-  width:100%;
-  padding:16px 18px;
-  color:#fff;
-  font-weight:800;
-  font-size:17px;
-  margin-top:15px;
-  background:
-    linear-gradient(
-      180deg,
-      #e92d38 0%,
-      #bd0a14 55%,
-      #8e0008 100%
-    );
-  border:1px solid rgba(255,201,205,.55);
-  box-shadow:
-    0 11px 26px rgba(67,0,4,.38),
-    inset 0 1px 0 rgba(255,255,255,.32),
-    0 0 24px rgba(255,34,46,.17);
-  position:relative;
-  overflow:hidden;
-}
-
-.primary:before,
-.mic-answer:before{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:-35%;
-  width:36%;
-  transform:skewX(-18deg);
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.26),
-      transparent
-    );
-  transition:transform .38s ease;
-}
-
-.primary:hover:before,
-.mic-answer:hover:before{
-  transform:translateX(330%) skewX(-18deg);
-}
-
-.primary:hover{
-  transform:translateY(-1px);
-  box-shadow:
-    0 13px 30px rgba(67,0,4,.45),
-    0 0 28px rgba(255,34,46,.20);
-}
-
-.secondary{
-  width:100%;
-  padding:13px 16px;
-  margin-top:10px;
-  color:#fff;
-  font-weight:700;
-  background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.29);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.14);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-}
-
-.secondary:hover{
-  background:rgba(255,255,255,.15);
-}
-
-.learning-line{
-  margin-top:13px;
-  color:#ddbbbb;
-  font-size:12px;
-  text-align:center;
-  position:relative;
-  z-index:1;
-}
-
-.learning-line b{
-  color:#fff;
-}
-
-.game-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:14px;
-}
-
-.counter{
-  font-size:13px;
-  color:#f0d7d7;
-  font-weight:750;
-  text-shadow:0 1px 8px rgba(0,0,0,.22);
-}
-
-.progress{
-  height:8px;
-  background:rgba(0,0,0,.30);
-  border:1px solid rgba(255,255,255,.20);
-  border-radius:999px;
-  overflow:hidden;
-  margin-bottom:20px;
-  box-shadow:
-    inset 0 2px 5px rgba(0,0,0,.28);
-}
-
-.progress>div{
-  height:100%;
-  width:5%;
-  background:
-    linear-gradient(
-      90deg,
-      #ff7078,
-      #f1202d,
-      #a6000a
-    );
-  box-shadow:
-    0 0 15px rgba(255,58,69,.52);
-  transition:width .25s ease;
-}
-
-.question-card{
-  min-height:300px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:31px 24px;
-}
-
-.q-label{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  color:#ff9da3;
-  font-weight:850;
-  margin-bottom:13px;
-  position:relative;
-  z-index:1;
-}
-
-.question{
-  font-size:29px;
-  line-height:1.3;
-  font-weight:800;
-  letter-spacing:-.55px;
-  max-width:570px;
-  color:#fff;
-  position:relative;
-  z-index:1;
-  text-shadow:0 2px 15px rgba(0,0,0,.20);
-}
-
-.speak-row{
-  margin-top:18px;
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  position:relative;
-  z-index:1;
-}
-
-.answers{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
-  margin-top:15px;
-}
-
-.answer{
-  padding:15px 10px;
-  font-weight:800;
-  font-size:16px;
-  color:#fff;
-  background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.28);
-  box-shadow:
-    0 6px 18px rgba(20,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.12);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-}
-
-.answer:hover{
-  background:rgba(255,255,255,.15);
-}
-
-.answer.yes{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(19,136,78,.70),
-      rgba(7,72,40,.78)
-    );
-  border-color:rgba(178,255,215,.40);
-}
-
-.answer.no{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(194,27,39,.72),
-      rgba(112,0,7,.82)
-    );
-  border-color:rgba(255,185,190,.43);
-}
-
-.answer.sometimes{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(159,107,12,.72),
-      rgba(85,54,0,.82)
-    );
-  border-color:rgba(255,230,167,.40);
-}
-
-.mic-answer{
-  margin-top:11px;
-  width:100%;
-  padding:13px;
-  color:#fff;
-  font-weight:750;
-  background:
-    linear-gradient(
-      180deg,
-      #2a0a0c,
-      #160103
-    );
-  border:1px solid rgba(255,255,255,.23);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.25);
-  position:relative;
-  overflow:hidden;
-}
-
-.status{
-  text-align:center;
-  color:#e7c7c7;
-  font-size:13px;
-  min-height:20px;
-  margin-top:9px;
-}
-
-.win{
-  text-align:center;
-  padding:32px 20px;
-}
-
-.win .big{
-  width:76px;
-  height:76px;
-  margin:0 auto 14px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  font-size:39px;
-  color:#fff;
-  background:
-    linear-gradient(
-      145deg,
-      #ef3944,
-      #8a0008
-    );
-  border:1px solid rgba(255,255,255,.42);
-  box-shadow:
-    0 12px 25px rgba(45,0,2,.32),
-    0 0 22px rgba(255,49,60,.20);
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
-  margin:19px 0;
-}
-
-.stat{
-  background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.23);
-  border-radius:15px;
-  padding:13px 8px;
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-}
-
-.stat b{
-  display:block;
-  font-size:22px;
-  color:#fff;
-}
-
-.stat span{
-  font-size:11px;
-  color:#dfbbbb;
-}
-
-.miss-form{
-  margin-top:17px;
-  text-align:left;
-  padding-top:15px;
-  border-top:1px solid rgba(255,255,255,.17);
-}
-
-label{
-  font-size:13px;
-  color:#f0d1d1;
-  font-weight:750;
-  display:block;
-  margin-bottom:6px;
-}
-
-input{
-  width:100%;
-  padding:13px 12px;
-  border:1px solid rgba(255,255,255,.29);
-  border-radius:12px;
-  font:inherit;
-  color:#fff;
-  background:rgba(28,0,2,.48);
-  outline:none;
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-}
-
-input::placeholder{
-  color:#c89e9e;
-}
-
-input:focus{
-  border-color:rgba(255,190,194,.75);
-  box-shadow:
-    0 0 0 3px rgba(255,77,87,.15);
-}
-
-.learned-list{
-  margin-top:14px;
-  text-align:left;
-  max-height:240px;
-  overflow:auto;
-  border-top:1px solid rgba(255,255,255,.18);
-  padding-top:10px;
-}
-
-.learned-row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,.14);
-  font-size:13px;
-  color:#fff;
-}
-
-footer{
-  text-align:center;
-  color:#d9adad;
-  font-size:11px;
-  margin-top:30px;
-  letter-spacing:.06em;
-  text-shadow:0 1px 8px rgba(0,0,0,.24);
-}
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:22px;
-  transform:translateX(-50%) translateY(20px);
-  opacity:0;
-  background:#1a0002;
-  color:#fff;
-  padding:10px 14px;
-  border-radius:12px;
-  font-size:13px;
-  transition:.2s;
-  pointer-events:none;
-  z-index:20;
-  box-shadow:
-    0 10px 28px rgba(0,0,0,.32);
-  border:1px solid rgba(255,255,255,.16);
-}
-
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-
-@media(min-width:640px){
-  .category-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .answers{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .app{
-    padding-top:28px;
-  }
-}
-
-@media(max-width:420px){
-  .question{
-    font-size:25px;
-  }
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .question-bg span{
-    filter:blur(.2px);
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-  .hero .mark:after{
-    animation:none;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="question-bg" aria-hidden="true">
-  <span>?</span><span>?</span><span>?</span><span>?</span>
-  <span>?</span><span>?</span><span>?</span><span>?</span>
-  <span>?</span><span>?</span><span>?</span><span>?</span>
-  <span>?</span><span>?</span><span>?</span><span>?</span>
-  <span>?</span><span>?</span>
-</div>
-
-<div class="app">
-
-<header>
-  <div class="brand">
-    <h1>20 Questions</h1>
-    <p>Think of something. I’ll try to guess it.</p>
-  </div>
-
-  <button id="voiceToggle" class="mini on" type="button">
-    Voice On
-  </button>
-</header>
-
-<main>
-
-<section id="startScreen" class="screen active">
-
-<div class="hero">
-  <div class="mark">20?</div>
-
-  <h2>Can I guess what you’re thinking of?</h2>
-
-  <p class="lead">
-    Pick a category, think of one thing, and answer up to
-    20 questions. Don’t tell me what it is.
-  </p>
-</div>
-
-<div class="panel">
-
-<strong>Choose a category</strong>
-
-<div class="category-grid">
-
-<button class="category selected" data-cat="anything">
-  Anything
-  <small>Classic mode</small>
-</button>
-
-<button class="category" data-cat="animal">
-  Animals
-  <small>Pets, wildlife & more</small>
-</button>
-
-<button class="category" data-cat="food">
-  Food
-  <small>Meals, snacks & produce</small>
-</button>
-
-<button class="category" data-cat="household">
-  Household
-  <small>Things around the home</small>
-</button>
-
-<button class="category" data-cat="vehicle">
-  Vehicles
-  <small>Things that move</small>
-</button>
-
-<button class="category" data-cat="nature">
-  Nature
-  <small>Places & natural things</small>
-</button>
-
-</div>
-
-<button id="startBtn" class="primary">
-  Start Game
-</button>
-
-<div class="learning-line">
-  Built-in answers:
-  <b id="builtInCount">0</b>
-  · Learned from you:
-  <b id="learnedHome">0</b>
-</div>
-
-<button id="learnedBtn" class="secondary">
-  View Learned Items
-</button>
-
-</div>
-
-</section>
-
-<section id="gameScreen" class="screen">
-
-<div class="game-head">
-
-<button id="quitBtn" class="mini">
-  New Game
-</button>
-
-<div class="counter" id="counter">
-  Question 1 of 20
-</div>
-
-</div>
-
-<div class="progress">
-  <div id="progressBar"></div>
-</div>
-
-<div class="question-card">
-
-<div class="q-label" id="qLabel">
-  Question
-</div>
-
-<div class="question" id="questionText">
-  Is it alive?
-</div>
-
-<div class="speak-row">
-  <button id="repeatBtn" class="mini">
-    Hear Again
-  </button>
-</div>
-
-</div>
-
-<div class="answers">
-
-<button class="answer yes" data-answer="yes">
-  Yes
-</button>
-
-<button class="answer no" data-answer="no">
-  No
-</button>
-
-<button class="answer sometimes" data-answer="sometimes">
-  Sometimes
-</button>
-
-<button class="answer" data-answer="unknown">
-  Don’t Know
-</button>
-
-</div>
-
-<button id="micBtn" class="mic-answer">
-  🎙 Answer by Voice
-</button>
-
-<div id="voiceStatus" class="status"></div>
-
-</section>
-
-<section id="resultScreen" class="screen">
-
-<div class="win">
-
-<div class="big" id="resultIcon">
-  ✓
-</div>
-
-<h2 id="resultTitle">
-  I got it!
-</h2>
-
-<p class="lead" id="resultText"></p>
-
-<div class="stats">
-
-<div class="stat">
-  <b id="gamesStat">0</b>
-  <span>Games</span>
-</div>
-
-<div class="stat">
-  <b id="winsStat">0</b>
-  <span>Guessed</span>
-</div>
-
-<div class="stat">
-  <b id="rateStat">0%</b>
-  <span>Success</span>
-</div>
-
-<div class="stat">
-  <b id="learnedStat">0</b>
-  <span>Learned</span>
-</div>
-
-</div>
-
-<div id="missBox" class="miss-form" style="display:none">
-
-<label for="missedItem">
-  What were you thinking of?
-</label>
-
-<input id="missedItem" placeholder="Type it here">
-
-<button id="saveMissBtn" class="secondary">
-  Teach the Game This Item
-</button>
-
-<div class="learning-line">
-  Your answers from this round will be saved with the item,
-  so the game can recognize it later.
-</div>
-
-</div>
-
-<button id="playAgainBtn" class="primary">
-  Play Again
-</button>
-
-</div>
-
-</section>
-
-<section id="learnedScreen" class="screen">
-
-<div class="panel learnedScreenPanel">
-
-<h2 style="font-size:22px">
-  Learned Items
-</h2>
-
-<p class="lead" style="margin-bottom:10px">
-  These are things the game learned when you stumped it.
-</p>
-
-<div id="learnedList" class="learned-list"></div>
-
-<button id="backHomeBtn" class="primary">
-  Back
-</button>
-
-<button id="clearLearnedBtn" class="secondary">
-  Clear Learned Items
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-<footer>
-  A DONCO-BAYCITY™ Game
-</footer>
-
-</div>
-
-<div id="toast" class="toast"></div>
+*{box-sizing:border-box}:root{--line:#ffffff48;--muted:#edc9cc}body{margin:0;min-height:100vh;color:white;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 75% 8%,#d92b35 0,transparent 24%),radial-gradient(circle at 18% 32%,#9f0610 0,transparent 30%),linear-gradient(150deg,#260002,#890009 45%,#bd101a 70%,#3b0004);overflow-x:hidden}.marks{position:fixed;inset:0;overflow:hidden;pointer-events:none}.marks span{position:absolute;color:#080000;font:900 var(--s,130px)/.8 Impact,Arial Black,sans-serif;opacity:.52;transform:rotate(var(--r,0deg))}.marks span:nth-child(1){left:-4%;top:9%;--s:210px;--r:-8deg}.marks span:nth-child(2){left:28%;top:3%;--s:140px;--r:8deg}.marks span:nth-child(3){right:-2%;top:14%;--s:190px;--r:-7deg}.marks span:nth-child(4){left:8%;top:42%;--s:110px;--r:9deg}.marks span:nth-child(5){right:12%;top:40%;--s:150px;--r:-6deg}.marks span:nth-child(6){left:-2%;top:68%;--s:190px;--r:-5deg}.marks span:nth-child(7){left:45%;top:73%;--s:90px;--r:7deg}.marks span:nth-child(8){right:-2%;bottom:-2%;--s:185px;--r:8deg}.app{max-width:760px;margin:auto;min-height:100vh;padding:22px 16px 36px;position:relative}header,.panel,.card,.result{background:linear-gradient(145deg,#8e081177,#1f00028c);border:1px solid var(--line);box-shadow:0 20px 55px #19000061;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 16px;border-radius:24px}h1{margin:0;font-size:27px}header p{margin:4px 0 0;color:var(--muted);font-size:13px}button{font:inherit;border:0;border-radius:13px;cursor:pointer;color:#fff}button:active{transform:scale(.985)}.mini,.secondary,.answer{background:#ffffff18;border:1px solid var(--line)}.mini{padding:9px 12px}main{padding-top:22px}.screen{display:none}.screen.active{display:block}.hero{text-align:center;padding:28px 8px 18px}.mark{width:94px;height:94px;margin:auto auto 18px;border-radius:50%;display:grid;place-items:center;font-size:58px;font-weight:900;background:#78000973;border:1px solid #ffffff6b;box-shadow:0 14px 35px #0006}h2{margin:0 0 10px;font-size:29px}.lead{max-width:560px;margin:0 auto 20px;color:var(--muted);line-height:1.5}.panel{padding:20px;border-radius:26px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.category{padding:14px;text-align:left;font-weight:750;background:#ffffff17;border:1px solid var(--line)}.category small{display:block;color:var(--muted);font-weight:400;margin-top:3px}.category.selected{background:#dc232f52;box-shadow:inset 4px 0 #ff6972}.primary{width:100%;padding:15px;margin-top:12px;font-weight:800;font-size:16px;background:linear-gradient(#ed3440,#a7000b);border:1px solid #ffdcde6b;box-shadow:0 9px 22px #28000059}.secondary{width:100%;padding:12px;margin-top:10px;font-weight:700}.learning{text-align:center;color:#dcb9bc;font-size:12px;margin-top:12px}.gamehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.counter{font-size:13px;color:#efd7d9}.progress{height:8px;border-radius:20px;background:#0005;overflow:hidden;margin-bottom:18px}#progressBar{height:100%;width:5%;background:linear-gradient(90deg,#ff747c,#d20d19)}.card{min-height:285px;border-radius:27px;padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#ff9ba2;font-weight:850;margin-bottom:12px}.question{font-size:28px;line-height:1.3;font-weight:800}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.answer{padding:14px;font-weight:800;font-size:16px}.yes{background:#11663f}.no{background:#8d0812}.sometimes{background:#7f5708}.mic{width:100%;padding:13px;margin-top:10px;font-weight:750;background:#190103;border:1px solid var(--line)}.status{min-height:21px;text-align:center;color:#e9c9cb;font-size:13px;margin-top:8px}.result{border-radius:27px;padding:28px 20px;text-align:center}.big{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;margin:auto auto 13px;font-size:38px;background:linear-gradient(#ee3743,#8d0009)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.stat{background:#ffffff17;border:1px solid #ffffff33;border-radius:14px;padding:12px 6px}.stat b{display:block;font-size:21px}.stat span{font-size:11px;color:var(--muted)}label{display:block;text-align:left;color:var(--muted);font-size:13px;font-weight:700;margin-bottom:6px}input{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:#14000280;color:#fff;font:inherit}.learned{max-height:260px;overflow:auto;margin-top:10px}.row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff21;text-align:left}footer{text-align:center;color:#d5aaad;font-size:11px;margin-top:28px;letter-spacing:.05em}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;background:#170002;padding:10px 14px;border-radius:10px;transition:.2s;z-index:9}.toast.show{opacity:1;transform:translate(-50%,0)}@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}.answers{grid-template-columns:repeat(4,1fr)}}@media(max-width:420px){.question{font-size:24px}.stats{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<div class="marks" aria-hidden="true"><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span></div><div class="app">
+<header><div><h1>20 Questions</h1><p>Think of something. I’ll try to guess it.</p></div><button id="voiceToggle" class="mini">Voice On</button></header><main>
+<section id="startScreen" class="screen active"><div class="hero"><div class="mark">?</div><h2>Can I guess what you’re thinking of?</h2><p class="lead">Pick a category, think of one thing, and answer up to 20 questions. Don’t tell me what it is.</p></div><div class="panel"><strong>Choose a category</strong><div class="grid"><button class="category selected" data-cat="anything">Anything<small>Classic mode</small></button><button class="category" data-cat="animal">Animals<small>Pets, wildlife & more</small></button><button class="category" data-cat="food">Food<small>Meals, snacks & produce</small></button><button class="category" data-cat="household">Household<small>Things around the home</small></button><button class="category" data-cat="vehicle">Vehicles<small>Things that move</small></button><button class="category" data-cat="nature">Nature<small>Places & natural things</small></button></div><button id="startBtn" class="primary">Start Game</button><div class="learning">Built-in answers: <b id="builtInCount">0</b> · Learned from you: <b id="learnedHome">0</b></div><button id="learnedBtn" class="secondary">View Learned Items</button></div></section>
+<section id="gameScreen" class="screen"><div class="gamehead"><button id="quitBtn" class="mini">New Game</button><div id="counter" class="counter">Question 1 of 20</div></div><div class="progress"><div id="progressBar"></div></div><div class="card"><div id="qLabel" class="label">Question</div><div id="questionText" class="question">Is it alive?</div><button id="repeatBtn" class="mini" style="margin-top:18px">Hear Again</button></div><div class="answers"><button class="answer yes" data-answer="yes">Yes</button><button class="answer no" data-answer="no">No</button><button class="answer sometimes" data-answer="sometimes">Sometimes</button><button class="answer" data-answer="unknown">Don’t Know</button></div><button id="micBtn" class="mic">🎙 Answer by Voice</button><div id="voiceStatus" class="status"></div></section>
+<section id="resultScreen" class="screen"><div class="result"><div id="resultIcon" class="big">✓</div><h2 id="resultTitle">I got it!</h2><p id="resultText" class="lead"></p><div class="stats"><div class="stat"><b id="gamesStat">0</b><span>Games</span></div><div class="stat"><b id="winsStat">0</b><span>Guessed</span></div><div class="stat"><b id="rateStat">0%</b><span>Success</span></div><div class="stat"><b id="learnedStat">0</b><span>Learned</span></div></div><div id="missBox" style="display:none"><label for="missedItem">What were you thinking of?</label><input id="missedItem" placeholder="Type it here"><button id="saveMissBtn" class="secondary">Teach the Game This Item</button><div class="learning">Your answers from this round will be saved so the game can recognize it later.</div></div><button id="playAgainBtn" class="primary">Play Again</button></div></section>
+<section id="learnedScreen" class="screen"><div class="panel"><h2 style="font-size:22px">Learned Items</h2><p class="lead">These are things the game learned when you stumped it.</p><div id="learnedList" class="learned"></div><button id="backHomeBtn" class="primary">Back</button><button id="clearLearnedBtn" class="secondary">Clear Learned Items</button></div></section>
+</main><footer>A DONCO-BAYCITY™ Game</footer></div><div id="toast" class="toast"></div>
 
 <script>
-(() => {
+const K="alive,animal,fourlegs,fur,indoors,pet,dogtype,doglarge,dogfloppy,dogcurly,dogshortface,dogretriever,dogworking,small,farm,large,outdoors,ride,bird,flies,thanksgiving,longneck,ussymbol,wild,birdprey,night,cold,water,talkbird,nolegs,shell,reptile,jumps,tall,food,fruit,raw,round,sweet,vegetable,cooked,cheese,meal,meat,dessert,baked,breakfast,snack,electronic,household,screen,battery,handheld,kitchen,clean,furniture,sit,chairtype,chairwheels,swivel,work,rocks,livingroom,reclines,dining,surface,tabletype,low,sofa,bedroom,drawers,folding,sleep,light,wheels,garage,tool,metal,carry,fourwheels,motor,road,vehicle,cartype,carfourdoor,convertible,sportscar,hatchrear,cargocar,twowheels,public,rail,boattype,boatspeed,boatfish,pontoon,sails,nature,plant,land,moves,hard,sky,weather,hot".split(","),key=c=>K[parseInt(c,36)],C={a:"animal",f:"food",h:"household",v:"vehicle",n:"nature",x:"anything"},F={d:"dog",b:"bird",c:"chair",t:"table",r:"car",o:"boat"};
 
-const baseCandidates=[];
+const DATA=`dog|a|0.1.2.3.4.5.6||d|1;cat|a|0.1.2.3.4.5|||;German shepherd|a|0.1.2.3.4.5.6.7.c||d|;golden retriever|a|0.1.2.3.4.5.6.7.8.b|c|d|;Labrador retriever|a|0.1.2.3.4.5.6.7.8.b.c||d|;beagle|a|0.1.2.3.4.5.6.8||d|;bulldog|a|0.1.2.3.4.5.6.a|8|d|;poodle|a|0.1.2.3.4.5.6.8.9|7.c|d|;Chihuahua|a|0.1.2.3.4.5.6.d||d|;horse|a|0.1.e.2.3.f.g.h|||;cow|a|0.1.e.2.f.g|||;pig|a|0.1.e.2.g|||;goat|a|0.1.e.2.g|||;sheep|a|0.1.e.2.3.g|||;chicken|a|0.1.i.e.g||b|;turkey|a|0.1.i.e.g.k||b|;eagle|a|0.1.i.j.g.n.o.m||b|;hawk|a|0.1.i.j.g.n.o||b|;owl|a|0.1.i.j.p.g.n.o||b|;penguin|a|0.1.i.q.r.n||b|;duck|a|0.1.i.j.g.r||b|;goose|a|0.1.i.j.g.r.l||b|;parrot|a|0.1.i.j.4.5.s||b|;fish|a|0.1.5.r|||;goldfish|a|0.1.5.d.r|||;shark|a|0.1.f.r.n|||;dolphin|a|0.1.f.r.n|||;whale|a|0.1.f.r.n|||;octopus|a|0.1.t.r.n|||;crab|a|0.1.u.r.n|||;lobster|a|0.1.u.r.n|||;snake|a|0.1.t.v.n|||;turtle|a|0.1.5.v.u.r|||;lizard|a|0.1.5.v.n|||;crocodile|a|0.1.f.v.r.n|||;frog|a|0.1.w.r.n|||;elephant|a|0.1.2.f.n|||;zebra|a|0.1.2.f.n|||;lion|a|0.1.2.3.f.n|||;tiger|a|0.1.2.3.f.n|||;bear|a|0.1.2.3.f.n|||;wolf|a|0.1.2.3.n|||;fox|a|0.1.2.3.n|||;deer|a|0.1.2.3.g.n|||;moose|a|0.1.2.3.f.g.n|||;rabbit|a|0.1.2.3.w.5|||;squirrel|a|0.1.2.3.g.d.n|||;mouse|a|0.1.2.3.d|||;hamster|a|0.1.2.3.4.5.d|||;monkey|a|0.1.3.n|||;gorilla|a|0.1.3.f.n|||;giraffe|a|0.1.2.f.x.n|||;kangaroo|a|0.1.w.n|||;bat|a|0.1.j.p.n|||;butterfly|a|0.1.j.d.n|||;bee|a|0.1.j.d.n|||;spider|a|0.1.d.n|||;apple|f|y.z.10.11.12|||;orange|f|y.z.10.11.12|||;peach|f|y.z.10.11.12|||;banana|f|y.z.10.12|||;pear|f|y.z.10.12|||;pineapple|f|y.z.10.12|||;strawberry|f|y.z.10.d.12|||;grape|f|y.z.10.11.d.12|||;watermelon|f|y.z.f.10.11.12|||;carrot|f|y.10.13|||;potato|f|14.y.13|||;broccoli|f|14.y.13|||;corn|f|14.e.y.13|||;tomato|f|y.z.10.11|||;pizza|f|15.14.y.16.11|||;hamburger|f|14.y.16.17|||;hot dog|f|14.y.16.17|||;taco|f|14.y.16.17|||;fried chicken|f|14.y.16.17|||;steak|f|14.y.16.17|||;spaghetti|f|14.y.16|||;ice cream|f|q.18.y.12|||;cake|f|19.18.y.12|||;cookie|f|19.18.y.d.12|||;pie|f|19.18.y.11.12|||;donut|f|19.18.y.11.12|||;bread|f|19.y|||;egg|f|1a.14.y.11|||;bacon|f|1a.14.y.17|||;pancakes|f|1a.14.y.12|||;cereal|f|1a.y|||;popcorn|f|14.y.1b|||;potato chips|f|y.1b|||;pretzel|f|19.y.1b|||;cheese|f|q.y|||;television|h|1c.1d.4.f.1e|||;phone|h|1f.1c.1g.1d.4.1e|||;tablet|h|1f.1c.1g.1d.4.1e|||;laptop|h|1f.1c.1d.4.1e|||;desktop computer|h|1c.1d.4.1e|||;radio|h|1c.1d.4|||;fan|h|1c.1d.4|||;refrigerator|h|q.1c.1d.4.1h.f|||;microwave|h|14.1c.1d.4.1h|||;toaster|h|1c.1d.4.1h|||;coffee maker|h|1c.1d.4.1h|||;dishwasher|h|1c.1d.4.1h.f|||;washing machine|h|1i.1c.1d.4.f|||;dryer|h|1c.1d.4.f|||;chair|h|1j.1d.4.1k.1l||c|1;office chair|h|1j.1d.4.1k.1l.1m.1n.1o||c|;rocking chair|h|1j.1d.4.1k.1l.1p.1q||c|;recliner|h|1j.1d.4.1k.1l.1r.1q||c|;dining chair|h|1j.1d.4.1k.1l.1s||c|;table|h|1j.1d.4.1t.1u||t|1;coffee table|h|1j.1d.4.1t.1u.1v.1q.1w||t|;dining table|h|1j.1d.4.1t.1u.f.1s||t|;kitchen table|h|1j.1d.4.1t.1u.1h.1s||t|;end table|h|1j.1d.4.1t.1u.1v.1q||t|;nightstand|h|1j.1d.4.1t.1u.1v.1x.1y||t|;picnic table|h|1j.1d.g.1t.1u.f.1s||t|;card table|h|1j.1d.4.1t.1u.1z||t|;desk|h|1j.1d.4.1t.1o|1y||;dresser|h|1j.1d.4.f.1x.1y|||;bed|h|1j.1d.4.f.20|||;couch|h|1j.1d.4.f.1k|||;lamp|h|1c.1d.4.21|||;vacuum cleaner|h|1i.1c.1d.4.22|||;broom|h|1i.1g.1d.4|||;hammer|h|23.1g.1d.24|||;screwdriver|h|23.1g.1d.24|||;saw|h|23.1g.1d.24|||;wrench|h|23.1g.1d.25.24|||;drill|h|1f.1c.23.1g.1d.24|||;flashlight|h|1f.1c.1g.1d.21|||;keys|h|1g.1d.25.d|||;scissors|h|1g.1d.25.d|||;wallet|h|26.1g.1d.d|||;purse|h|26.1g.1d|||;watch|h|26.1c.1d.d|||;glasses|h|26.1d.d|||;book|h|1g.1d.4|||;pen|h|1g.1d.d|||;pencil|h|1g.1d.d|||;toothbrush|h|1g.1d.d|||;remote control|h|1f.1c.1g.1d.d|||;clock|h|1d.4|||;mirror|h|1d.4|||;shoes|h|26.1d|||;hat|h|26.1d|||;car|v|27.28.h.29.2a.22.2b||r|1;sedan|v|27.28.h.29.2a.22.2b.2c||r|;sports car|v|27.28.h.29.2a.22.2b.2e|2d|r|;convertible|v|27.28.h.29.2a.22.2b.2d|2c.2e|r|;station wagon|v|27.28.h.29.2a.22.2b.2c.2f.2g||r|;hatchback|v|27.28.h.29.2a.22.2b.2f|2c.2g|r|;pickup truck|v|27.f.28.h.29.2a.22|||;suv|v|27.f.28.h.29.2a.22|||;van|v|27.f.28.h.29.2a.22|||;motorcycle|v|28.h.29.2h.2a.22|||;bicycle|v|h.29.2h.2a.22|||;scooter|v|h.29.d.2h.2a.22|||;bus|v|f.28.2i.h.29.2a.22|||;school bus|v|f.28.2i.h.29.2a.22|||;train|v|f.28.2i.2j.h.2a.22|||;subway train|v|4.f.28.2i.2j.h.2a.22|||;airplane|v|j.f.28.2i.h.2a|||;helicopter|v|j.28.h.2a|||;boat|v|28.h.2a.r.2k||o|1;speedboat|v|28.h.2a.r.2k.2l||o|;fishing boat|v|28.h.2a.r.2k.2m||o|;pontoon boat|v|28.h.2a.r.2k.2n|2m|o|;sailboat|v|h.2a.r.2k.2o||o|;canoe|v|h.2a.r|||;kayak|v|h.d.2a.r|||;tractor|v|e.f.28.2a.22|||;forklift|v|f.28.2a.22.1o|||;golf cart|v|28.h.d.2a.22|||;rv|v|f.28.h.29.2a.22|||;tree|n|0.2p.g.2q.x|||;flower|n|0.2p.g.2q.d|||;grass|n|0.2p.g.2q.d|||;bush|n|0.2p.g.2q|||;cactus|n|0.2p.g.2q|||;mountain|n|2r.f.2p.g.x|||;hill|n|2r.2p.g|||;river|n|2s.2p.g.r|||;waterfall|n|2s.2p.g.r|||;lake|n|2p.g.r|||;pond|n|2p.g.d.r|||;ocean|n|f.2p.g.r|||;beach|n|2r.2p.g.r|||;island|n|2r.2p.g.r|||;rock|n|2t.2r.2p.g|||;sand|n|2r.2p.g.d|||;cloud|n|2p.g.2u|||;rain|n|2p.g.2u.r.2v|||;snow|n|q.2p.g.2v|||;hail|n|q.2p.g.2v|||;sun|n|2w.21.2p.g.2u|||;moon|n|2p.p.g.2u|||;star|n|21.2p.p.g.2u|||;forest|n|2r.f.2p.g.2q|||;desert|n|2w.2r.f.2p.g|||`;
 
-function add(cat,names,a,meta={}){
-  names.split("|").forEach(n=>{
-    baseCandidates.push({
-      n,
-      cat,
-      a:{...a},
-      ...meta
-    });
-  });
-}
+const QDATA=`0|Is it alive?;1|Is it an animal?;y|Is it something you can eat?;1d|Would you normally find it around a home?;2a|Is it a vehicle or something you ride in or on?;2p|Is it something found in nature?;4|Is it usually found indoors?;g|Is it usually found outdoors?;1g|Can you comfortably hold it in one hand?;d|Is it usually smaller than a loaf of bread?;f|Is it larger than a person?;1c|Does it use electricity or electronics?;1f|Can it run on a battery?;1e|Does it have a screen?;r|Is it strongly associated with water?;j|Can it fly?;22|Does it have wheels?;28|Does it have a motor?;29|Is it commonly used on roads?;2h|Does it normally have two wheels?;27|Does it normally have four wheels?;5|Do people commonly keep it as a pet?;n|Is it usually wild rather than domesticated?;2|Does it normally have four legs?;i|Is it a bird?;v|Is it a reptile?;3|Does it have fur?;e|Is it commonly associated with a farm?;p|Is it especially associated with nighttime?;z|Is it a fruit?;13|Is it a vegetable?;12|Is it usually sweet?;18|Is it usually a dessert?;16|Is it commonly eaten as a meal?;17|Is meat a main part of it?;14|Is it usually cooked before eating?;q|Is it normally cold when used, eaten, or found?;1a|Is it commonly associated with breakfast?;1b|Is it commonly eaten as a snack?;1h|Would you usually find it in a kitchen?;1j|Is it furniture?;24|Is it a tool?;23|Would you commonly keep it in a garage or workshop?;25|Is it usually made mostly of metal?;1i|Is it mainly used for cleaning?;1k|Do people sit on it?;20|Is it mainly used for sleeping?;21|Does it produce light?;11|Is it usually round?;26|Is it something people commonly carry with them?;2q|Is it a plant?;2u|Would you look up toward the sky to see it?;2v|Is it a kind of weather?;2i|Is it commonly used for public transportation?;2j|Does it travel on rails?;h|Do people ride in or on it?;x|Is it usually taller than a person?;2r|Is it mainly associated with land rather than water?;2w|Is it strongly associated with heat?;t|Does it normally have no legs?;u|Does it have a shell?;w|Is it known for jumping?;19|Is it usually baked?;15|Is cheese a main part of it?;2t|Is it usually hard or rigid?;10|Is it commonly eaten raw?;2s|Does it move under its own power?;1o|Is it mainly used for work or a job?;1t|Is it mainly used as a flat surface to put things on?;1v|Is it usually about knee height or lower?;1q|Is it commonly found in a living room?;1w|Is it commonly placed in front of a sofa?;1s|Is it mainly used for eating meals?;1x|Is it commonly kept in a bedroom?;1y|Does it usually have drawers?;1z|Is it designed to fold up?;1u|Is it a type of table?;6|Is it a type of dog?;7|Is it usually considered a large dog breed?;8|Does it usually have floppy ears?;9|Does it usually have a curly coat?;a|Does it have a short, flat-looking face?;b|Is it a retriever breed?;c|Is it commonly known as a working or service dog?;o|Is it a bird of prey?;l|Does it usually have a noticeably long neck?;k|Is it strongly associated with Thanksgiving?;m|Is it famously associated with the United States as a national symbol?;s|Is it known for copying human speech?;1l|Is it a type of chair?;1m|Does the chair usually have wheels?;1n|Does it normally swivel?;1p|Is it designed to rock back and forth?;1r|Is it designed to recline?;2b|Is it a type of car rather than a truck, van, or SUV?;2c|Does it normally have four passenger doors?;2d|Can its roof fold down or be removed?;2e|Is it mainly designed for sporty performance?;2f|Does it have a hatch-style rear door?;2g|Is extra cargo room a major part of its design?;2k|Is it a type of boat?;2o|Does it mainly use sails for propulsion?;2l|Is it mainly designed for speed?;2m|Is it mainly set up for fishing?;2n|Does it ride on pontoons?`;
 
-/* ANIMALS */
+const baseCandidates=DATA.split(";").map(s=>{const r=s.split("|"),a={};(r[2]||"").split(".").filter(Boolean).forEach(c=>a[key(c)]=1);(r[3]||"").split(".").filter(Boolean).forEach(c=>a[key(c)]=.5);return{n:r[0],cat:C[r[1]],a,family:F[r[4]],generic:r[5]==="1"}}),
+QUESTIONS=QDATA.split(";").map(s=>{const i=s.indexOf("|");return[key(s.slice(0,i)),s.slice(i+1)]}),
+FAMILY={tabletype:"table",dogtype:"dog",bird:"bird",chairtype:"chair",cartype:"car",boattype:"boat"};
 
-add("animal","dog|cat",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  indoors:1,
-  pet:1
-});
-
-add("animal","horse",{
-  alive:1,
-  animal:1,
-  farm:1,
-  fourlegs:1,
-  fur:1,
-  large:1,
-  outdoors:1,
-  ride:1
-});
-
-add("animal","cow",{
-  alive:1,
-  animal:1,
-  farm:1,
-  fourlegs:1,
-  large:1,
-  outdoors:1
-});
-
-add("animal","pig|goat",{
-  alive:1,
-  animal:1,
-  farm:1,
-  fourlegs:1,
-  outdoors:1
-});
-
-add("animal","sheep",{
-  alive:1,
-  animal:1,
-  farm:1,
-  fourlegs:1,
-  fur:1,
-  outdoors:1
-});
-
-add("animal","chicken",{
-  alive:1,
-  animal:1,
-  bird:1,
-  farm:1,
-  flies:0,
-  outdoors:1
-});
-
-add("animal","turkey",{
-  alive:1,
-  animal:1,
-  bird:1,
-  farm:1,
-  outdoors:1
-});
-
-add("animal","eagle|hawk",{
-  alive:1,
-  animal:1,
-  bird:1,
-  flies:1,
-  outdoors:1,
-  wild:1
-});
-
-add("animal","owl",{
-  alive:1,
-  animal:1,
-  bird:1,
-  flies:1,
-  night:1,
-  outdoors:1,
-  wild:1
-});
-
-add("animal","penguin",{
-  alive:1,
-  animal:1,
-  bird:1,
-  cold:1,
-  flies:0,
-  water:1,
-  wild:1
-});
-
-add("animal","duck|goose",{
-  alive:1,
-  animal:1,
-  bird:1,
-  flies:1,
-  outdoors:1,
-  water:1
-});
-
-add("animal","parrot",{
-  alive:1,
-  animal:1,
-  bird:1,
-  flies:1,
-  indoors:1,
-  pet:1
-});
-
-add("animal","fish",{
-  alive:1,
-  animal:1,
-  pet:1,
-  water:1
-});
-
-add("animal","goldfish",{
-  alive:1,
-  animal:1,
-  pet:1,
-  small:1,
-  water:1
-});
-
-add("animal","shark|dolphin|whale",{
-  alive:1,
-  animal:1,
-  large:1,
-  water:1,
-  wild:1
-});
-
-add("animal","octopus",{
-  alive:1,
-  animal:1,
-  nolegs:1,
-  water:1,
-  wild:1
-});
-
-add("animal","crab|lobster",{
-  alive:1,
-  animal:1,
-  shell:1,
-  water:1,
-  wild:1
-});
-
-add("animal","snake",{
-  alive:1,
-  animal:1,
-  nolegs:1,
-  reptile:1,
-  wild:1
-});
-
-add("animal","turtle",{
-  alive:1,
-  animal:1,
-  pet:1,
-  reptile:1,
-  shell:1,
-  water:1
-});
-
-add("animal","lizard",{
-  alive:1,
-  animal:1,
-  pet:1,
-  reptile:1,
-  wild:1
-});
-
-add("animal","crocodile",{
-  alive:1,
-  animal:1,
-  large:1,
-  reptile:1,
-  water:1,
-  wild:1
-});
-
-add("animal","frog",{
-  alive:1,
-  animal:1,
-  jumps:1,
-  water:1,
-  wild:1
-});
-
-add("animal","elephant|zebra",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  large:1,
-  wild:1
-});
-
-add("animal","lion|tiger|bear",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  large:1,
-  wild:1
-});
-
-add("animal","wolf|fox",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  wild:1
-});
-
-add("animal","deer",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  outdoors:1,
-  wild:1
-});
-
-add("animal","moose",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  large:1,
-  outdoors:1,
-  wild:1
-});
-
-add("animal","rabbit",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  jumps:1,
-  pet:1
-});
-
-add("animal","squirrel",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  outdoors:1,
-  small:1,
-  wild:1
-});
-
-add("animal","mouse",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  small:1
-});
-
-add("animal","hamster",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  fur:1,
-  indoors:1,
-  pet:1,
-  small:1
-});
-
-add("animal","monkey",{
-  alive:1,
-  animal:1,
-  fur:1,
-  wild:1
-});
-
-add("animal","gorilla",{
-  alive:1,
-  animal:1,
-  fur:1,
-  large:1,
-  wild:1
-});
-
-add("animal","giraffe",{
-  alive:1,
-  animal:1,
-  fourlegs:1,
-  large:1,
-  tall:1,
-  wild:1
-});
-
-add("animal","kangaroo",{
-  alive:1,
-  animal:1,
-  jumps:1,
-  wild:1
-});
-
-add("animal","bat",{
-  alive:1,
-  animal:1,
-  flies:1,
-  night:1,
-  wild:1
-});
-
-add("animal","butterfly|bee",{
-  alive:1,
-  animal:1,
-  flies:1,
-  small:1,
-  wild:1
-});
-
-add("animal","spider",{
-  alive:1,
-  animal:1,
-  small:1,
-  wild:1
-});
-
-/* FOOD */
-
-add("food","apple|orange|peach",{
-  food:1,
-  fruit:1,
-  raw:1,
-  round:1,
-  sweet:1
-});
-
-add("food","banana|pear|pineapple",{
-  food:1,
-  fruit:1,
-  raw:1,
-  sweet:1
-});
-
-add("food","strawberry",{
-  food:1,
-  fruit:1,
-  raw:1,
-  small:1,
-  sweet:1
-});
-
-add("food","grape",{
-  food:1,
-  fruit:1,
-  raw:1,
-  round:1,
-  small:1,
-  sweet:1
-});
-
-add("food","watermelon",{
-  food:1,
-  fruit:1,
-  large:1,
-  raw:1,
-  round:1,
-  sweet:1
-});
-
-add("food","carrot",{
-  food:1,
-  raw:1,
-  vegetable:1
-});
-
-add("food","potato|broccoli",{
-  cooked:1,
-  food:1,
-  vegetable:1
-});
-
-add("food","corn",{
-  cooked:1,
-  farm:1,
-  food:1,
-  vegetable:1
-});
-
-add("food","tomato",{
-  food:1,
-  fruit:1,
-  raw:1,
-  round:1
-});
-
-add("food","pizza",{
-  cheese:1,
-  cooked:1,
-  food:1,
-  meal:1,
-  round:1
-});
-
-add("food","hamburger|hot dog|taco|fried chicken|steak",{
-  cooked:1,
-  food:1,
-  meal:1,
-  meat:1
-});
-
-add("food","spaghetti",{
-  cooked:1,
-  food:1,
-  meal:1
-});
-
-add("food","ice cream",{
-  cold:1,
-  dessert:1,
-  food:1,
-  sweet:1
-});
-
-add("food","cake",{
-  baked:1,
-  dessert:1,
-  food:1,
-  sweet:1
-});
-
-add("food","cookie",{
-  baked:1,
-  dessert:1,
-  food:1,
-  small:1,
-  sweet:1
-});
-
-add("food","pie|donut",{
-  baked:1,
-  dessert:1,
-  food:1,
-  round:1,
-  sweet:1
-});
-
-add("food","bread",{
-  baked:1,
-  food:1
-});
-
-add("food","egg",{
-  breakfast:1,
-  cooked:1,
-  food:1,
-  round:1
-});
-
-add("food","bacon",{
-  breakfast:1,
-  cooked:1,
-  food:1,
-  meat:1
-});
-
-add("food","pancakes",{
-  breakfast:1,
-  cooked:1,
-  food:1,
-  sweet:1
-});
-
-add("food","cereal",{
-  breakfast:1,
-  food:1
-});
-
-add("food","popcorn",{
-  cooked:1,
-  food:1,
-  snack:1
-});
-
-add("food","potato chips",{
-  food:1,
-  snack:1
-});
-
-add("food","pretzel",{
-  baked:1,
-  food:1,
-  snack:1
-});
-
-add("food","cheese",{
-  cold:1,
-  food:1
-});
-
-/* HOUSEHOLD */
-
-add("household","television",{
-  electronic:1,
-  household:1,
-  indoors:1,
-  large:1,
-  screen:1
-});
-
-add("household","phone|tablet",{
-  battery:1,
-  electronic:1,
-  handheld:1,
-  household:1,
-  indoors:1,
-  screen:1
-});
-
-add("household","laptop",{
-  battery:1,
-  electronic:1,
-  household:1,
-  indoors:1,
-  screen:1
-});
-
-add("household","desktop computer",{
-  electronic:1,
-  household:1,
-  indoors:1,
-  screen:1
-});
-
-add("household","radio|fan",{
-  electronic:1,
-  household:1,
-  indoors:1
-});
-
-add("household","refrigerator",{
-  cold:1,
-  electronic:1,
-  household:1,
-  indoors:1,
-  kitchen:1,
-  large:1
-});
-
-add("household","microwave",{
-  cooked:1,
-  electronic:1,
-  household:1,
-  indoors:1,
-  kitchen:1
-});
-
-add("household","toaster|coffee maker",{
-  electronic:1,
-  household:1,
-  indoors:1,
-  kitchen:1
-});
-
-add("household","dishwasher",{
-  electronic:1,
-  household:1,
-  indoors:1,
-  kitchen:1,
-  large:1
-});
-
-add("household","washing machine",{
-  clean:1,
-  electronic:1,
-  household:1,
-  indoors:1,
-  large:1
-});
-
-add("household","dryer",{
-  electronic:1,
-  household:1,
-  indoors:1,
-  large:1
-});
-
-add("household","chair",{
-  furniture:1,
-  household:1,
-  indoors:1,
-  sit:1
-});
-
-/* TABLE FAMILY */
-
-add(
-  "household",
-  "table",
-  {
-    furniture:1,
-    household:1,
-    indoors:1,
-    surface:1
-  },
-  {
-    family:"table",
-    generic:true
-  }
-);
-
-add(
-  "household",
-  "coffee table",
-  {
-    furniture:1,
-    household:1,
-    indoors:1,
-    surface:1,
-    low:1,
-    livingroom:1,
-    sofa:1
-  },
-  {
-    family:"table"
-  }
-);
-
-add(
-  "household",
-  "dining table",
-  {
-    furniture:1,
-    household:1,
-    indoors:1,
-    surface:1,
-    large:1,
-    dining:1
-  },
-  {
-    family:"table"
-  }
-);
-
-add(
-  "household",
-  "kitchen table",
-  {
-    furniture:1,
-    household:1,
-    indoors:1,
-    surface:1,
-    kitchen:1,
-    dining:1
-  },
-  {
-    family:"table"
-  }
-);
-
-add(
-  "household",
-  "end table",
-  {
-    furniture:1,
-    household:1,
-    indoors:1,
-    surface:1,
-    low:1,
-    livingroom:1
-  },
-  {
-    family:"table"
-  }
-);
-
-add(
-  "household",
-  "nightstand",
-  {
-    furniture:1,
-    household:1,
-    indoors:1,
-    surface:1,
-    low:1,
-    bedroom:1,
-    drawers:1
-  },
-  {
-    family:"table"
-  }
-);
-
-add(
-  "household",
-  "picnic table",
-  {
-    furniture:1,
-    household:1,
-    outdoors:1,
-    surface:1,
-    large:1,
-    dining:1
-  },
-  {
-    family:"table"
-  }
-);
-
-add(
-  "household",
-  "card table",
-  {
-    furniture:1,
-    household:1,
-    indoors:1,
-    surface:1,
-    folding:1
-  },
-  {
-    family:"table"
-  }
-);
-
-add("household","desk",{
-  furniture:1,
-  household:1,
-  indoors:1,
-  surface:1,
-  work:1,
-  drawers:.5
-});
-
-add("household","dresser",{
-  furniture:1,
-  household:1,
-  indoors:1,
-  large:1,
-  bedroom:1,
-  drawers:1
-});
-
-add("household","bed",{
-  furniture:1,
-  household:1,
-  indoors:1,
-  large:1,
-  sleep:1
-});
-
-add("household","couch",{
-  furniture:1,
-  household:1,
-  indoors:1,
-  large:1,
-  sit:1
-});
-
-add("household","lamp",{
-  electronic:1,
-  household:1,
-  indoors:1,
-  light:1
-});
-
-add("household","vacuum cleaner",{
-  clean:1,
-  electronic:1,
-  household:1,
-  indoors:1,
-  wheels:1
-});
-
-add("household","broom",{
-  clean:1,
-  handheld:1,
-  household:1,
-  indoors:1
-});
-
-add("household","hammer|screwdriver|saw",{
-  garage:1,
-  handheld:1,
-  household:1,
-  tool:1
-});
-
-add("household","wrench",{
-  garage:1,
-  handheld:1,
-  household:1,
-  metal:1,
-  tool:1
-});
-
-add("household","drill",{
-  battery:1,
-  electronic:1,
-  garage:1,
-  handheld:1,
-  household:1,
-  tool:1
-});
-
-add("household","flashlight",{
-  battery:1,
-  electronic:1,
-  handheld:1,
-  household:1,
-  light:1
-});
-
-add("household","keys|scissors",{
-  handheld:1,
-  household:1,
-  metal:1,
-  small:1
-});
-
-add("household","wallet",{
-  carry:1,
-  handheld:1,
-  household:1,
-  small:1
-});
-
-add("household","purse",{
-  carry:1,
-  handheld:1,
-  household:1
-});
-
-add("household","watch",{
-  carry:1,
-  electronic:1,
-  household:1,
-  small:1
-});
-
-add("household","glasses",{
-  carry:1,
-  household:1,
-  small:1
-});
-
-add("household","book",{
-  handheld:1,
-  household:1,
-  indoors:1
-});
-
-add("household","pen|pencil|toothbrush",{
-  handheld:1,
-  household:1,
-  small:1
-});
-
-add("household","remote control",{
-  battery:1,
-  electronic:1,
-  handheld:1,
-  household:1,
-  small:1
-});
-
-add("household","clock|mirror",{
-  household:1,
-  indoors:1
-});
-
-add("household","shoes|hat",{
-  carry:1,
-  household:1
-});
-
-/* VEHICLES */
-
-add("vehicle","car",{
-  fourwheels:1,
-  motor:1,
-  ride:1,
-  road:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","pickup truck|suv|van",{
-  fourwheels:1,
-  large:1,
-  motor:1,
-  ride:1,
-  road:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","motorcycle",{
-  motor:1,
-  ride:1,
-  road:1,
-  twowheels:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","bicycle",{
-  motor:0,
-  ride:1,
-  road:1,
-  twowheels:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","scooter",{
-  ride:1,
-  road:1,
-  small:1,
-  twowheels:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","bus|school bus",{
-  large:1,
-  motor:1,
-  public:1,
-  ride:1,
-  road:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","train",{
-  large:1,
-  motor:1,
-  public:1,
-  rail:1,
-  ride:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","subway train",{
-  indoors:1,
-  large:1,
-  motor:1,
-  public:1,
-  rail:1,
-  ride:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","airplane",{
-  flies:1,
-  large:1,
-  motor:1,
-  public:1,
-  ride:1,
-  vehicle:1
-});
-
-add("vehicle","helicopter",{
-  flies:1,
-  motor:1,
-  ride:1,
-  vehicle:1
-});
-
-add("vehicle","boat",{
-  motor:1,
-  ride:1,
-  vehicle:1,
-  water:1
-});
-
-add("vehicle","sailboat|canoe",{
-  motor:0,
-  ride:1,
-  vehicle:1,
-  water:1
-});
-
-add("vehicle","kayak",{
-  motor:0,
-  ride:1,
-  small:1,
-  vehicle:1,
-  water:1
-});
-
-add("vehicle","tractor",{
-  farm:1,
-  large:1,
-  motor:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","forklift",{
-  large:1,
-  motor:1,
-  vehicle:1,
-  wheels:1,
-  work:1
-});
-
-add("vehicle","golf cart",{
-  motor:1,
-  ride:1,
-  small:1,
-  vehicle:1,
-  wheels:1
-});
-
-add("vehicle","rv",{
-  large:1,
-  motor:1,
-  ride:1,
-  road:1,
-  vehicle:1,
-  wheels:1
-});
-
-/* NATURE */
-
-add("nature","tree",{
-  alive:1,
-  nature:1,
-  outdoors:1,
-  plant:1,
-  tall:1
-});
-
-add("nature","flower|grass",{
-  alive:1,
-  nature:1,
-  outdoors:1,
-  plant:1,
-  small:1
-});
-
-add("nature","bush|cactus",{
-  alive:1,
-  nature:1,
-  outdoors:1,
-  plant:1
-});
-
-add("nature","mountain",{
-  land:1,
-  large:1,
-  nature:1,
-  outdoors:1,
-  tall:1
-});
-
-add("nature","hill",{
-  land:1,
-  nature:1,
-  outdoors:1
-});
-
-add("nature","river|waterfall",{
-  moves:1,
-  nature:1,
-  outdoors:1,
-  water:1
-});
-
-add("nature","lake",{
-  nature:1,
-  outdoors:1,
-  water:1
-});
-
-add("nature","pond",{
-  nature:1,
-  outdoors:1,
-  small:1,
-  water:1
-});
-
-add("nature","ocean",{
-  large:1,
-  nature:1,
-  outdoors:1,
-  water:1
-});
-
-add("nature","beach|island",{
-  land:1,
-  nature:1,
-  outdoors:1,
-  water:1
-});
-
-add("nature","rock",{
-  hard:1,
-  land:1,
-  nature:1,
-  outdoors:1
-});
-
-add("nature","sand",{
-  land:1,
-  nature:1,
-  outdoors:1,
-  small:1
-});
-
-add("nature","cloud",{
-  nature:1,
-  outdoors:1,
-  sky:1
-});
-
-add("nature","rain",{
-  nature:1,
-  outdoors:1,
-  sky:1,
-  water:1,
-  weather:1
-});
-
-add("nature","snow|hail",{
-  cold:1,
-  nature:1,
-  outdoors:1,
-  weather:1
-});
-
-add("nature","sun",{
-  hot:1,
-  light:1,
-  nature:1,
-  outdoors:1,
-  sky:1
-});
-
-add("nature","moon",{
-  nature:1,
-  night:1,
-  outdoors:1,
-  sky:1
-});
-
-add("nature","star",{
-  light:1,
-  nature:1,
-  night:1,
-  outdoors:1,
-  sky:1
-});
-
-add("nature","forest",{
-  land:1,
-  large:1,
-  nature:1,
-  outdoors:1,
-  plant:1
-});
-
-add("nature","desert",{
-  hot:1,
-  land:1,
-  large:1,
-  nature:1,
-  outdoors:1
-});
-
-/* QUESTIONS */
-
-const questions=[
-
-["alive","Is it alive?"],
-["animal","Is it an animal?"],
-["food","Is it something you can eat?"],
-["household","Would you normally find it around a home?"],
-["vehicle","Is it a vehicle or something you ride in or on?"],
-["nature","Is it something found in nature?"],
-["indoors","Is it usually found indoors?"],
-["outdoors","Is it usually found outdoors?"],
-["handheld","Can you comfortably hold it in one hand?"],
-["small","Is it usually smaller than a loaf of bread?"],
-["large","Is it larger than a person?"],
-["electronic","Does it use electricity or electronics?"],
-["battery","Can it run on a battery?"],
-["screen","Does it have a screen?"],
-["water","Is it strongly associated with water?"],
-["flies","Can it fly?"],
-["wheels","Does it have wheels?"],
-["motor","Does it have a motor?"],
-["road","Is it commonly used on roads?"],
-["twowheels","Does it normally have two wheels?"],
-["fourwheels","Does it normally have four wheels?"],
-["pet","Do people commonly keep it as a pet?"],
-["wild","Is it usually wild rather than domesticated?"],
-["fourlegs","Does it normally have four legs?"],
-["bird","Is it a bird?"],
-["reptile","Is it a reptile?"],
-["fur","Does it have fur?"],
-["farm","Is it commonly associated with a farm?"],
-["night","Is it especially associated with nighttime?"],
-["fruit","Is it a fruit?"],
-["vegetable","Is it a vegetable?"],
-["sweet","Is it usually sweet?"],
-["dessert","Is it usually a dessert?"],
-["meal","Is it commonly eaten as a meal?"],
-["meat","Is meat a main part of it?"],
-["cooked","Is it usually cooked before eating?"],
-["cold","Is it normally cold when used, eaten, or found?"],
-["breakfast","Is it commonly associated with breakfast?"],
-["snack","Is it commonly eaten as a snack?"],
-["kitchen","Would you usually find it in a kitchen?"],
-["furniture","Is it furniture?"],
-["tool","Is it a tool?"],
-["garage","Would you commonly keep it in a garage or workshop?"],
-["metal","Is it usually made mostly of metal?"],
-["clean","Is it mainly used for cleaning?"],
-["sit","Do people sit on it?"],
-["sleep","Is it mainly used for sleeping?"],
-["light","Does it produce light?"],
-["round","Is it usually round?"],
-["carry","Is it something people commonly carry with them?"],
-["plant","Is it a plant?"],
-["sky","Would you look up toward the sky to see it?"],
-["weather","Is it a kind of weather?"],
-["public","Is it commonly used for public transportation?"],
-["rail","Does it travel on rails?"],
-["ride","Do people ride in or on it?"],
-["tall","Is it usually taller than a person?"],
-["land","Is it mainly associated with land rather than water?"],
-["hot","Is it strongly associated with heat?"],
-["nolegs","Does it normally have no legs?"],
-["shell","Does it have a shell?"],
-["jumps","Is it known for jumping?"],
-["baked","Is it usually baked?"],
-["cheese","Is cheese a main part of it?"],
-["hard","Is it usually hard or rigid?"],
-["raw","Is it commonly eaten raw?"],
-["moves","Does it move under its own power?"],
-["work","Is it mainly used for work or a job?"],
-
-/* TABLE QUESTIONS */
-
-["surface","Is it mainly used as a flat surface to put things on?"],
-["low","Is it usually about knee height or lower?"],
-["livingroom","Is it commonly found in a living room?"],
-["sofa","Is it commonly placed in front of a sofa?"],
-["dining","Is it mainly used for eating meals?"],
-["bedroom","Is it commonly kept in a bedroom?"],
-["drawers","Does it usually have drawers?"],
-["folding","Is it designed to fold up?"]
-
-];
-
-let selectedCategory="anything";
-let state=null;
-let voiceOn=true;
-let recognition=null;
-
-const $=id=>document.getElementById(id);
-
-const screens=[
-  "startScreen",
-  "gameScreen",
-  "resultScreen",
-  "learnedScreen"
-];
+let selected="anything",state=null,voiceOn=true,recognition=null;
+const $=id=>document.getElementById(id),
+screens=["startScreen","gameScreen","resultScreen","learnedScreen"];
 
 function show(id){
-
-  screens.forEach(s=>{
-    $(s).classList.toggle(
-      "active",
-      s===id
-    );
-  });
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  screens.forEach(x=>$(x).classList.toggle("active",x===id));
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function toast(m){
-
-  $("toast").textContent=m;
-
-  $("toast").classList.add(
-    "show"
-  );
-
-  setTimeout(()=>{
-    $("toast").classList.remove(
-      "show"
-    );
-  },1800);
+function toast(t){
+  $("toast").textContent=t;
+  $("toast").classList.add("show");
+  setTimeout(()=>$("toast").classList.remove("show"),1800);
 }
 
-function loadStats(){
-
+function stats(){
   try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        "donco20q_stats_v2"
-      )
-    )||{
-      games:0,
-      wins:0
-    };
-
+    return JSON.parse(localStorage.getItem("donco20q_stats_v2"))||{games:0,wins:0};
   }catch{
-
-    return{
-      games:0,
-      wins:0
-    };
+    return{games:0,wins:0};
   }
 }
 
 function saveStats(s){
-
-  localStorage.setItem(
-    "donco20q_stats_v2",
-    JSON.stringify(s)
-  );
+  localStorage.setItem("donco20q_stats_v2",JSON.stringify(s));
 }
 
-function loadLearned(){
-
+function learned(){
   try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        "donco20q_learned_v2"
-      )
-    )||[];
-
+    return JSON.parse(localStorage.getItem("donco20q_learned_v2"))||[];
   }catch{
-
     return[];
   }
 }
 
 function saveLearned(x){
-
-  localStorage.setItem(
-    "donco20q_learned_v2",
-    JSON.stringify(x)
-  );
-
-  renderCounts();
+  localStorage.setItem("donco20q_learned_v2",JSON.stringify(x));
+  counts();
 }
 
-function renderCounts(){
-
-  const s=loadStats();
-
-  const l=loadLearned();
-
-  $("builtInCount").textContent=
-    baseCandidates.length;
-
-  $("gamesStat").textContent=
-    s.games||0;
-
-  $("winsStat").textContent=
-    s.wins||0;
-
-  $("rateStat").textContent=
-    s.games
-      ? Math.round(
-          (s.wins/s.games)*100
-        )+"%"
-      : "0%";
-
-  $("learnedStat").textContent=
-    l.length;
-
-  $("learnedHome").textContent=
-    l.length;
+function counts(){
+  const s=stats(),l=learned();
+  $("builtInCount").textContent=baseCandidates.length;
+  $("learnedHome").textContent=l.length;
+  $("gamesStat").textContent=s.games||0;
+  $("winsStat").textContent=s.wins||0;
+  $("rateStat").textContent=s.games?Math.round(s.wins/s.games*100)+"%":"0%";
+  $("learnedStat").textContent=l.length;
 }
 
 function speak(t){
-
-  if(
-    !voiceOn
-    ||
-    !(
-      "speechSynthesis"
-      in window
-    )
-  ){
-    return;
-  }
-
+  if(!voiceOn||!("speechSynthesis" in window))return;
   speechSynthesis.cancel();
-
-  const u=
-    new SpeechSynthesisUtterance(
-      t
-    );
-
+  const u=new SpeechSynthesisUtterance(t);
   u.rate=.95;
-
-  const vs=
-    speechSynthesis.getVoices();
-
-  const v=
-    vs.find(
-      x=>
-        /^en-US/i.test(
-          x.lang
-        )
-    )
-    ||
-    vs.find(
-      x=>
-        /^en/i.test(
-          x.lang
-        )
-    );
-
-  if(v){
-    u.voice=v;
-  }
-
+  const v=speechSynthesis.getVoices().find(x=>/^en-US/i.test(x.lang))||
+          speechSynthesis.getVoices().find(x=>/^en/i.test(x.lang));
+  if(v)u.voice=v;
   speechSynthesis.speak(u);
 }
 
-/* SMARTER CANDIDATE NORMALIZATION */
-
-function normalizeCandidate(c){
-
-  const a={
-    ...(c.a||{})
-  };
-
-  const topCats=[
-    "animal",
-    "food",
-    "household",
-    "vehicle",
-    "nature"
-  ];
-
-  if(
-    c.cat
-    &&
-    c.cat!=="anything"
-  ){
-
-    topCats.forEach(cat=>{
-
-      if(
-        cat===c.cat
-      ){
-
-        a[cat]=1;
-
-      }else if(
-        !(cat in a)
-      ){
-
-        a[cat]=0;
-      }
-    });
+function normalize(c){
+  const a={...(c.a||{})};
+  if(c.cat&&c.cat!=="anything"){
+    for(const k of["animal","food","household","vehicle","nature"]){
+      if(!(k in a))a[k]=k===c.cat?1:0;
+    }
   }
-
-  return{
-    ...c,
-    a
-  };
+  return{...c,a};
 }
 
-function allCandidates(){
-
-  return baseCandidates
-    .map(
-      normalizeCandidate
-    )
-    .concat(
-
-      loadLearned().map(
-        x=>
-          normalizeCandidate({
-            ...x,
-            learned:true
-          })
-      )
-    );
+function all(){
+  return baseCandidates.map(normalize)
+    .concat(learned().map(x=>normalize({...x,learned:true})));
 }
 
-function basePool(){
-
-  const l=
-    allCandidates().filter(
-      c=>
-        selectedCategory==="anything"
-        ||
-        c.cat===selectedCategory
-        ||
-        c.cat==="anything"
-    );
-
-  return l.map(
-    c=>({
-      ...c,
-      score:0
-    })
-  );
+function pool(){
+  return all()
+    .filter(c=>selected==="anything"||c.cat===selected||c.cat==="anything")
+    .map(c=>({...c,score:0}));
 }
 
-function startGame(){
-
+function start(){
   state={
-    qCount:0,
+    q:0,
     asked:new Set(),
-    pool:basePool(),
+    pool:pool(),
     current:null,
     isGuess:false,
-    guessedName:null,
+    guess:null,
     answers:{},
-    guessAttempts:0,
-
-    /* smarter guessing */
-    familyFocus:null,
-    rejectedNames:new Set()
+    family:null,
+    rejected:new Set()
   };
-
   $("saveMissBtn").disabled=false;
-
-  show(
-    "gameScreen"
-  );
-
-  nextTurn();
+  show("gameScreen");
+  next();
 }
 
 function ranked(){
-
-  return[
-    ...state.pool
-  ].sort(
-    (a,b)=>
-      b.score-a.score
-  );
+  return[...state.pool].sort((a,b)=>b.score-a.score);
 }
 
-/*
-Built-in answers were created with missing traits
-meaning "No."
-
-Learned answers are different. If the game has never
-learned a trait about a learned item, it treats that
-information as unknown instead of incorrectly saying No.
-*/
-
-function answerValueFor(
-  c,
-  key
-){
-
-  if(
-    !(key in c.a)
-  ){
-
-    return c.learned
-      ? null
-      : 0;
-  }
-
-  const v=
-    Number(
-      c.a[key]
-    );
-
-  return Number.isFinite(v)
-    ? v
-    : null;
+function val(c,k){
+  if(!(k in c.a))return c.learned?null:0;
+  return Number(c.a[k]);
 }
 
-function answerClassFor(
-  c,
-  key
-){
-
-  const v=
-    answerValueFor(
-      c,
-      key
-    );
-
-  if(
-    v===null
-  ){
-    return "unknown";
-  }
-
-  if(
-    v>=.75
-  ){
-    return "yes";
-  }
-
-  if(
-    v<=.25
-  ){
-    return "no";
-  }
-
-  return "sometimes";
+function cls(c,k){
+  const v=val(c,k);
+  return v===null?"unknown":v>=.75?"yes":v<=.25?"no":"sometimes";
 }
 
-/*
-Keep several possibilities alive rather than
-throwing an answer away after one disagreement.
-*/
+function plausible(){
+  const r=ranked();
+  if(!r.length)return[];
+  let p=r.filter(c=>c.score>=r[0].score-8);
 
-function plausiblePool(){
-
-  const r=
-    ranked();
-
-  if(
-    !r.length
-  ){
-    return[];
-  }
-
-  const top=
-    r[0].score;
-
-  let p=
-    r.filter(
-      c=>
-        c.score>=top-8
-    );
-
-  /*
-  Once the game knows it is in a family such as
-  "table", concentrate on the specific types.
-  */
-
-  if(
-    state.familyFocus
-  ){
-
-    const familyChoices=
-      p.filter(
-        c=>
-          c.family===
-          state.familyFocus
-          &&
-          !c.generic
-      );
-
-    if(
-      familyChoices.length
-    ){
-
-      p=
-        familyChoices;
-    }
+  if(state.family){
+    const f=p.filter(c=>c.family===state.family&&!c.generic);
+    if(f.length)p=f;
   }
 
   return p;
 }
 
-/*
-Measure how useful a question will be.
+function info(k,a){
+  const b={yes:0,no:0,sometimes:0};
+  let n=0;
 
-The game favors a question that divides the strongest
-remaining possibilities into different groups.
-*/
-
-function informationScore(
-  key,
-  candidates
-){
-
-  if(
-    !candidates.length
-  ){
-    return -1;
-  }
-
-  const bins={
-    yes:0,
-    no:0,
-    sometimes:0
-  };
-
-  let known=0;
-
-  candidates.forEach(c=>{
-
-    const cls=
-      answerClassFor(
-        c,
-        key
-      );
-
-    if(
-      cls!=="unknown"
-    ){
-
-      bins[cls]++;
-
-      known++;
+  for(const c of a){
+    const x=cls(c,k);
+    if(x!=="unknown"){
+      b[x]++;
+      n++;
     }
-  });
-
-  if(
-    known<2
-  ){
-    return -1;
   }
 
-  const active=
-    Object.values(
-      bins
-    )
-    .filter(
-      n=>n>0
-    );
+  if(n<2||Object.values(b).filter(Boolean).length<2)return-1;
 
-  if(
-    active.length<2
-  ){
-    return -1;
+  let e=0;
+  for(const z of Object.values(b)){
+    if(z){
+      const p=z/n;
+      e-=p*Math.log2(p);
+    }
   }
 
-  let entropy=0;
-
-  active.forEach(n=>{
-
-    const p=
-      n/known;
-
-    entropy-=
-      p*Math.log2(p);
-  });
-
-  const coverage=
-    known/
-    candidates.length;
-
-  return entropy*
-    (
-      .45+
-      .55*coverage
-    );
+  return e*(.45+.55*n/a.length);
 }
 
-function chooseQuestion(){
+function chooseQ(){
+  let a=plausible();
+  if(a.length<2)a=ranked().slice(0,12);
 
-  let sample=
-    plausiblePool();
+  let best=null,bs=-1;
 
-  if(
-    sample.length<2
-  ){
+  for(const[k,t]of QUESTIONS){
+    if(state.asked.has(k))continue;
 
-    sample=
-      ranked()
-        .slice(
-          0,
-          12
-        );
-  }
-
-  let best=null;
-
-  let bestScore=-1;
-
-  for(
-    const [key,text]
-    of questions
-  ){
+    let s=info(k,a);
+    if(s<0)continue;
 
     if(
-      state.asked.has(
-        key
-      )
+      state.family &&
+      a.filter(c=>c.family===state.family&&cls(c,k)!=="unknown").length>=2
     ){
-      continue;
+      s+=.35;
     }
 
-    let sc=
-      informationScore(
-        key,
-        sample
-      );
-
-    if(
-      sc<0
-    ){
-      continue;
-    }
-
-    /*
-    When the family is known, prefer questions
-    that distinguish members of that family.
-    */
-
-    if(
-      state.familyFocus
-    ){
-
-      const familyKnown=
-        sample.filter(
-          c=>
-            c.family===
-            state.familyFocus
-            &&
-            answerClassFor(
-              c,
-              key
-            )!=="unknown"
-        ).length;
-
-      if(
-        familyKnown>=2
-      ){
-
-        sc+=.35;
-      }
-    }
-
-    if(
-      sc>bestScore
-    ){
-
-      bestScore=sc;
-
-      best={
-        key,
-        text,
-        info:sc
-      };
+    if(s>bs){
+      bs=s;
+      best={key:k,text:t};
     }
   }
 
   return best;
 }
 
-/*
-Choose the best actual guess.
+function guessPick(){
+  const r=ranked().filter(c=>!state.rejected.has(c.n));
+  if(!r.length)return null;
 
-Broad words such as "table" no longer automatically
-beat coffee table, dining table, etc.
-*/
+  if(state.family){
+    const f=r.filter(c=>c.family===state.family&&!c.generic);
+    if(f.length)return f[0];
+  }
 
-function guessCandidate(){
+  const t=r[0];
 
-  const r=
-    ranked().filter(
-      c=>
-        !state.rejectedNames
-          .has(c.n)
+  if(t.generic&&t.family){
+    const s=r.find(
+      c=>c.family===t.family&&!c.generic&&c.score>=t.score-4
     );
-
-  if(
-    !r.length
-  ){
-    return null;
+    if(s)return s;
   }
 
-  if(
-    state.familyFocus
-  ){
-
-    const focused=
-      r.filter(
-        c=>
-          c.family===
-          state.familyFocus
-          &&
-          !c.generic
-      );
-
-    if(
-      focused.length
-    ){
-
-      return focused[0];
-    }
-  }
-
-  const top=
-    r[0];
-
-  /*
-  If a generic answer is leading but a specific
-  answer is close, try to reach the specific answer.
-  */
-
-  if(
-    top.generic
-    &&
-    top.family
-  ){
-
-    const specific=
-      r.find(
-        c=>
-          c.family===
-          top.family
-          &&
-          !c.generic
-          &&
-          c.score>=
-          top.score-4
-      );
-
-    if(
-      specific
-    ){
-
-      return specific;
-    }
-  }
-
-  return top;
+  return t;
 }
 
 function shouldGuess(q){
+  const r=ranked().filter(c=>!state.rejected.has(c.n));
+  const p=plausible();
+  const g=guessPick();
 
-  const r=
-    ranked().filter(
-      c=>
-        !state.rejectedNames
-          .has(c.n)
-    );
+  if(!r.length||!g)return false;
+  if(!q||state.q>=18)return true;
+  if(state.q<5)return false;
 
-  if(
-    !r.length
-  ){
-    return false;
-  }
+  const z=r.find(c=>c.n!==g.n);
+  const lead=g.score-(z?.score??-999);
 
-  const pick=
-    guessCandidate();
-
-  if(
-    !pick
-  ){
-    return false;
-  }
-
-  const plausible=
-    plausiblePool();
-
-  const comparison=
-    r.find(
-      c=>
-        c.n!==pick.n
-    );
-
-  const lead=
-    pick.score
-    -
-    (
-      comparison?.score
-      ??
-      -999
-    );
-
-  if(
-    !q
-  ){
-    return true;
-  }
-
-  if(
-    state.qCount>=18
-  ){
-    return true;
-  }
-
-  /*
-  Don't jump to a guess too early.
-  */
-
-  if(
-    state.qCount<5
-  ){
-    return false;
-  }
-
-  if(
-    plausible.length===1
-  ){
-    return true;
-  }
-
-  if(
-    state.familyFocus
-    &&
-    plausible.length<=2
-    &&
-    lead>=3
-  ){
-    return true;
-  }
-
-  if(
-    state.qCount>=7
-    &&
-    plausible.length<=2
-    &&
-    lead>=4
-  ){
-    return true;
-  }
-
-  if(
-    state.qCount>=10
-    &&
-    lead>=7
-  ){
-    return true;
-  }
-
-  return false;
+  return(
+    (state.family&&p.length<=2&&lead>=3) ||
+    (state.q>=7&&p.length<=2&&lead>=4) ||
+    (state.q>=10&&lead>=7)
+  );
 }
 
 function article(n){
-
-  return /^[aeiou]/i
-    .test(n)
-    ? "an"
-    : "a";
+  return/^[aeiou]/i.test(n)?"an":"a";
 }
 
-function nextTurn(){
+function next(){
+  if(state.q>=20||!ranked().length)return finish(false);
 
-  if(
-    state.qCount>=20
-  ){
+  const q=chooseQ();
+  state.isGuess=shouldGuess(q);
 
-    finish(false);
+  if(state.isGuess||!q){
+    const p=guessPick();
 
-    return;
-  }
+    if(!p)return finish(false);
 
-  const r=
-    ranked();
-
-  if(
-    !r.length
-  ){
-
-    finish(false);
-
-    return;
-  }
-
-  const q=
-    chooseQuestion();
-
-  state.isGuess=
-    shouldGuess(q);
-
-  if(
-    state.isGuess
-  ){
-
-    const p=
-      guessCandidate();
-
-    if(
-      !p
-    ){
-
-      finish(false);
-
-      return;
-    }
-
-    state.guessedName=
-      p.n;
-
-    state.guessAttempts++;
-
+    state.isGuess=true;
+    state.guess=p.n;
     state.current={
       key:null,
-      text:
-        `Are you thinking of ${article(p.n)} ${p.n}?`
+      text:`Are you thinking of ${article(p.n)} ${p.n}?`
     };
 
-    $("qLabel").textContent=
-      "My Guess";
+    $("qLabel").textContent="My Guess";
 
   }else{
-
-    if(
-      !q
-    ){
-
-      const p=
-        guessCandidate();
-
-      if(
-        !p
-      ){
-
-        finish(false);
-
-        return;
-      }
-
-      state.isGuess=true;
-
-      state.guessedName=
-        p.n;
-
-      state.guessAttempts++;
-
-      state.current={
-        key:null,
-        text:
-          `Are you thinking of ${article(p.n)} ${p.n}?`
-      };
-
-      $("qLabel").textContent=
-        "My Guess";
-
-    }else{
-
-      state.current=q;
-
-      state.asked.add(
-        q.key
-      );
-
-      $("qLabel").textContent=
-        state.familyFocus
-          ? "Getting More Specific"
-          : "Question";
-    }
+    state.current=q;
+    state.asked.add(q.key);
+    $("qLabel").textContent=
+      state.family?"Getting More Specific":"Question";
   }
 
-  state.qCount++;
+  state.q++;
 
-  $("counter").textContent=
-    `Question ${state.qCount} of 20`;
+  $("counter").textContent=`Question ${state.q} of 20`;
+  $("progressBar").style.width=`${state.q*5}%`;
+  $("questionText").textContent=state.current.text;
 
-  $("progressBar").style.width=
-    `${state.qCount*5}%`;
-
-  $("questionText").textContent=
-    state.current.text;
-
-  /*
-  Give the player a little indication that the
-  game is actually narrowing its choices.
-  */
-
-  if(
-    !state.isGuess
-  ){
-
-    const left=
-      plausiblePool().length;
-
+  if(!state.isGuess){
+    const n=plausible().length;
     $("voiceStatus").textContent=
-      left>1
-        ? `Narrowing it down — about ${left} strong possibilities remain.`
-        : "I think I’m close.";
-
+      n>1
+        ?`Narrowing it down — about ${n} strong possibilities remain.`
+        :"I think I’m close.";
   }else{
-
     $("voiceStatus").textContent="";
   }
 
-  setTimeout(
-    ()=>{
-      speak(
-        state.current.text
-      );
-    },
-    120
-  );
+  setTimeout(()=>speak(state.current.text),100);
 }
 
-/*
-Scoring is intentionally forgiving.
+function score(c,k,r){
+  if(r==="unknown")return 0;
 
-One opposite answer hurts a candidate, but does not
-instantly remove it. That helps if the player changes
-their mind or interprets a question differently.
-*/
+  const e=cls(c,k);
 
-function scoreOne(
-  c,
-  key,
-  response
-){
+  if(e==="unknown")return 0;
+  if(e===r)return 6;
+  if(e==="sometimes"||r==="sometimes")return-1;
 
-  if(
-    response==="unknown"
-  ){
-    return 0;
-  }
-
-  const expected=
-    answerClassFor(
-      c,
-      key
-    );
-
-  if(
-    expected==="unknown"
-  ){
-    return 0;
-  }
-
-  if(
-    response===expected
-  ){
-    return 6;
-  }
-
-  if(
-    response==="sometimes"
-    ||
-    expected==="sometimes"
-  ){
-    return -1;
-  }
-
-  return -5;
+  return-5;
 }
 
 function answer(v){
+  if(!state)return;
 
-  if(
-    !state
-  ){
-    return;
-  }
+  if(state.isGuess){
 
-  /*
-  HANDLE A GUESS
-  */
-
-  if(
-    state.isGuess
-  ){
-
-    if(
-      v==="yes"
-    ){
-
-      finish(true);
-
-      return;
+    if(v==="yes"){
+      return finish(true);
     }
 
-    if(
-      v==="no"
-    ){
-
-      const guessed=
-        state.pool.find(
-          c=>
-            c.n===
-            state.guessedName
-        );
-
-      state.rejectedNames.add(
-        state.guessedName
-      );
-
-      /*
-      FAMILY INTELLIGENCE
-
-      If "table" or another member of the table
-      family is wrong, keep narrowing inside the
-      family instead of abandoning all tables.
-      */
-
-      if(
-        guessed?.family
-      ){
-
-        const familyChoices=
-          state.pool.filter(
-            c=>
-              c.family===
-              guessed.family
-              &&
-              c.n!==
-              state.guessedName
-              &&
-              !state.rejectedNames
-                .has(c.n)
-          );
-
-        if(
-          familyChoices.length
-        ){
-
-          state.familyFocus=
-            guessed.family;
-
-          const currentTop=
-            ranked()[0]?.score
-            ??
-            0;
-
-          state.pool=
-            state.pool.filter(
-              c=>
-                c.family===
-                guessed.family
-                ||
-                c.score>=
-                currentTop-3
-            );
-
-          state.isGuess=false;
-
-          $("voiceStatus").textContent=
-            guessed.generic
-              ? "Close — I’ll get more specific."
-              : "That was close — I’ll keep narrowing it down.";
-
-          speak(
-            guessed.generic
-              ? "Close. I'll get more specific."
-              : "That was close. I'll keep narrowing it down."
-          );
-
-          setTimeout(
-            nextTurn,
-            450
-          );
-
-          return;
-        }
-      }
-
-      /*
-      ORDINARY WRONG GUESS
-      */
-
-      state.pool=
-        state.pool.filter(
-          c=>
-            c.n!==
-            state.guessedName
-        );
-
-      state.isGuess=false;
-
+    if(v!=="no"){
       $("voiceStatus").textContent=
-        "Not quite — I’ll keep guessing.";
-
-      setTimeout(
-        nextTurn,
-        250
-      );
-
+        "For my guess, please choose Yes or No.";
       return;
     }
 
+    const g=state.pool.find(c=>c.n===state.guess);
+    state.rejected.add(state.guess);
+
+    if(g?.family){
+      const f=state.pool.filter(
+        c=>
+          c.family===g.family &&
+          c.n!==g.n &&
+          !state.rejected.has(c.n)
+      );
+
+      if(f.length){
+        state.family=g.family;
+        state.isGuess=false;
+
+        $("voiceStatus").textContent=
+          g.generic
+            ?"Close — I’ll get more specific."
+            :"That was close — I’ll keep narrowing it down.";
+
+        setTimeout(next,350);
+        return;
+      }
+    }
+
+    state.pool=state.pool.filter(c=>c.n!==state.guess);
+    state.isGuess=false;
     $("voiceStatus").textContent=
-      "For my guess, please choose Yes or No.";
+      "Not quite — I’ll keep guessing.";
 
-    speak(
-      "For my guess, please answer yes or no."
-    );
-
+    setTimeout(next,250);
     return;
   }
 
-  /*
-  HANDLE A NORMAL QUESTION
-  */
-
-  const k=
-    state.current.key;
-
+  const k=state.current.key;
   state.answers[k]=v;
 
-  state.pool.forEach(
-    c=>{
+  /*
+  THIS IS THE NEW FAMILY INTELLIGENCE.
 
-      c.score+=
-        scoreOne(
-          c,
-          k,
-          v
-        );
-    }
-  );
+  Saying YES to broad questions such as:
+  "Is it a bird?"
+  "Is it a type of table?"
+  "Is it a type of dog?"
+  "Is it a type of chair?"
+  "Is it a type of car?"
+  "Is it a type of boat?"
 
-  nextTurn();
-}
-
-function finish(w){
-
-  const s=
-    loadStats();
-
-  s.games=
-    (s.games||0)+1;
-
-  if(
-    w
-  ){
-
-    s.wins=
-      (s.wins||0)+1;
+  causes the game to concentrate on that family
+  and keep looking for the more specific answer.
+  */
+  if(v==="yes"&&FAMILY[k]){
+    state.family=FAMILY[k];
   }
 
+  for(const c of state.pool){
+    c.score+=score(c,k,v);
+  }
+
+  next();
+}
+
+function finish(win){
+  const s=stats();
+
+  s.games=(s.games||0)+1;
+  if(win)s.wins=(s.wins||0)+1;
+
   saveStats(s);
+  counts();
 
-  renderCounts();
-
-  $("missBox").style.display=
-    w
-      ? "none"
-      : "block";
-
+  $("missBox").style.display=win?"none":"block";
   $("missedItem").value="";
 
-  if(
-    w
-  ){
-
-    $("resultIcon").textContent=
-      "✓";
-
-    $("resultTitle").textContent=
-      "I got it!";
-
+  if(win){
+    $("resultIcon").textContent="✓";
+    $("resultTitle").textContent="I got it!";
     $("resultText").textContent=
-      `You were thinking of ${article(state.guessedName)} ${state.guessedName}. I got it in ${state.qCount} question${state.qCount===1?"":"s"}.`;
+      `You were thinking of ${article(state.guess)} ${state.guess}. I got it in ${state.q} question${state.q===1?"":"s"}.`;
 
     speak(
-      `I got it! You were thinking of ${article(state.guessedName)} ${state.guessedName}.`
+      `I got it! You were thinking of ${article(state.guess)} ${state.guess}.`
     );
 
   }else{
-
-    $("resultIcon").textContent=
-      "?";
-
-    $("resultTitle").textContent=
-      "You stumped me.";
-
+    $("resultIcon").textContent="?";
+    $("resultTitle").textContent="You stumped me.";
     $("resultText").textContent=
-      "Teach me what it was and I’ll use this round to learn it for next time.";
+      "Teach me what it was and I’ll remember your answers for next time.";
 
     speak(
       "You stumped me. Teach me what it was and I'll remember it."
     );
   }
 
-  show(
-    "resultScreen"
-  );
+  show("resultScreen");
 }
 
-/*
-SMARTER LEARNING
+function teach(){
+  const n=$("missedItem").value.trim();
 
-If the game had already narrowed into a family such
-as tables, a newly learned object remembers that
-relationship too.
-*/
-
-function teachItem(){
-
-  const name=
-    $("missedItem")
-      .value
-      .trim();
-
-  if(
-    !name
-  ){
-
-    toast(
-      "Type the item first."
-    );
-
-    return;
+  if(!n){
+    return toast("Type the item first.");
   }
 
-  const learned=
-    loadLearned();
+  const l=learned();
+  const a={};
 
-  const attrs={};
-
-  for(
-    const [k,v]
-    of Object.entries(
-      state.answers
-    )
-  ){
-
-    if(
-      v==="yes"
-    ){
-
-      attrs[k]=1;
-
-    }else if(
-      v==="no"
-    ){
-
-      attrs[k]=0;
-
-    }else if(
-      v==="sometimes"
-    ){
-
-      attrs[k]=.5;
+  for(const[k,v]of Object.entries(state.answers)){
+    if(v!=="unknown"){
+      a[k]=v==="yes"?1:v==="no"?0:.5;
     }
   }
 
-  let inferredCat=
-    selectedCategory==="anything"
-      ? (
-          ranked()[0]?.cat
-          ||
-          "anything"
-        )
-      : selectedCategory;
-
   const item={
-    n:name,
-    cat:inferredCat,
-    a:attrs,
-    created:
-      new Date()
-        .toISOString()
+    n,
+    cat:selected==="anything"
+      ?(ranked()[0]?.cat||"anything")
+      :selected,
+    a,
+    created:new Date().toISOString()
   };
 
-  if(
-    state.familyFocus
-  ){
-
-    item.family=
-      state.familyFocus;
+  if(state.family){
+    item.family=state.family;
   }
 
-  const idx=
-    learned.findIndex(
-      x=>
-        x.n
-          .toLowerCase()
-        ===
-        name
-          .toLowerCase()
-    );
+  const i=l.findIndex(
+    x=>x.n.toLowerCase()===n.toLowerCase()
+  );
 
-  if(
-    idx>=0
-  ){
-
-    learned[idx]=item;
-
+  if(i>=0){
+    l[i]=item;
   }else{
-
-    learned.unshift(
-      item
-    );
+    l.unshift(item);
   }
 
-  saveLearned(
-    learned.slice(
-      0,
-      100
-    )
-  );
-
-  toast(
-    "Learned! I’ll remember that."
-  );
-
+  saveLearned(l.slice(0,100));
   $("saveMissBtn").disabled=true;
 
-  speak(
-    `Got it. I'll remember ${name}.`
+  toast("Learned! I’ll remember that.");
+  speak(`Got it. I'll remember ${n}.`);
+}
+
+function esc(s){
+  return String(s).replace(
+    /[&<>"']/g,
+    m=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      "\"":"&quot;",
+      "'":"&#39;"
+    }[m])
   );
 }
 
 function renderLearned(){
+  const l=learned();
+  const b=$("learnedList");
 
-  const l=
-    loadLearned();
-
-  const box=
-    $("learnedList");
-
-  if(
-    !l.length
-  ){
-
-    box.innerHTML=
+  if(!l.length){
+    b.innerHTML=
       '<div style="color:#e4c3c3;padding:12px 0">No learned items yet.</div>';
-
     return;
   }
 
-  box.innerHTML=
-    l.map(
-      (x,i)=>
-        `
-        <div class="learned-row">
-
-          <span>
-
-            <b>
-              ${escapeHtml(x.n)}
-            </b>
-
-            <br>
-
-            <span style="color:#e4c3c3">
-              ${
-                x.cat==="anything"
-                  ? "Any category"
-                  : x.cat
-              }
-            </span>
-
+  b.innerHTML=l.map(
+    (x,i)=>`
+      <div class="row">
+        <span>
+          <b>${esc(x.n)}</b>
+          <br>
+          <span style="color:#e4c3c3">
+            ${x.cat==="anything"?"Any category":x.cat}
           </span>
+        </span>
+        <button class="mini" data-r="${i}">
+          Remove
+        </button>
+      </div>
+    `
+  ).join("");
 
-          <button
-            class="mini"
-            data-remove="${i}">
-            Remove
-          </button>
-
-        </div>
-        `
-    )
-    .join("");
-
-  box.querySelectorAll(
-    "[data-remove]"
-  )
-  .forEach(
-    b=>
-      b.onclick=
-        ()=>{
-
-          const arr=
-            loadLearned();
-
-          arr.splice(
-            Number(
-              b.dataset.remove
-            ),
-            1
-          );
-
-          saveLearned(
-            arr
-          );
-
-          renderLearned();
-        }
+  b.querySelectorAll("[data-r]").forEach(
+    x=>x.onclick=()=>{
+      const a=learned();
+      a.splice(+x.dataset.r,1);
+      saveLearned(a);
+      renderLearned();
+    }
   );
 }
 
-function escapeHtml(s){
-
-  return String(s)
-    .replace(
-      /[&<>"']/g,
-      m=>({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        "\"":"&quot;",
-        "'":"&#39;"
-      }[m])
-    );
-}
-
-function setupRecognition(){
-
+function setupVoice(){
   const SR=
-    window.SpeechRecognition
-    ||
+    window.SpeechRecognition||
     window.webkitSpeechRecognition;
 
-  if(
-    !SR
-  ){
-
-    $("micBtn").style.display=
-      "none";
-
+  if(!SR){
+    $("micBtn").style.display="none";
     return;
   }
 
-  recognition=
-    new SR();
+  recognition=new SR();
+  recognition.lang="en-US";
+  recognition.interimResults=false;
 
-  recognition.lang=
-    "en-US";
+  recognition.onstart=()=>{
+    $("voiceStatus").textContent="Listening…";
+  };
 
-  recognition.interimResults=
-    false;
+  recognition.onerror=()=>{
+    $("voiceStatus").textContent=
+      "I couldn't hear that. Try again.";
+  };
 
-  recognition.maxAlternatives=
-    3;
-
-  recognition.onstart=
-    ()=>{
-
-      $("voiceStatus").textContent=
-        "Listening… say yes, no, sometimes, or don't know.";
-    };
-
-  recognition.onerror=
-    ()=>{
-
-      $("voiceStatus").textContent=
-        "I couldn't hear that. Try again.";
-    };
-
-  recognition.onresult=
-    e=>{
-
-      const heard=
-        Array.from(
-          e.results[0]
-        )
-        .map(
-          x=>
-            x.transcript
-              .toLowerCase()
-        )
+  recognition.onresult=e=>{
+    const h=
+      Array.from(e.results[0])
+        .map(x=>x.transcript.toLowerCase())
         .join(" | ");
 
+    if(/\b(yes|yeah|yep|correct|right)\b/.test(h)){
+      answer("yes");
+    }else if(/\b(no|nope|nah|wrong)\b/.test(h)){
+      answer("no");
+    }else if(/\b(sometimes|maybe|occasionally)\b/.test(h)){
+      answer("sometimes");
+    }else if(/don't know|do not know|not sure|unknown/.test(h)){
+      answer("unknown");
+    }else{
       $("voiceStatus").textContent=
-        `Heard: ${e.results[0][0].transcript}`;
-
-      if(
-        /\b(yes|yeah|yep|correct|right)\b/
-          .test(heard)
-      ){
-
-        answer(
-          "yes"
-        );
-
-      }else if(
-        /\b(no|nope|nah|wrong)\b/
-          .test(heard)
-      ){
-
-        answer(
-          "no"
-        );
-
-      }else if(
-        /\b(sometimes|maybe|occasionally)\b/
-          .test(heard)
-      ){
-
-        answer(
-          "sometimes"
-        );
-
-      }else if(
-        /don't know|do not know|not sure|unknown/
-          .test(heard)
-      ){
-
-        answer(
-          "unknown"
-        );
-
-      }else{
-
-        $("voiceStatus").textContent=
-          "Please say yes, no, sometimes, or don't know.";
-
-        speak(
-          "Please say yes, no, sometimes, or don't know."
-        );
-      }
-    };
+        "Please say yes, no, sometimes, or don't know.";
+    }
+  };
 }
 
-/* BUTTONS */
+document.querySelectorAll(".category").forEach(
+  b=>b.onclick=()=>{
+    document.querySelectorAll(".category")
+      .forEach(x=>x.classList.remove("selected"));
 
-document
-  .querySelectorAll(
-    ".category"
-  )
-  .forEach(
-    b=>
-      b.onclick=
-        ()=>{
+    b.classList.add("selected");
+    selected=b.dataset.cat;
+  }
+);
 
-          document
-            .querySelectorAll(
-              ".category"
-            )
-            .forEach(
-              x=>
-                x.classList.remove(
-                  "selected"
-                )
-            );
+document.querySelectorAll(".answer").forEach(
+  b=>b.onclick=()=>answer(b.dataset.answer)
+);
 
-          b.classList.add(
-            "selected"
-          );
+$("startBtn").onclick=start;
 
-          selectedCategory=
-            b.dataset.cat;
-        }
-  );
+$("quitBtn").onclick=()=>{
+  show("startScreen");
+};
 
-document
-  .querySelectorAll(
-    ".answer"
-  )
-  .forEach(
-    b=>
-      b.onclick=
-        ()=>{
+$("playAgainBtn").onclick=()=>{
+  show("startScreen");
+};
 
-          answer(
-            b.dataset.answer
-          );
-        }
-  );
+$("repeatBtn").onclick=()=>{
+  if(state){
+    speak(state.current.text);
+  }
+};
 
-$("startBtn").onclick=
-  startGame;
+$("voiceToggle").onclick=()=>{
+  voiceOn=!voiceOn;
 
-$("quitBtn").onclick=
-  ()=>{
+  $("voiceToggle").textContent=
+    voiceOn?"Voice On":"Voice Off";
 
-    if(
-      "speechSynthesis"
-      in window
-    ){
+  if(!voiceOn&&"speechSynthesis" in window){
+    speechSynthesis.cancel();
+  }
+};
 
-      speechSynthesis.cancel();
-    }
-
-    show(
-      "startScreen"
+$("micBtn").onclick=()=>{
+  if(!recognition){
+    return toast(
+      "Voice answers aren't supported in this browser."
     );
-  };
+  }
 
-$("playAgainBtn").onclick=
-  ()=>{
+  try{
+    recognition.start();
+  }catch{}
+};
 
-    show(
-      "startScreen"
-    );
-  };
+$("saveMissBtn").onclick=teach;
 
-$("repeatBtn").onclick=
-  ()=>{
+$("learnedBtn").onclick=()=>{
+  renderLearned();
+  show("learnedScreen");
+};
 
-    if(
-      state
-    ){
+$("backHomeBtn").onclick=()=>{
+  show("startScreen");
+};
 
-      speak(
-        state.current.text
-      );
-    }
-  };
-
-$("voiceToggle").onclick=
-  ()=>{
-
-    voiceOn=
-      !voiceOn;
-
-    $("voiceToggle").textContent=
-      voiceOn
-        ? "Voice On"
-        : "Voice Off";
-
-    $("voiceToggle")
-      .classList.toggle(
-        "on",
-        voiceOn
-      );
-
-    if(
-      !voiceOn
-      &&
-      "speechSynthesis"
-      in window
-    ){
-
-      speechSynthesis.cancel();
-    }
-
-    if(
-      voiceOn
-    ){
-
-      speak(
-        "Voice is on."
-      );
-    }
-  };
-
-$("micBtn").onclick=
-  ()=>{
-
-    if(
-      !recognition
-    ){
-
-      toast(
-        "Voice answers aren't supported in this browser."
-      );
-
-      return;
-    }
-
-    try{
-
-      recognition.start();
-
-    }catch{}
-  };
-
-$("saveMissBtn").onclick=
-  teachItem;
-
-$("learnedBtn").onclick=
-  ()=>{
-
+$("clearLearnedBtn").onclick=()=>{
+  if(
+    confirm(
+      "Clear everything the game has learned from you?"
+    )
+  ){
+    saveLearned([]);
     renderLearned();
+  }
+};
 
-    show(
-      "learnedScreen"
-    );
-  };
-
-$("backHomeBtn").onclick=
-  ()=>{
-
-    show(
-      "startScreen"
-    );
-  };
-
-$("clearLearnedBtn").onclick=
-  ()=>{
-
-    if(
-      confirm(
-        "Clear everything the game has learned from you?"
-      )
-    ){
-
-      saveLearned([]);
-
-      renderLearned();
-
-      toast(
-        "Learned items cleared."
-      );
-    }
-  };
-
-setupRecognition();
-
-renderCounts();
-
-if(
-  "speechSynthesis"
-  in window
-){
-
-  speechSynthesis.onvoiceschanged=
-    ()=>{
-
-      speechSynthesis.getVoices();
-    };
-}
-
-})();
+setupVoice();
+counts();
 </script>
-
 </body>
 </html>
