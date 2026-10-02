@@ -1,110 +1,3243 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#8b0509"><title>20 Questions</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8b0509">
+<title>20 Questions</title>
 <style>
-*{box-sizing:border-box}:root{--line:#ffffff48;--muted:#edc9cc}body{margin:0;min-height:100vh;color:white;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 75% 8%,#d92b35 0,transparent 24%),radial-gradient(circle at 18% 32%,#9f0610 0,transparent 30%),linear-gradient(150deg,#260002,#890009 45%,#bd101a 70%,#3b0004);overflow-x:hidden}.marks{position:fixed;inset:0;overflow:hidden;pointer-events:none}.marks span{position:absolute;color:#080000;font:900 var(--s,130px)/.8 Impact,Arial Black,sans-serif;opacity:.52;transform:rotate(var(--r,0deg))}.marks span:nth-child(1){left:-4%;top:9%;--s:210px;--r:-8deg}.marks span:nth-child(2){left:28%;top:3%;--s:140px;--r:8deg}.marks span:nth-child(3){right:-2%;top:14%;--s:190px;--r:-7deg}.marks span:nth-child(4){left:8%;top:42%;--s:110px;--r:9deg}.marks span:nth-child(5){right:12%;top:40%;--s:150px;--r:-6deg}.marks span:nth-child(6){left:-2%;top:68%;--s:190px;--r:-5deg}.marks span:nth-child(7){left:45%;top:73%;--s:90px;--r:7deg}.marks span:nth-child(8){right:-2%;bottom:-2%;--s:185px;--r:8deg}.app{max-width:760px;margin:auto;min-height:100vh;padding:22px 16px 36px;position:relative}header,.panel,.card,.result{background:linear-gradient(145deg,#8e081177,#1f00028c);border:1px solid var(--line);box-shadow:0 20px 55px #19000061;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 16px;border-radius:24px}h1{margin:0;font-size:27px}header p{margin:4px 0 0;color:var(--muted);font-size:13px}button{font:inherit;border:0;border-radius:13px;cursor:pointer;color:#fff}button:active{transform:scale(.985)}.mini,.secondary,.answer{background:#ffffff18;border:1px solid var(--line)}.mini{padding:9px 12px}main{padding-top:22px}.screen{display:none}.screen.active{display:block}.hero{text-align:center;padding:28px 8px 18px}.mark{width:94px;height:94px;margin:auto auto 18px;border-radius:50%;display:grid;place-items:center;font-size:58px;font-weight:900;background:#78000973;border:1px solid #ffffff6b;box-shadow:0 14px 35px #0006}h2{margin:0 0 10px;font-size:29px}.lead{max-width:560px;margin:0 auto 20px;color:var(--muted);line-height:1.5}.panel{padding:20px;border-radius:26px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.category{padding:14px;text-align:left;font-weight:750;background:#ffffff17;border:1px solid var(--line)}.category small{display:block;color:var(--muted);font-weight:400;margin-top:3px}.category.selected{background:#dc232f52;box-shadow:inset 4px 0 #ff6972}.primary{width:100%;padding:15px;margin-top:12px;font-weight:800;font-size:16px;background:linear-gradient(#ed3440,#a7000b);border:1px solid #ffdcde6b;box-shadow:0 9px 22px #28000059}.secondary{width:100%;padding:12px;margin-top:10px;font-weight:700}.learning{text-align:center;color:#dcb9bc;font-size:12px;margin-top:12px}.gamehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.counter{font-size:13px;color:#efd7d9}.progress{height:8px;border-radius:20px;background:#0005;overflow:hidden;margin-bottom:18px}#progressBar{height:100%;width:5%;background:linear-gradient(90deg,#ff747c,#d20d19)}.card{min-height:285px;border-radius:27px;padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#ff9ba2;font-weight:850;margin-bottom:12px}.question{font-size:28px;line-height:1.3;font-weight:800}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.answer{padding:14px;font-weight:800;font-size:16px}.yes{background:#11663f}.no{background:#8d0812}.sometimes{background:#7f5708}.mic{width:100%;padding:13px;margin-top:10px;font-weight:750;background:#190103;border:1px solid var(--line)}.status{min-height:21px;text-align:center;color:#e9c9cb;font-size:13px;margin-top:8px}.result{border-radius:27px;padding:28px 20px;text-align:center}.big{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;margin:auto auto 13px;font-size:38px;background:linear-gradient(#ee3743,#8d0009)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.stat{background:#ffffff17;border:1px solid #ffffff33;border-radius:14px;padding:12px 6px}.stat b{display:block;font-size:21px}.stat span{font-size:11px;color:var(--muted)}label{display:block;text-align:left;color:var(--muted);font-size:13px;font-weight:700;margin-bottom:6px}input{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:#14000280;color:#fff;font:inherit}.learned{max-height:260px;overflow:auto;margin-top:10px}.row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff21;text-align:left}footer{text-align:center;color:#d5aaad;font-size:11px;margin-top:28px;letter-spacing:.05em}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;background:#170002;padding:10px 14px;border-radius:10px;transition:.2s;z-index:9}.toast.show{opacity:1;transform:translate(-50%,0)}@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}.answers{grid-template-columns:repeat(4,1fr)}}@media(max-width:420px){.question{font-size:24px}.stats{grid-template-columns:1fr 1fr}}
-</style></head><body>
-<div class="marks" aria-hidden="true"><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span></div><div class="app">
-<header><div><h1>20 Questions</h1><p>Think of something. I’ll try to guess it.</p></div><button id="voiceToggle" class="mini">Voice On</button></header><main>
-<section id="startScreen" class="screen active"><div class="hero"><div class="mark">?</div><h2>Can I guess what you’re thinking of?</h2><p class="lead">Pick a category, think of one thing, and answer up to 20 questions. Don’t tell me what it is.</p></div><div class="panel"><strong>Choose a category</strong><div class="grid"><button class="category selected" data-cat="anything">Anything<small>Classic mode</small></button><button class="category" data-cat="animal">Animals<small>Pets, wildlife & more</small></button><button class="category" data-cat="food">Food<small>Meals, snacks & produce</small></button><button class="category" data-cat="household">Household<small>Things around the home</small></button><button class="category" data-cat="vehicle">Vehicles<small>Things that move</small></button><button class="category" data-cat="nature">Nature<small>Places & natural things</small></button></div><button id="startBtn" class="primary">Start Game</button><div class="learning">Built-in answers: <b id="builtInCount">0</b> · Learned from you: <b id="learnedHome">0</b></div><button id="learnedBtn" class="secondary">View Learned Items</button></div></section>
-<section id="gameScreen" class="screen"><div class="gamehead"><button id="quitBtn" class="mini">New Game</button><div id="counter" class="counter">Question 1 of 20</div></div><div class="progress"><div id="progressBar"></div></div><div class="card"><div id="qLabel" class="label">Question</div><div id="questionText" class="question">Is it alive?</div><button id="repeatBtn" class="mini" style="margin-top:18px">Hear Again</button></div><div class="answers"><button class="answer yes" data-answer="yes">Yes</button><button class="answer no" data-answer="no">No</button><button class="answer sometimes" data-answer="sometimes">Sometimes</button><button class="answer" data-answer="unknown">Don’t Know</button></div><button id="micBtn" class="mic">🎙 Answer by Voice</button><div id="voiceStatus" class="status"></div></section>
-<section id="resultScreen" class="screen"><div class="result"><div id="resultIcon" class="big">✓</div><h2 id="resultTitle">I got it!</h2><p id="resultText" class="lead"></p><div class="stats"><div class="stat"><b id="gamesStat">0</b><span>Games</span></div><div class="stat"><b id="winsStat">0</b><span>Guessed</span></div><div class="stat"><b id="rateStat">0%</b><span>Success</span></div><div class="stat"><b id="learnedStat">0</b><span>Learned</span></div></div><div id="missBox" style="display:none"><label for="missedItem">What were you thinking of?</label><input id="missedItem" placeholder="Type it here"><button id="saveMissBtn" class="secondary">Teach the Game This Item</button><div class="learning">Your answers from this round will be saved so the game can recognize it later.</div></div><button id="playAgainBtn" class="primary">Play Again</button></div></section>
-<section id="learnedScreen" class="screen"><div class="panel"><h2 style="font-size:22px">Learned Items</h2><p class="lead">These are things the game learned when you stumped it.</p><div id="learnedList" class="learned"></div><button id="backHomeBtn" class="primary">Back</button><button id="clearLearnedBtn" class="secondary">Clear Learned Items</button></div></section>
-</main><footer>A DONCO-BAYCITY™ Game</footer></div><div id="toast" class="toast"></div>
+:root{--ink:#fff8f8;--muted:#efd2d2;--line:#ffffff55;--glass:#3d0006a8;--shadow:0 24px 70px #17000266}
+*{box-sizing:border-box}
+html{background:#5b0006}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 75% 8%,#ff384866,transparent 24%),
+    radial-gradient(circle at 18% 28%,#b4001066,transparent 29%),
+    linear-gradient(160deg,#300003,#7b0008 30%,#b80814 61%,#520005);
+  overflow-x:hidden
+}
+.qbg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.qbg span{
+  position:absolute;
+  color:#050000;
+  font:900 var(--s,120px)/.8 Impact,"Arial Black",sans-serif;
+  opacity:var(--o,.48);
+  transform:rotate(var(--r,0deg));
+  text-shadow:0 2px 10px #0004
+}
+.qbg span:nth-child(1){left:-3%;top:10%;--s:210px;--r:-8deg}
+.qbg span:nth-child(2){left:27%;top:2%;--s:145px;--r:8deg}
+.qbg span:nth-child(3){right:-2%;top:13%;--s:190px;--r:-7deg}
+.qbg span:nth-child(4){left:7%;top:39%;--s:105px;--r:8deg}
+.qbg span:nth-child(5){right:13%;top:38%;--s:155px;--r:-6deg}
+.qbg span:nth-child(6){left:-2%;top:67%;--s:190px;--r:-5deg}
+.qbg span:nth-child(7){left:45%;top:73%;--s:90px;--r:7deg}
+.qbg span:nth-child(8){right:-2%;bottom:-2%;--s:185px;--r:8deg}
+
+.app{
+  max-width:760px;
+  margin:auto;
+  min-height:100vh;
+  padding:calc(18px + env(safe-area-inset-top)) 16px calc(30px + env(safe-area-inset-bottom));
+  position:relative;
+  z-index:1
+}
+
+header,.panel,.card,.result{
+  background:linear-gradient(145deg,#8f0c177a,#22000399);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow),inset 0 1px #ffffff38;
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px)
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:15px 16px;
+  border-radius:24px
+}
+
+.brand h1{margin:0;font-size:27px}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+button{
+  font:inherit;
+  color:#fff;
+  border:0;
+  border-radius:13px;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent
+}
+
+button:active{transform:scale(.985)}
+
+.mini,.secondary,.answer{
+  background:#ffffff18;
+  border:1px solid var(--line)
+}
+
+.mini{padding:9px 12px}
+.mini.on{background:#d81d2760}
+
+main{padding-top:22px}
+.screen{display:none}
+.screen.active{display:block}
+
+.hero{text-align:center;padding:28px 8px 18px}
+
+.mark{
+  width:94px;
+  height:94px;
+  margin:auto auto 18px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:58px;
+  font-weight:900;
+  background:#7d000a73;
+  border:1px solid #ffffff72;
+  box-shadow:0 15px 36px #0006
+}
+
+h2{margin:0 0 10px;font-size:29px}
+
+.lead{
+  max-width:560px;
+  margin:0 auto 20px;
+  color:var(--muted);
+  line-height:1.5
+}
+
+.panel{padding:20px;border-radius:26px}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:14px 0
+}
+
+.category{
+  padding:14px;
+  text-align:left;
+  font-weight:750;
+  background:#ffffff16;
+  border:1px solid var(--line)
+}
+
+.category small{
+  display:block;
+  color:var(--muted);
+  font-weight:400;
+  margin-top:3px
+}
+
+.category.selected{
+  background:#dc243054;
+  box-shadow:inset 4px 0 #ff6872
+}
+
+.primary{
+  width:100%;
+  padding:15px;
+  margin-top:12px;
+  font-weight:800;
+  font-size:16px;
+  background:linear-gradient(#ee3440,#a7000b);
+  border:1px solid #ffdcde70;
+  box-shadow:0 9px 22px #28000059
+}
+
+.secondary{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  font-weight:700
+}
+
+.learning{
+  text-align:center;
+  color:#dcb9bc;
+  font-size:12px;
+  margin-top:12px
+}
+
+.gamehead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px
+}
+
+.counter{font-size:13px;color:#efd7d9}
+
+.progress{
+  height:8px;
+  border-radius:20px;
+  background:#0005;
+  overflow:hidden;
+  margin-bottom:18px
+}
+
+#progressBar{
+  height:100%;
+  width:5%;
+  background:linear-gradient(90deg,#ff747c,#d20d19)
+}
+
+.card{
+  min-height:285px;
+  border-radius:27px;
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center
+}
+
+.label{
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#ff9ba2;
+  font-weight:850;
+  margin-bottom:12px
+}
+
+.question{
+  font-size:28px;
+  line-height:1.3;
+  font-weight:800
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px
+}
+
+.answer{
+  padding:14px;
+  font-weight:800;
+  font-size:16px
+}
+
+.answer.yes{background:#11663f}
+.answer.no{background:#8d0812}
+.answer.sometimes{background:#7f5708}
+
+.mic{
+  width:100%;
+  padding:13px;
+  margin-top:10px;
+  font-weight:750;
+  background:#190103;
+  border:1px solid var(--line)
+}
+
+.status{
+  min-height:21px;
+  text-align:center;
+  color:#e9c9cb;
+  font-size:13px;
+  margin-top:8px
+}
+
+.result{
+  border-radius:27px;
+  padding:28px 20px;
+  text-align:center
+}
+
+.big{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  margin:auto auto 13px;
+  font-size:38px;
+  background:linear-gradient(#ee3743,#8d0009)
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:18px 0
+}
+
+.stat{
+  background:#ffffff17;
+  border:1px solid #ffffff33;
+  border-radius:14px;
+  padding:12px 6px
+}
+
+.stat b{display:block;font-size:21px}
+.stat span{font-size:11px;color:var(--muted)}
+
+label{
+  display:block;
+  text-align:left;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  margin:10px 0 6px
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border-radius:11px;
+  border:1px solid var(--line);
+  background:#14000280;
+  color:#fff;
+  font:inherit
+}
+
+.learned{
+  max-height:260px;
+  overflow:auto;
+  margin-top:10px
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 0;
+  border-bottom:1px solid #ffffff21;
+  text-align:left
+}
+
+footer{
+  text-align:center;
+  color:#d5aaad;
+  font-size:11px;
+  margin-top:28px;
+  letter-spacing:.05em
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  background:#170002;
+  padding:10px 14px;
+  border-radius:10px;
+  transition:.2s;
+  z-index:9
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+@media(min-width:640px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .answers{grid-template-columns:repeat(4,1fr)}
+}
+
+@media(max-width:420px){
+  .question{font-size:24px}
+  .stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="qbg" aria-hidden="true">
+  <span>?</span>
+  <span>?</span>
+  <span>?</span>
+  <span>?</span>
+  <span>?</span>
+  <span>?</span>
+  <span>?</span>
+  <span>?</span>
+</div>
+
+<div class="app">
+
+<header>
+  <div class="brand">
+    <h1>20 Questions</h1>
+    <p>Think of something. I’ll try to guess it.</p>
+  </div>
+
+  <button id="voiceToggle" class="mini on">
+    Voice On
+  </button>
+</header>
+
+<main>
+
+<section id="startScreen" class="screen active">
+
+<div class="hero">
+  <div class="mark">?</div>
+
+  <h2>Can I guess what you’re thinking of?</h2>
+
+  <p class="lead">
+    Pick a category, think of one thing, and answer up to
+    20 questions. Don’t tell me what it is.
+  </p>
+</div>
+
+<div class="panel">
+
+<strong>Choose a category</strong>
+
+<div class="grid">
+
+<button class="category selected" data-cat="anything">
+  Anything
+  <small>Classic mode</small>
+</button>
+
+<button class="category" data-cat="animal">
+  Animals
+  <small>Pets, wildlife & more</small>
+</button>
+
+<button class="category" data-cat="food">
+  Food
+  <small>Meals, snacks & produce</small>
+</button>
+
+<button class="category" data-cat="household">
+  Household
+  <small>Things around the home</small>
+</button>
+
+<button class="category" data-cat="vehicle">
+  Vehicles
+  <small>Things that move</small>
+</button>
+
+<button class="category" data-cat="nature">
+  Nature
+  <small>Places & natural things</small>
+</button>
+
+</div>
+
+<button id="startBtn" class="primary">
+  Start Game
+</button>
+
+<div class="learning">
+  Built-in answers:
+  <b id="builtInCount">0</b>
+  · Learned from you:
+  <b id="learnedHome">0</b>
+</div>
+
+<button id="learnedBtn" class="secondary">
+  View Learned Items
+</button>
+
+</div>
+</section>
+
+<section id="gameScreen" class="screen">
+
+<div class="gamehead">
+
+<button id="quitBtn" class="mini">
+  New Game
+</button>
+
+<div id="counter" class="counter">
+  Question 1 of 20
+</div>
+
+</div>
+
+<div class="progress">
+  <div id="progressBar"></div>
+</div>
+
+<div class="card">
+
+<div id="qLabel" class="label">
+  Question
+</div>
+
+<div id="questionText" class="question">
+  Is it alive?
+</div>
+
+<button id="repeatBtn" class="mini" style="margin-top:18px">
+  Hear Again
+</button>
+
+</div>
+
+<div class="answers">
+
+<button class="answer yes" data-answer="yes">
+  Yes
+</button>
+
+<button class="answer no" data-answer="no">
+  No
+</button>
+
+<button class="answer sometimes" data-answer="sometimes">
+  Sometimes
+</button>
+
+<button class="answer" data-answer="unknown">
+  Don’t Know
+</button>
+
+</div>
+
+<button id="micBtn" class="mic">
+  🎙 Answer by Voice
+</button>
+
+<div id="voiceStatus" class="status"></div>
+
+</section>
+
+<section id="resultScreen" class="screen">
+
+<div class="result">
+
+<div id="resultIcon" class="big">
+  ✓
+</div>
+
+<h2 id="resultTitle">
+  I got it!
+</h2>
+
+<p id="resultText" class="lead"></p>
+
+<div class="stats">
+
+<div class="stat">
+  <b id="gamesStat">0</b>
+  <span>Games</span>
+</div>
+
+<div class="stat">
+  <b id="winsStat">0</b>
+  <span>Guessed</span>
+</div>
+
+<div class="stat">
+  <b id="rateStat">0%</b>
+  <span>Success</span>
+</div>
+
+<div class="stat">
+  <b id="learnedStat">0</b>
+  <span>Learned</span>
+</div>
+
+</div>
+
+<div id="missBox" style="display:none">
+
+<label for="missedItem">
+  What were you thinking of?
+</label>
+
+<input
+  id="missedItem"
+  placeholder="Type it here"
+>
+
+<div
+  id="closestGuessLine"
+  class="learning"
+  style="text-align:left">
+</div>
+
+<label for="distinguishQuestion">
+  Optional: teach me a yes/no question that separates
+  your answer from my closest guess.
+</label>
+
+<input
+  id="distinguishQuestion"
+  placeholder="Example: Is it usually placed in front of a sofa?"
+>
+
+<button id="saveMissBtn" class="secondary">
+  Teach the Game
+</button>
+
+<div class="learning">
+  The game saves your answers and can also learn
+  a brand-new distinguishing question.
+</div>
+
+</div>
+
+<button id="playAgainBtn" class="primary">
+  Play Again
+</button>
+
+</div>
+</section>
+
+<section id="learnedScreen" class="screen">
+
+<div class="panel">
+
+<h2 style="font-size:22px">
+  Learned Items
+</h2>
+
+<p class="lead">
+  These are things the game learned when you stumped it.
+</p>
+
+<div id="learnedList" class="learned"></div>
+
+<button id="backHomeBtn" class="primary">
+  Back
+</button>
+
+<button id="clearLearnedBtn" class="secondary">
+  Clear Learned Intelligence
+</button>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+  A DONCO-BAYCITY™ Game
+</footer>
+
+</div>
+
+<div id="toast" class="toast"></div>
 
 <script>
-const K="alive,animal,fourlegs,fur,indoors,pet,dogtype,doglarge,dogfloppy,dogcurly,dogshortface,dogretriever,dogworking,small,farm,large,outdoors,ride,bird,flies,thanksgiving,longneck,ussymbol,wild,birdprey,night,cold,water,talkbird,nolegs,shell,reptile,jumps,tall,food,fruit,raw,round,sweet,vegetable,cooked,cheese,meal,meat,dessert,baked,breakfast,snack,electronic,household,screen,battery,handheld,kitchen,clean,furniture,sit,chairtype,chairwheels,swivel,work,rocks,livingroom,reclines,dining,surface,tabletype,low,sofa,bedroom,drawers,folding,sleep,light,wheels,garage,tool,metal,carry,fourwheels,motor,road,vehicle,cartype,carfourdoor,convertible,sportscar,hatchrear,cargocar,twowheels,public,rail,boattype,boatspeed,boatfish,pontoon,sails,nature,plant,land,moves,hard,sky,weather,hot".split(","),key=c=>K[parseInt(c,36)],C={a:"animal",f:"food",h:"household",v:"vehicle",n:"nature",x:"anything"},F={d:"dog",b:"bird",c:"chair",t:"table",r:"car",o:"boat"};
+(()=>{
+const base=[];
 
-const DATA=`dog|a|0.1.2.3.4.5.6||d|1;cat|a|0.1.2.3.4.5|||;German shepherd|a|0.1.2.3.4.5.6.7.c||d|;golden retriever|a|0.1.2.3.4.5.6.7.8.b|c|d|;Labrador retriever|a|0.1.2.3.4.5.6.7.8.b.c||d|;beagle|a|0.1.2.3.4.5.6.8||d|;bulldog|a|0.1.2.3.4.5.6.a|8|d|;poodle|a|0.1.2.3.4.5.6.8.9|7.c|d|;Chihuahua|a|0.1.2.3.4.5.6.d||d|;horse|a|0.1.e.2.3.f.g.h|||;cow|a|0.1.e.2.f.g|||;pig|a|0.1.e.2.g|||;goat|a|0.1.e.2.g|||;sheep|a|0.1.e.2.3.g|||;chicken|a|0.1.i.e.g||b|;turkey|a|0.1.i.e.g.k||b|;eagle|a|0.1.i.j.g.n.o.m||b|;hawk|a|0.1.i.j.g.n.o||b|;owl|a|0.1.i.j.p.g.n.o||b|;penguin|a|0.1.i.q.r.n||b|;duck|a|0.1.i.j.g.r||b|;goose|a|0.1.i.j.g.r.l||b|;parrot|a|0.1.i.j.4.5.s||b|;fish|a|0.1.5.r|||;goldfish|a|0.1.5.d.r|||;shark|a|0.1.f.r.n|||;dolphin|a|0.1.f.r.n|||;whale|a|0.1.f.r.n|||;octopus|a|0.1.t.r.n|||;crab|a|0.1.u.r.n|||;lobster|a|0.1.u.r.n|||;snake|a|0.1.t.v.n|||;turtle|a|0.1.5.v.u.r|||;lizard|a|0.1.5.v.n|||;crocodile|a|0.1.f.v.r.n|||;frog|a|0.1.w.r.n|||;elephant|a|0.1.2.f.n|||;zebra|a|0.1.2.f.n|||;lion|a|0.1.2.3.f.n|||;tiger|a|0.1.2.3.f.n|||;bear|a|0.1.2.3.f.n|||;wolf|a|0.1.2.3.n|||;fox|a|0.1.2.3.n|||;deer|a|0.1.2.3.g.n|||;moose|a|0.1.2.3.f.g.n|||;rabbit|a|0.1.2.3.w.5|||;squirrel|a|0.1.2.3.g.d.n|||;mouse|a|0.1.2.3.d|||;hamster|a|0.1.2.3.4.5.d|||;monkey|a|0.1.3.n|||;gorilla|a|0.1.3.f.n|||;giraffe|a|0.1.2.f.x.n|||;kangaroo|a|0.1.w.n|||;bat|a|0.1.j.p.n|||;butterfly|a|0.1.j.d.n|||;bee|a|0.1.j.d.n|||;spider|a|0.1.d.n|||;apple|f|y.z.10.11.12|||;orange|f|y.z.10.11.12|||;peach|f|y.z.10.11.12|||;banana|f|y.z.10.12|||;pear|f|y.z.10.12|||;pineapple|f|y.z.10.12|||;strawberry|f|y.z.10.d.12|||;grape|f|y.z.10.11.d.12|||;watermelon|f|y.z.f.10.11.12|||;carrot|f|y.10.13|||;potato|f|14.y.13|||;broccoli|f|14.y.13|||;corn|f|14.e.y.13|||;tomato|f|y.z.10.11|||;pizza|f|15.14.y.16.11|||;hamburger|f|14.y.16.17|||;hot dog|f|14.y.16.17|||;taco|f|14.y.16.17|||;fried chicken|f|14.y.16.17|||;steak|f|14.y.16.17|||;spaghetti|f|14.y.16|||;ice cream|f|q.18.y.12|||;cake|f|19.18.y.12|||;cookie|f|19.18.y.d.12|||;pie|f|19.18.y.11.12|||;donut|f|19.18.y.11.12|||;bread|f|19.y|||;egg|f|1a.14.y.11|||;bacon|f|1a.14.y.17|||;pancakes|f|1a.14.y.12|||;cereal|f|1a.y|||;popcorn|f|14.y.1b|||;potato chips|f|y.1b|||;pretzel|f|19.y.1b|||;cheese|f|q.y|||;television|h|1c.1d.4.f.1e|||;phone|h|1f.1c.1g.1d.4.1e|||;tablet|h|1f.1c.1g.1d.4.1e|||;laptop|h|1f.1c.1d.4.1e|||;desktop computer|h|1c.1d.4.1e|||;radio|h|1c.1d.4|||;fan|h|1c.1d.4|||;refrigerator|h|q.1c.1d.4.1h.f|||;microwave|h|14.1c.1d.4.1h|||;toaster|h|1c.1d.4.1h|||;coffee maker|h|1c.1d.4.1h|||;dishwasher|h|1c.1d.4.1h.f|||;washing machine|h|1i.1c.1d.4.f|||;dryer|h|1c.1d.4.f|||;chair|h|1j.1d.4.1k.1l||c|1;office chair|h|1j.1d.4.1k.1l.1m.1n.1o||c|;rocking chair|h|1j.1d.4.1k.1l.1p.1q||c|;recliner|h|1j.1d.4.1k.1l.1r.1q||c|;dining chair|h|1j.1d.4.1k.1l.1s||c|;table|h|1j.1d.4.1t.1u||t|1;coffee table|h|1j.1d.4.1t.1u.1v.1q.1w||t|;dining table|h|1j.1d.4.1t.1u.f.1s||t|;kitchen table|h|1j.1d.4.1t.1u.1h.1s||t|;end table|h|1j.1d.4.1t.1u.1v.1q||t|;nightstand|h|1j.1d.4.1t.1u.1v.1x.1y||t|;picnic table|h|1j.1d.g.1t.1u.f.1s||t|;card table|h|1j.1d.4.1t.1u.1z||t|;desk|h|1j.1d.4.1t.1o|1y||;dresser|h|1j.1d.4.f.1x.1y|||;bed|h|1j.1d.4.f.20|||;couch|h|1j.1d.4.f.1k|||;lamp|h|1c.1d.4.21|||;vacuum cleaner|h|1i.1c.1d.4.22|||;broom|h|1i.1g.1d.4|||;hammer|h|23.1g.1d.24|||;screwdriver|h|23.1g.1d.24|||;saw|h|23.1g.1d.24|||;wrench|h|23.1g.1d.25.24|||;drill|h|1f.1c.23.1g.1d.24|||;flashlight|h|1f.1c.1g.1d.21|||;keys|h|1g.1d.25.d|||;scissors|h|1g.1d.25.d|||;wallet|h|26.1g.1d.d|||;purse|h|26.1g.1d|||;watch|h|26.1c.1d.d|||;glasses|h|26.1d.d|||;book|h|1g.1d.4|||;pen|h|1g.1d.d|||;pencil|h|1g.1d.d|||;toothbrush|h|1g.1d.d|||;remote control|h|1f.1c.1g.1d.d|||;clock|h|1d.4|||;mirror|h|1d.4|||;shoes|h|26.1d|||;hat|h|26.1d|||;car|v|27.28.h.29.2a.22.2b||r|1;sedan|v|27.28.h.29.2a.22.2b.2c||r|;sports car|v|27.28.h.29.2a.22.2b.2e|2d|r|;convertible|v|27.28.h.29.2a.22.2b.2d|2c.2e|r|;station wagon|v|27.28.h.29.2a.22.2b.2c.2f.2g||r|;hatchback|v|27.28.h.29.2a.22.2b.2f|2c.2g|r|;pickup truck|v|27.f.28.h.29.2a.22|||;suv|v|27.f.28.h.29.2a.22|||;van|v|27.f.28.h.29.2a.22|||;motorcycle|v|28.h.29.2h.2a.22|||;bicycle|v|h.29.2h.2a.22|||;scooter|v|h.29.d.2h.2a.22|||;bus|v|f.28.2i.h.29.2a.22|||;school bus|v|f.28.2i.h.29.2a.22|||;train|v|f.28.2i.2j.h.2a.22|||;subway train|v|4.f.28.2i.2j.h.2a.22|||;airplane|v|j.f.28.2i.h.2a|||;helicopter|v|j.28.h.2a|||;boat|v|28.h.2a.r.2k||o|1;speedboat|v|28.h.2a.r.2k.2l||o|;fishing boat|v|28.h.2a.r.2k.2m||o|;pontoon boat|v|28.h.2a.r.2k.2n|2m|o|;sailboat|v|h.2a.r.2k.2o||o|;canoe|v|h.2a.r|||;kayak|v|h.d.2a.r|||;tractor|v|e.f.28.2a.22|||;forklift|v|f.28.2a.22.1o|||;golf cart|v|28.h.d.2a.22|||;rv|v|f.28.h.29.2a.22|||;tree|n|0.2p.g.2q.x|||;flower|n|0.2p.g.2q.d|||;grass|n|0.2p.g.2q.d|||;bush|n|0.2p.g.2q|||;cactus|n|0.2p.g.2q|||;mountain|n|2r.f.2p.g.x|||;hill|n|2r.2p.g|||;river|n|2s.2p.g.r|||;waterfall|n|2s.2p.g.r|||;lake|n|2p.g.r|||;pond|n|2p.g.d.r|||;ocean|n|f.2p.g.r|||;beach|n|2r.2p.g.r|||;island|n|2r.2p.g.r|||;rock|n|2t.2r.2p.g|||;sand|n|2r.2p.g.d|||;cloud|n|2p.g.2u|||;rain|n|2p.g.2u.r.2v|||;snow|n|q.2p.g.2v|||;hail|n|q.2p.g.2v|||;sun|n|2w.21.2p.g.2u|||;moon|n|2p.p.g.2u|||;star|n|21.2p.p.g.2u|||;forest|n|2r.f.2p.g.2q|||;desert|n|2w.2r.f.2p.g|||`;
+const add=(cat,names,a,meta={})=>
+  names.split("|").forEach(
+    n=>base.push({
+      n,
+      cat,
+      a:{...a},
+      ...meta
+    })
+  );
 
-const QDATA=`0|Is it alive?;1|Is it an animal?;y|Is it something you can eat?;1d|Would you normally find it around a home?;2a|Is it a vehicle or something you ride in or on?;2p|Is it something found in nature?;4|Is it usually found indoors?;g|Is it usually found outdoors?;1g|Can you comfortably hold it in one hand?;d|Is it usually smaller than a loaf of bread?;f|Is it larger than a person?;1c|Does it use electricity or electronics?;1f|Can it run on a battery?;1e|Does it have a screen?;r|Is it strongly associated with water?;j|Can it fly?;22|Does it have wheels?;28|Does it have a motor?;29|Is it commonly used on roads?;2h|Does it normally have two wheels?;27|Does it normally have four wheels?;5|Do people commonly keep it as a pet?;n|Is it usually wild rather than domesticated?;2|Does it normally have four legs?;i|Is it a bird?;v|Is it a reptile?;3|Does it have fur?;e|Is it commonly associated with a farm?;p|Is it especially associated with nighttime?;z|Is it a fruit?;13|Is it a vegetable?;12|Is it usually sweet?;18|Is it usually a dessert?;16|Is it commonly eaten as a meal?;17|Is meat a main part of it?;14|Is it usually cooked before eating?;q|Is it normally cold when used, eaten, or found?;1a|Is it commonly associated with breakfast?;1b|Is it commonly eaten as a snack?;1h|Would you usually find it in a kitchen?;1j|Is it furniture?;24|Is it a tool?;23|Would you commonly keep it in a garage or workshop?;25|Is it usually made mostly of metal?;1i|Is it mainly used for cleaning?;1k|Do people sit on it?;20|Is it mainly used for sleeping?;21|Does it produce light?;11|Is it usually round?;26|Is it something people commonly carry with them?;2q|Is it a plant?;2u|Would you look up toward the sky to see it?;2v|Is it a kind of weather?;2i|Is it commonly used for public transportation?;2j|Does it travel on rails?;h|Do people ride in or on it?;x|Is it usually taller than a person?;2r|Is it mainly associated with land rather than water?;2w|Is it strongly associated with heat?;t|Does it normally have no legs?;u|Does it have a shell?;w|Is it known for jumping?;19|Is it usually baked?;15|Is cheese a main part of it?;2t|Is it usually hard or rigid?;10|Is it commonly eaten raw?;2s|Does it move under its own power?;1o|Is it mainly used for work or a job?;1t|Is it mainly used as a flat surface to put things on?;1v|Is it usually about knee height or lower?;1q|Is it commonly found in a living room?;1w|Is it commonly placed in front of a sofa?;1s|Is it mainly used for eating meals?;1x|Is it commonly kept in a bedroom?;1y|Does it usually have drawers?;1z|Is it designed to fold up?;1u|Is it a type of table?;6|Is it a type of dog?;7|Is it usually considered a large dog breed?;8|Does it usually have floppy ears?;9|Does it usually have a curly coat?;a|Does it have a short, flat-looking face?;b|Is it a retriever breed?;c|Is it commonly known as a working or service dog?;o|Is it a bird of prey?;l|Does it usually have a noticeably long neck?;k|Is it strongly associated with Thanksgiving?;m|Is it famously associated with the United States as a national symbol?;s|Is it known for copying human speech?;1l|Is it a type of chair?;1m|Does the chair usually have wheels?;1n|Does it normally swivel?;1p|Is it designed to rock back and forth?;1r|Is it designed to recline?;2b|Is it a type of car rather than a truck, van, or SUV?;2c|Does it normally have four passenger doors?;2d|Can its roof fold down or be removed?;2e|Is it mainly designed for sporty performance?;2f|Does it have a hatch-style rear door?;2g|Is extra cargo room a major part of its design?;2k|Is it a type of boat?;2o|Does it mainly use sails for propulsion?;2l|Is it mainly designed for speed?;2m|Is it mainly set up for fishing?;2n|Does it ride on pontoons?`;
+const yes=(...k)=>
+  Object.fromEntries(
+    k.map(x=>[x,1])
+  );
 
-const baseCandidates=DATA.split(";").map(s=>{const r=s.split("|"),a={};(r[2]||"").split(".").filter(Boolean).forEach(c=>a[key(c)]=1);(r[3]||"").split(".").filter(Boolean).forEach(c=>a[key(c)]=.5);return{n:r[0],cat:C[r[1]],a,family:F[r[4]],generic:r[5]==="1"}}),
-QUESTIONS=QDATA.split(";").map(s=>{const i=s.indexOf("|");return[key(s.slice(0,i)),s.slice(i+1)]}),
-FAMILY={tabletype:"table",dogtype:"dog",bird:"bird",chairtype:"chair",cartype:"car",boattype:"boat"};
+/* =========================
+   ANIMALS
+   ========================= */
 
-let selected="anything",state=null,voiceOn=true,recognition=null;
-const $=id=>document.getElementById(id),
-screens=["startScreen","gameScreen","resultScreen","learnedScreen"];
+add(
+  "animal",
+  "dog",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "indoors",
+    "pet",
+    "dogtype"
+  ),
+  {
+    family:"dog",
+    generic:true
+  }
+);
+
+add(
+  "animal",
+  "German shepherd",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "pet",
+    "dogtype",
+    "doglarge",
+    "dogworking"
+  ),
+  {
+    family:"dog"
+  }
+);
+
+add(
+  "animal",
+  "golden retriever",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "pet",
+    "dogtype",
+    "doglarge",
+    "dogfloppy",
+    "dogretriever",
+    "dogworking"
+  ),
+  {
+    family:"dog"
+  }
+);
+
+add(
+  "animal",
+  "Labrador retriever",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "pet",
+    "dogtype",
+    "doglarge",
+    "dogfloppy",
+    "dogretriever",
+    "dogworking"
+  ),
+  {
+    family:"dog"
+  }
+);
+
+add(
+  "animal",
+  "beagle",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "pet",
+    "dogtype",
+    "dogfloppy"
+  ),
+  {
+    family:"dog"
+  }
+);
+
+add(
+  "animal",
+  "bulldog",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "pet",
+    "dogtype",
+    "dogshortface"
+  ),
+  {
+    family:"dog"
+  }
+);
+
+add(
+  "animal",
+  "poodle",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "pet",
+    "dogtype",
+    "dogcurly"
+  ),
+  {
+    family:"dog"
+  }
+);
+
+add(
+  "animal",
+  "Chihuahua",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "pet",
+    "dogtype",
+    "small"
+  ),
+  {
+    family:"dog"
+  }
+);
+
+add(
+  "animal",
+  "cat",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "indoors",
+    "pet"
+  )
+);
+
+add(
+  "animal",
+  "bird",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "flies"
+  ),
+  {
+    family:"bird",
+    generic:true
+  }
+);
+
+add(
+  "animal",
+  "eagle",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "flies",
+    "wild",
+    "birdprey",
+    "ussymbol"
+  ),
+  {
+    family:"bird"
+  }
+);
+
+add(
+  "animal",
+  "hawk",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "flies",
+    "wild",
+    "birdprey"
+  ),
+  {
+    family:"bird"
+  }
+);
+
+add(
+  "animal",
+  "owl",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "flies",
+    "wild",
+    "birdprey",
+    "night"
+  ),
+  {
+    family:"bird"
+  }
+);
+
+add(
+  "animal",
+  "parrot",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "flies",
+    "pet",
+    "indoors",
+    "talkbird"
+  ),
+  {
+    family:"bird"
+  }
+);
+
+add(
+  "animal",
+  "duck",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "flies",
+    "water",
+    "outdoors"
+  ),
+  {
+    family:"bird"
+  }
+);
+
+add(
+  "animal",
+  "goose",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "flies",
+    "water",
+    "outdoors",
+    "longneck"
+  ),
+  {
+    family:"bird"
+  }
+);
+
+add(
+  "animal",
+  "turkey",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "outdoors",
+    "farm",
+    "thanksgiving"
+  ),
+  {
+    family:"bird"
+  }
+);
+
+add(
+  "animal",
+  "penguin",
+  yes(
+    "alive",
+    "animal",
+    "bird",
+    "water",
+    "cold",
+    "wild"
+  ),
+  {
+    family:"bird"
+  }
+);
+
+add(
+  "animal",
+  "horse",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "farm",
+    "large",
+    "outdoors",
+    "ride"
+  )
+);
+
+add(
+  "animal",
+  "cow",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "farm",
+    "large",
+    "outdoors"
+  )
+);
+
+add(
+  "animal",
+  "pig|goat|sheep",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "farm",
+    "outdoors"
+  )
+);
+
+add(
+  "animal",
+  "lion|tiger|bear",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "large",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "wolf|fox|deer",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "wild",
+    "outdoors"
+  )
+);
+
+add(
+  "animal",
+  "elephant|zebra|giraffe",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "large",
+    "wild",
+    "outdoors"
+  )
+);
+
+add(
+  "animal",
+  "rabbit|squirrel|mouse|hamster",
+  yes(
+    "alive",
+    "animal",
+    "fourlegs",
+    "fur",
+    "small"
+  )
+);
+
+add(
+  "animal",
+  "monkey|gorilla",
+  yes(
+    "alive",
+    "animal",
+    "fur",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "kangaroo",
+  yes(
+    "alive",
+    "animal",
+    "wild",
+    "jumps"
+  )
+);
+
+add(
+  "animal",
+  "bat",
+  yes(
+    "alive",
+    "animal",
+    "flies",
+    "night",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "butterfly|bee",
+  yes(
+    "alive",
+    "animal",
+    "flies",
+    "small",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "spider",
+  yes(
+    "alive",
+    "animal",
+    "small",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "fish|goldfish",
+  yes(
+    "alive",
+    "animal",
+    "water"
+  )
+);
+
+add(
+  "animal",
+  "shark|dolphin|whale",
+  yes(
+    "alive",
+    "animal",
+    "water",
+    "large",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "octopus",
+  yes(
+    "alive",
+    "animal",
+    "water",
+    "nolegs",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "crab|lobster",
+  yes(
+    "alive",
+    "animal",
+    "water",
+    "shell",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "snake",
+  yes(
+    "alive",
+    "animal",
+    "reptile",
+    "nolegs",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "turtle",
+  yes(
+    "alive",
+    "animal",
+    "reptile",
+    "shell",
+    "water"
+  )
+);
+
+add(
+  "animal",
+  "lizard",
+  yes(
+    "alive",
+    "animal",
+    "reptile",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "crocodile",
+  yes(
+    "alive",
+    "animal",
+    "reptile",
+    "large",
+    "water",
+    "wild"
+  )
+);
+
+add(
+  "animal",
+  "frog",
+  yes(
+    "alive",
+    "animal",
+    "water",
+    "jumps",
+    "wild"
+  )
+);
+
+/* =========================
+   FOOD
+   ========================= */
+
+add(
+  "food",
+  "apple|orange|peach",
+  yes(
+    "food",
+    "fruit",
+    "raw",
+    "round",
+    "sweet"
+  )
+);
+
+add(
+  "food",
+  "banana|pear|pineapple",
+  yes(
+    "food",
+    "fruit",
+    "raw",
+    "sweet"
+  )
+);
+
+add(
+  "food",
+  "strawberry|grape",
+  yes(
+    "food",
+    "fruit",
+    "raw",
+    "small",
+    "sweet"
+  )
+);
+
+add(
+  "food",
+  "watermelon",
+  yes(
+    "food",
+    "fruit",
+    "raw",
+    "round",
+    "sweet",
+    "large"
+  )
+);
+
+add(
+  "food",
+  "carrot",
+  yes(
+    "food",
+    "vegetable",
+    "raw"
+  )
+);
+
+add(
+  "food",
+  "potato|broccoli|corn",
+  yes(
+    "food",
+    "vegetable",
+    "cooked"
+  )
+);
+
+add(
+  "food",
+  "tomato",
+  yes(
+    "food",
+    "fruit",
+    "raw",
+    "round"
+  )
+);
+
+add(
+  "food",
+  "pizza",
+  yes(
+    "food",
+    "cooked",
+    "meal",
+    "cheese",
+    "round"
+  )
+);
+
+add(
+  "food",
+  "hamburger|hot dog|taco|fried chicken|steak",
+  yes(
+    "food",
+    "cooked",
+    "meal",
+    "meat"
+  )
+);
+
+add(
+  "food",
+  "spaghetti",
+  yes(
+    "food",
+    "cooked",
+    "meal"
+  )
+);
+
+add(
+  "food",
+  "ice cream",
+  yes(
+    "food",
+    "dessert",
+    "sweet",
+    "cold"
+  )
+);
+
+add(
+  "food",
+  "cake|cookie|pie|donut",
+  yes(
+    "food",
+    "dessert",
+    "sweet",
+    "baked"
+  )
+);
+
+add(
+  "food",
+  "bread",
+  yes(
+    "food",
+    "baked"
+  )
+);
+
+add(
+  "food",
+  "egg|bacon|pancakes|cereal",
+  yes(
+    "food",
+    "breakfast"
+  )
+);
+
+add(
+  "food",
+  "popcorn|potato chips|pretzel",
+  yes(
+    "food",
+    "snack"
+  )
+);
+
+add(
+  "food",
+  "cheese",
+  yes(
+    "food",
+    "cold"
+  )
+);
+
+/* =========================
+   HOUSEHOLD
+   ========================= */
+
+add(
+  "household",
+  "television",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "screen",
+    "large"
+  )
+);
+
+add(
+  "household",
+  "phone|tablet",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "screen",
+    "battery",
+    "handheld",
+    "small"
+  )
+);
+
+add(
+  "household",
+  "laptop",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "screen",
+    "battery"
+  )
+);
+
+add(
+  "household",
+  "desktop computer",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "screen"
+  )
+);
+
+add(
+  "household",
+  "radio|fan",
+  yes(
+    "household",
+    "indoors",
+    "electronic"
+  )
+);
+
+add(
+  "household",
+  "refrigerator",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "kitchen",
+    "large",
+    "cold"
+  )
+);
+
+add(
+  "household",
+  "microwave|toaster|coffee maker",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "kitchen"
+  )
+);
+
+add(
+  "household",
+  "dishwasher",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "kitchen",
+    "clean",
+    "large"
+  )
+);
+
+add(
+  "household",
+  "washing machine|dryer",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "large"
+  )
+);
+
+/* TABLE FAMILY */
+
+add(
+  "household",
+  "table",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "surface",
+    "tabletype"
+  ),
+  {
+    family:"table",
+    generic:true
+  }
+);
+
+add(
+  "household",
+  "coffee table",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "surface",
+    "tabletype",
+    "low",
+    "livingroom",
+    "sofa"
+  ),
+  {
+    family:"table"
+  }
+);
+
+add(
+  "household",
+  "dining table",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "surface",
+    "tabletype",
+    "dining",
+    "large"
+  ),
+  {
+    family:"table"
+  }
+);
+
+add(
+  "household",
+  "kitchen table",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "surface",
+    "tabletype",
+    "dining",
+    "kitchen"
+  ),
+  {
+    family:"table"
+  }
+);
+
+add(
+  "household",
+  "end table",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "surface",
+    "tabletype",
+    "low",
+    "livingroom"
+  ),
+  {
+    family:"table"
+  }
+);
+
+add(
+  "household",
+  "nightstand",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "surface",
+    "tabletype",
+    "low",
+    "bedroom",
+    "drawers"
+  ),
+  {
+    family:"table"
+  }
+);
+
+add(
+  "household",
+  "picnic table",
+  yes(
+    "household",
+    "outdoors",
+    "furniture",
+    "surface",
+    "tabletype",
+    "dining",
+    "large"
+  ),
+  {
+    family:"table"
+  }
+);
+
+add(
+  "household",
+  "card table",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "surface",
+    "tabletype",
+    "folding"
+  ),
+  {
+    family:"table"
+  }
+);
+
+/* CHAIR FAMILY */
+
+add(
+  "household",
+  "chair",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "sit",
+    "chairtype"
+  ),
+  {
+    family:"chair",
+    generic:true
+  }
+);
+
+add(
+  "household",
+  "office chair",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "sit",
+    "chairtype",
+    "chairwheels",
+    "swivel",
+    "work"
+  ),
+  {
+    family:"chair"
+  }
+);
+
+add(
+  "household",
+  "rocking chair",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "sit",
+    "chairtype",
+    "rocks",
+    "livingroom"
+  ),
+  {
+    family:"chair"
+  }
+);
+
+add(
+  "household",
+  "recliner",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "sit",
+    "chairtype",
+    "reclines",
+    "livingroom"
+  ),
+  {
+    family:"chair"
+  }
+);
+
+add(
+  "household",
+  "dining chair",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "sit",
+    "chairtype",
+    "dining"
+  ),
+  {
+    family:"chair"
+  }
+);
+
+add(
+  "household",
+  "desk",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "surface",
+    "work"
+  )
+);
+
+add(
+  "household",
+  "dresser",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "bedroom",
+    "drawers",
+    "large"
+  )
+);
+
+add(
+  "household",
+  "bed",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "sleep",
+    "large"
+  )
+);
+
+add(
+  "household",
+  "couch",
+  yes(
+    "household",
+    "indoors",
+    "furniture",
+    "sit",
+    "large",
+    "livingroom"
+  )
+);
+
+add(
+  "household",
+  "lamp",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "light"
+  )
+);
+
+add(
+  "household",
+  "vacuum cleaner",
+  yes(
+    "household",
+    "indoors",
+    "electronic",
+    "clean",
+    "wheels"
+  )
+);
+
+add(
+  "household",
+  "broom",
+  yes(
+    "household",
+    "indoors",
+    "clean",
+    "handheld"
+  )
+);
+
+add(
+  "household",
+  "hammer|screwdriver|saw|wrench",
+  yes(
+    "household",
+    "garage",
+    "tool",
+    "handheld"
+  )
+);
+
+add(
+  "household",
+  "drill",
+  yes(
+    "household",
+    "garage",
+    "tool",
+    "handheld",
+    "electronic",
+    "battery"
+  )
+);
+
+add(
+  "household",
+  "flashlight",
+  yes(
+    "household",
+    "handheld",
+    "electronic",
+    "battery",
+    "light"
+  )
+);
+
+add(
+  "household",
+  "keys|scissors|wallet|watch|glasses|pen|pencil|toothbrush|remote control",
+  yes(
+    "household",
+    "handheld",
+    "small"
+  )
+);
+
+add(
+  "household",
+  "book|clock|mirror|shoes|hat|purse",
+  yes(
+    "household"
+  )
+);
+
+/* =========================
+   VEHICLES
+   ========================= */
+
+/* CAR FAMILY */
+
+add(
+  "vehicle",
+  "car",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "fourwheels",
+    "cartype"
+  ),
+  {
+    family:"car",
+    generic:true
+  }
+);
+
+add(
+  "vehicle",
+  "sedan",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "fourwheels",
+    "cartype",
+    "carfourdoor"
+  ),
+  {
+    family:"car"
+  }
+);
+
+add(
+  "vehicle",
+  "sports car",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "fourwheels",
+    "cartype",
+    "sportscar"
+  ),
+  {
+    family:"car"
+  }
+);
+
+add(
+  "vehicle",
+  "convertible",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "fourwheels",
+    "cartype",
+    "convertible"
+  ),
+  {
+    family:"car"
+  }
+);
+
+add(
+  "vehicle",
+  "station wagon",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "fourwheels",
+    "cartype",
+    "carfourdoor",
+    "hatchrear",
+    "cargocar"
+  ),
+  {
+    family:"car"
+  }
+);
+
+add(
+  "vehicle",
+  "hatchback",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "fourwheels",
+    "cartype",
+    "hatchrear"
+  ),
+  {
+    family:"car"
+  }
+);
+
+add(
+  "vehicle",
+  "pickup truck|suv|van",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "fourwheels",
+    "large"
+  )
+);
+
+add(
+  "vehicle",
+  "motorcycle",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "twowheels"
+  )
+);
+
+add(
+  "vehicle",
+  "bicycle|scooter",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "wheels",
+    "twowheels"
+  )
+);
+
+add(
+  "vehicle",
+  "bus|school bus",
+  yes(
+    "vehicle",
+    "ride",
+    "road",
+    "motor",
+    "wheels",
+    "large",
+    "public"
+  )
+);
+
+add(
+  "vehicle",
+  "train|subway train",
+  yes(
+    "vehicle",
+    "ride",
+    "motor",
+    "wheels",
+    "large",
+    "public",
+    "rail"
+  )
+);
+
+add(
+  "vehicle",
+  "airplane|helicopter",
+  yes(
+    "vehicle",
+    "ride",
+    "motor",
+    "flies"
+  )
+);
+
+/* BOAT FAMILY */
+
+add(
+  "vehicle",
+  "boat",
+  yes(
+    "vehicle",
+    "ride",
+    "water",
+    "boattype"
+  ),
+  {
+    family:"boat",
+    generic:true
+  }
+);
+
+add(
+  "vehicle",
+  "speedboat",
+  yes(
+    "vehicle",
+    "ride",
+    "water",
+    "boattype",
+    "motor",
+    "boatspeed"
+  ),
+  {
+    family:"boat"
+  }
+);
+
+add(
+  "vehicle",
+  "fishing boat",
+  yes(
+    "vehicle",
+    "ride",
+    "water",
+    "boattype",
+    "motor",
+    "boatfish"
+  ),
+  {
+    family:"boat"
+  }
+);
+
+add(
+  "vehicle",
+  "pontoon boat",
+  yes(
+    "vehicle",
+    "ride",
+    "water",
+    "boattype",
+    "motor",
+    "pontoon"
+  ),
+  {
+    family:"boat"
+  }
+);
+
+add(
+  "vehicle",
+  "sailboat",
+  yes(
+    "vehicle",
+    "ride",
+    "water",
+    "boattype",
+    "sails"
+  ),
+  {
+    family:"boat"
+  }
+);
+
+add(
+  "vehicle",
+  "canoe|kayak",
+  yes(
+    "vehicle",
+    "ride",
+    "water"
+  )
+);
+
+add(
+  "vehicle",
+  "tractor",
+  yes(
+    "vehicle",
+    "motor",
+    "wheels",
+    "large",
+    "farm"
+  )
+);
+
+add(
+  "vehicle",
+  "forklift",
+  yes(
+    "vehicle",
+    "motor",
+    "wheels",
+    "work"
+  )
+);
+
+add(
+  "vehicle",
+  "golf cart",
+  yes(
+    "vehicle",
+    "motor",
+    "wheels",
+    "ride",
+    "small"
+  )
+);
+
+add(
+  "vehicle",
+  "rv",
+  yes(
+    "vehicle",
+    "motor",
+    "wheels",
+    "ride",
+    "road",
+    "large"
+  )
+);
+
+/* =========================
+   NATURE
+   ========================= */
+
+add(
+  "nature",
+  "tree",
+  yes(
+    "nature",
+    "alive",
+    "plant",
+    "outdoors",
+    "tall"
+  )
+);
+
+add(
+  "nature",
+  "flower|grass",
+  yes(
+    "nature",
+    "alive",
+    "plant",
+    "outdoors",
+    "small"
+  )
+);
+
+add(
+  "nature",
+  "bush|cactus",
+  yes(
+    "nature",
+    "alive",
+    "plant",
+    "outdoors"
+  )
+);
+
+add(
+  "nature",
+  "mountain",
+  yes(
+    "nature",
+    "outdoors",
+    "land",
+    "large",
+    "tall"
+  )
+);
+
+add(
+  "nature",
+  "hill",
+  yes(
+    "nature",
+    "outdoors",
+    "land"
+  )
+);
+
+add(
+  "nature",
+  "river|waterfall",
+  yes(
+    "nature",
+    "outdoors",
+    "water",
+    "moves"
+  )
+);
+
+add(
+  "nature",
+  "lake|pond|ocean",
+  yes(
+    "nature",
+    "outdoors",
+    "water"
+  )
+);
+
+add(
+  "nature",
+  "beach|island",
+  yes(
+    "nature",
+    "outdoors",
+    "water",
+    "land"
+  )
+);
+
+add(
+  "nature",
+  "rock",
+  yes(
+    "nature",
+    "outdoors",
+    "land",
+    "hard"
+  )
+);
+
+add(
+  "nature",
+  "sand",
+  yes(
+    "nature",
+    "outdoors",
+    "land",
+    "small"
+  )
+);
+
+add(
+  "nature",
+  "cloud",
+  yes(
+    "nature",
+    "outdoors",
+    "sky"
+  )
+);
+
+add(
+  "nature",
+  "rain",
+  yes(
+    "nature",
+    "outdoors",
+    "sky",
+    "water",
+    "weather"
+  )
+);
+
+add(
+  "nature",
+  "snow|hail",
+  yes(
+    "nature",
+    "outdoors",
+    "weather",
+    "cold"
+  )
+);
+
+add(
+  "nature",
+  "sun",
+  yes(
+    "nature",
+    "outdoors",
+    "sky",
+    "hot",
+    "light"
+  )
+);
+
+add(
+  "nature",
+  "moon|star",
+  yes(
+    "nature",
+    "outdoors",
+    "sky",
+    "night"
+  )
+);
+
+add(
+  "nature",
+  "forest|desert",
+  yes(
+    "nature",
+    "outdoors",
+    "land",
+    "large"
+  )
+);
+
+/* =========================
+   QUESTIONS
+   ========================= */
+
+const Q=[
+
+["alive","Is it alive?"],
+["animal","Is it an animal?"],
+["food","Is it something you can eat?"],
+["household","Would you normally find it around a home?"],
+["vehicle","Is it a vehicle or something you ride in or on?"],
+["nature","Is it something found in nature?"],
+["indoors","Is it usually found indoors?"],
+["outdoors","Is it usually found outdoors?"],
+["handheld","Can you comfortably hold it in one hand?"],
+["small","Is it usually smaller than a loaf of bread?"],
+["large","Is it larger than a person?"],
+["electronic","Does it use electricity or electronics?"],
+["battery","Can it run on a battery?"],
+["screen","Does it have a screen?"],
+["water","Is it strongly associated with water?"],
+["flies","Can it fly?"],
+["wheels","Does it have wheels?"],
+["motor","Does it have a motor?"],
+["road","Is it commonly used on roads?"],
+["twowheels","Does it normally have two wheels?"],
+["fourwheels","Does it normally have four wheels?"],
+["pet","Do people commonly keep it as a pet?"],
+["wild","Is it usually wild rather than domesticated?"],
+["fourlegs","Does it normally have four legs?"],
+["bird","Is it a bird?"],
+["reptile","Is it a reptile?"],
+["fur","Does it have fur?"],
+["farm","Is it commonly associated with a farm?"],
+["night","Is it especially associated with nighttime?"],
+["fruit","Is it a fruit?"],
+["vegetable","Is it a vegetable?"],
+["sweet","Is it usually sweet?"],
+["dessert","Is it usually a dessert?"],
+["meal","Is it commonly eaten as a meal?"],
+["meat","Is meat a main part of it?"],
+["cooked","Is it usually cooked before eating?"],
+["cold","Is it normally cold when used, eaten, or found?"],
+["breakfast","Is it commonly associated with breakfast?"],
+["snack","Is it commonly eaten as a snack?"],
+["kitchen","Would you usually find it in a kitchen?"],
+["furniture","Is it furniture?"],
+["tool","Is it a tool?"],
+["garage","Would you commonly keep it in a garage or workshop?"],
+["clean","Is it mainly used for cleaning?"],
+["sit","Do people sit on it?"],
+["sleep","Is it mainly used for sleeping?"],
+["light","Does it produce light?"],
+["round","Is it usually round?"],
+["plant","Is it a plant?"],
+["sky","Would you look up toward the sky to see it?"],
+["weather","Is it a kind of weather?"],
+["public","Is it commonly used for public transportation?"],
+["rail","Does it travel on rails?"],
+["ride","Do people ride in or on it?"],
+["tall","Is it usually taller than a person?"],
+["land","Is it mainly associated with land rather than water?"],
+["hot","Is it strongly associated with heat?"],
+["nolegs","Does it normally have no legs?"],
+["shell","Does it have a shell?"],
+["jumps","Is it known for jumping?"],
+["baked","Is it usually baked?"],
+["cheese","Is cheese a main part of it?"],
+["hard","Is it usually hard or rigid?"],
+["raw","Is it commonly eaten raw?"],
+["moves","Does it move under its own power?"],
+["work","Is it mainly used for work or a job?"],
+
+["tabletype","Is it a type of table?"],
+["surface","Is it mainly used as a flat surface to put things on?"],
+["low","Is it usually about knee height or lower?"],
+["livingroom","Is it commonly found in a living room?"],
+["sofa","Is it commonly placed in front of a sofa?"],
+["dining","Is it mainly used for eating meals?"],
+["bedroom","Is it commonly kept in a bedroom?"],
+["drawers","Does it usually have drawers?"],
+["folding","Is it designed to fold up?"],
+
+["dogtype","Is it a type of dog?"],
+["doglarge","Is it usually considered a large dog breed?"],
+["dogfloppy","Does it usually have floppy ears?"],
+["dogcurly","Does it usually have a curly coat?"],
+["dogshortface","Does it have a short, flat-looking face?"],
+["dogretriever","Is it a retriever breed?"],
+["dogworking","Is it commonly known as a working or service dog?"],
+
+["birdprey","Is it a bird of prey?"],
+["longneck","Does it usually have a noticeably long neck?"],
+["thanksgiving","Is it strongly associated with Thanksgiving?"],
+["ussymbol","Is it famously associated with the United States as a national symbol?"],
+["talkbird","Is it known for copying human speech?"],
+
+["chairtype","Is it a type of chair?"],
+["chairwheels","Does the chair usually have wheels?"],
+["swivel","Does it normally swivel?"],
+["rocks","Is it designed to rock back and forth?"],
+["reclines","Is it designed to recline?"],
+
+["cartype","Is it a type of car rather than a truck, van, or SUV?"],
+["carfourdoor","Does it normally have four passenger doors?"],
+["convertible","Can its roof fold down or be removed?"],
+["sportscar","Is it mainly designed for sporty performance?"],
+["hatchrear","Does it have a hatch-style rear door?"],
+["cargocar","Is extra cargo room a major part of its design?"],
+
+["boattype","Is it a type of boat?"],
+["sails","Does it mainly use sails for propulsion?"],
+["boatspeed","Is it mainly designed for speed?"],
+["boatfish","Is it mainly set up for fishing?"],
+["pontoon","Does it ride on pontoons?"]
+
+];
+
+const FAMILY_BY_Q={
+  bird:"bird",
+  tabletype:"table",
+  dogtype:"dog",
+  chairtype:"chair",
+  cartype:"car",
+  boattype:"boat"
+};
+
+const ALIAS={
+  tv:"television",
+  television:"television",
+  sofa:"couch",
+  couch:"couch",
+  pickup:"pickup truck",
+  truck:"pickup truck",
+  cellphone:"phone",
+  "cell phone":"phone",
+  mobile:"phone",
+  auto:"car",
+  automobile:"car"
+};
+
+const canon=s=>{
+  s=String(s||"")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g," ")
+    .replace(/\s+/g," ");
+
+  return ALIAS[s]||s;
+};
+
+const LS={
+  stats:"donco20q_stats_v3",
+  learn:"donco20q_learned_v3",
+  qs:"donco20q_custom_questions_v1",
+  ov:"donco20q_overrides_v1"
+};
+
+const load=(k,f)=>{
+  try{
+    return JSON.parse(
+      localStorage.getItem(k)
+    )??f;
+  }catch{
+    return f;
+  }
+};
+
+const save=(k,v)=>
+  localStorage.setItem(
+    k,
+    JSON.stringify(v)
+  );
+
+const stats=()=>
+  load(
+    LS.stats,
+    {
+      games:0,
+      wins:0
+    }
+  );
+
+const learned=()=>
+  load(
+    LS.learn,
+    []
+  );
+
+const customQs=()=>
+  load(
+    LS.qs,
+    []
+  );
+
+const overrides=()=>
+  load(
+    LS.ov,
+    {}
+  );
+
+let selected="anything";
+let state=null;
+let voiceOn=true;
+let recognition=null;
+
+const $=id=>
+  document.getElementById(id);
+
+const screens=[
+  "startScreen",
+  "gameScreen",
+  "resultScreen",
+  "learnedScreen"
+];
 
 function show(id){
-  screens.forEach(x=>$(x).classList.toggle("active",x===id));
-  window.scrollTo({top:0,behavior:"smooth"});
+
+  screens.forEach(
+    x=>
+      $(x).classList.toggle(
+        "active",
+        x===id
+      )
+  );
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 function toast(t){
+
   $("toast").textContent=t;
-  $("toast").classList.add("show");
-  setTimeout(()=>$("toast").classList.remove("show"),1800);
-}
 
-function stats(){
-  try{
-    return JSON.parse(localStorage.getItem("donco20q_stats_v2"))||{games:0,wins:0};
-  }catch{
-    return{games:0,wins:0};
-  }
-}
+  $("toast").classList.add(
+    "show"
+  );
 
-function saveStats(s){
-  localStorage.setItem("donco20q_stats_v2",JSON.stringify(s));
-}
-
-function learned(){
-  try{
-    return JSON.parse(localStorage.getItem("donco20q_learned_v2"))||[];
-  }catch{
-    return[];
-  }
-}
-
-function saveLearned(x){
-  localStorage.setItem("donco20q_learned_v2",JSON.stringify(x));
-  counts();
+  setTimeout(
+    ()=>
+      $("toast").classList.remove(
+        "show"
+      ),
+    1800
+  );
 }
 
 function counts(){
-  const s=stats(),l=learned();
-  $("builtInCount").textContent=baseCandidates.length;
-  $("learnedHome").textContent=l.length;
-  $("gamesStat").textContent=s.games||0;
-  $("winsStat").textContent=s.wins||0;
-  $("rateStat").textContent=s.games?Math.round(s.wins/s.games*100)+"%":"0%";
-  $("learnedStat").textContent=l.length;
+
+  const s=stats();
+  const l=learned();
+
+  $("builtInCount").textContent=
+    base.length;
+
+  $("learnedHome").textContent=
+    l.length;
+
+  $("gamesStat").textContent=
+    s.games||0;
+
+  $("winsStat").textContent=
+    s.wins||0;
+
+  $("rateStat").textContent=
+    s.games
+      ? Math.round(
+          s.wins/s.games*100
+        )+"%"
+      : "0%";
+
+  $("learnedStat").textContent=
+    l.length;
 }
 
 function speak(t){
-  if(!voiceOn||!("speechSynthesis" in window))return;
+
+  if(
+    !voiceOn
+    ||
+    !(
+      "speechSynthesis"
+      in window
+    )
+  ){
+    return;
+  }
+
   speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(t);
+
+  const u=
+    new SpeechSynthesisUtterance(
+      t
+    );
+
   u.rate=.95;
-  const v=speechSynthesis.getVoices().find(x=>/^en-US/i.test(x.lang))||
-          speechSynthesis.getVoices().find(x=>/^en/i.test(x.lang));
-  if(v)u.voice=v;
+
+  const v=
+    speechSynthesis
+      .getVoices()
+      .find(
+        x=>
+          /^en-US/i.test(
+            x.lang
+          )
+      )
+      ||
+      speechSynthesis
+        .getVoices()
+        .find(
+          x=>
+            /^en/i.test(
+              x.lang
+            )
+        );
+
+  if(v){
+    u.voice=v;
+  }
+
   speechSynthesis.speak(u);
 }
 
-function normalize(c){
-  const a={...(c.a||{})};
-  if(c.cat&&c.cat!=="anything"){
-    for(const k of["animal","food","household","vehicle","nature"]){
-      if(!(k in a))a[k]=k===c.cat?1:0;
-    }
-  }
-  return{...c,a};
+function allQuestions(){
+
+  return Q.concat(
+    customQs().map(
+      q=>[
+        q.key,
+        q.text
+      ]
+    )
+  );
 }
 
-function all(){
-  return baseCandidates.map(normalize)
-    .concat(learned().map(x=>normalize({...x,learned:true})));
+function allCandidates(){
+
+  const ov=overrides();
+
+  const top=[
+    "animal",
+    "food",
+    "household",
+    "vehicle",
+    "nature"
+  ];
+
+  return base
+    .concat(
+      learned().map(
+        x=>({
+          ...x,
+          learned:true
+        })
+      )
+    )
+    .map(
+      c=>{
+
+        const a={
+          ...(c.a||{}),
+          ...(ov[canon(c.n)]||{})
+        };
+
+        if(
+          c.cat
+          &&
+          c.cat!=="anything"
+        ){
+
+          top.forEach(
+            k=>{
+
+              if(
+                !(k in a)
+              ){
+
+                a[k]=
+                  k===c.cat
+                    ? 1
+                    : 0;
+              }
+            }
+          );
+        }
+
+        return{
+          ...c,
+          a,
+          score:0
+        };
+      }
+    );
 }
 
 function pool(){
-  return all()
-    .filter(c=>selected==="anything"||c.cat===selected||c.cat==="anything")
-    .map(c=>({...c,score:0}));
+
+  return allCandidates()
+    .filter(
+      c=>
+        selected==="anything"
+        ||
+        c.cat===selected
+        ||
+        c.cat==="anything"
+    );
+}
+
+function ranked(){
+
+  return[
+    ...state.pool
+  ]
+  .sort(
+    (a,b)=>
+      b.score-a.score
+  );
+}
+
+function val(c,k){
+
+  if(
+    !(k in c.a)
+  ){
+
+    return c.learned
+      ? null
+      : 0;
+  }
+
+  const v=
+    Number(
+      c.a[k]
+    );
+
+  return Number.isFinite(v)
+    ? v
+    : null;
+}
+
+function cls(c,k){
+
+  const v=
+    val(c,k);
+
+  return v===null
+    ? "unknown"
+    : v>=.75
+      ? "yes"
+      : v<=.25
+        ? "no"
+        : "sometimes";
+}
+
+function plausible(){
+
+  const r=
+    ranked();
+
+  if(
+    !r.length
+  ){
+    return[];
+  }
+
+  let p=
+    r.filter(
+      c=>
+        c.score>=
+        r[0].score-8
+    );
+
+  if(
+    state.family
+  ){
+
+    const f=
+      p.filter(
+        c=>
+          c.family===
+          state.family
+          &&
+          !c.generic
+          &&
+          !state.rejected.has(
+            c.n
+          )
+      );
+
+    if(
+      f.length
+    ){
+
+      p=f;
+    }
+  }
+
+  return p;
+}
+
+function info(k,a){
+
+  const b={
+    yes:0,
+    no:0,
+    sometimes:0
+  };
+
+  let n=0;
+
+  for(
+    const c of a
+  ){
+
+    const x=
+      cls(c,k);
+
+    if(
+      x!=="unknown"
+    ){
+
+      b[x]++;
+
+      n++;
+    }
+  }
+
+  if(
+    n<2
+    ||
+    Object.values(b)
+      .filter(Boolean)
+      .length<2
+  ){
+
+    return -1;
+  }
+
+  let e=0;
+
+  for(
+    const z
+    of Object.values(b)
+  ){
+
+    if(z){
+
+      const p=
+        z/n;
+
+      e-=
+        p*
+        Math.log2(p);
+    }
+  }
+
+  return e*
+    (
+      .45+
+      .55*n/a.length
+    );
+}
+
+function inferFamily(){
+
+  if(
+    state.family
+  ){
+    return;
+  }
+
+  const r=
+    ranked();
+
+  if(
+    !r.length
+  ){
+    return;
+  }
+
+  const close=
+    r.filter(
+      c=>
+        c.score>=
+        r[0].score-6
+    )
+    .slice(
+      0,
+      10
+    );
+
+  const m={};
+
+  close.forEach(
+    c=>{
+
+      if(
+        c.family
+      ){
+
+        m[c.family]=
+          (
+            m[c.family]
+            ||
+            0
+          )+1;
+      }
+    }
+  );
+
+  const z=
+    Object.entries(m)
+      .sort(
+        (a,b)=>
+          b[1]-a[1]
+      )[0];
+
+  if(
+    z
+    &&
+    z[1]>=3
+    &&
+    z[1]/close.length>=.7
+  ){
+
+    state.family=
+      z[0];
+  }
+}
+
+function chooseQ(){
+
+  inferFamily();
+
+  let a=
+    plausible();
+
+  if(
+    a.length<2
+  ){
+
+    a=
+      ranked()
+        .slice(
+          0,
+          14
+        );
+  }
+
+  let best=null;
+  let bs=-1;
+
+  for(
+    const[k,t]
+    of allQuestions()
+  ){
+
+    if(
+      state.asked.has(k)
+    ){
+      continue;
+    }
+
+    let s=
+      info(
+        k,
+        a
+      );
+
+    if(
+      s<0
+    ){
+      continue;
+    }
+
+    if(
+      state.family
+      &&
+      a.filter(
+        c=>
+          c.family===
+          state.family
+          &&
+          cls(c,k)!==
+          "unknown"
+      ).length>=2
+    ){
+
+      s+=.4;
+    }
+
+    if(
+      s>bs
+    ){
+
+      bs=s;
+
+      best={
+        key:k,
+        text:t
+      };
+    }
+  }
+
+  return best;
+}
+
+function guessPick(){
+
+  const r=
+    ranked()
+      .filter(
+        c=>
+          !state.rejected.has(
+            c.n
+          )
+      );
+
+  if(
+    !r.length
+  ){
+    return null;
+  }
+
+  if(
+    state.family
+  ){
+
+    const f=
+      r.filter(
+        c=>
+          c.family===
+          state.family
+          &&
+          !c.generic
+      );
+
+    if(
+      f.length
+    ){
+
+      return f[0];
+    }
+  }
+
+  const t=
+    r[0];
+
+  if(
+    t.generic
+    &&
+    t.family
+  ){
+
+    const s=
+      r.find(
+        c=>
+          c.family===
+          t.family
+          &&
+          !c.generic
+          &&
+          c.score>=
+          t.score-4
+      );
+
+    if(s){
+      return s;
+    }
+  }
+
+  return t;
+}
+
+function shouldGuess(q){
+
+  const r=
+    ranked()
+      .filter(
+        c=>
+          !state.rejected.has(
+            c.n
+          )
+      );
+
+  const p=
+    plausible();
+
+  const g=
+    guessPick();
+
+  if(
+    !r.length
+    ||
+    !g
+  ){
+    return false;
+  }
+
+  if(
+    !q
+    ||
+    state.q>=18
+  ){
+    return true;
+  }
+
+  if(
+    state.q<5
+  ){
+    return false;
+  }
+
+  const z=
+    r.find(
+      c=>
+        c.n!==g.n
+    );
+
+  const lead=
+    g.score-
+    (
+      z?.score
+      ??
+      -999
+    );
+
+  return(
+    state.family
+    &&
+    p.length<=2
+    &&
+    lead>=2
+  )
+  ||
+  (
+    state.q>=7
+    &&
+    p.length<=2
+    &&
+    lead>=4
+  )
+  ||
+  (
+    state.q>=10
+    &&
+    lead>=7
+  );
+}
+
+function article(n){
+
+  return /^[aeiou]/i.test(n)
+    ? "an"
+    : "a";
 }
 
 function start(){
+
   state={
     q:0,
     asked:new Set(),
@@ -114,525 +3247,1074 @@ function start(){
     guess:null,
     answers:{},
     family:null,
-    rejected:new Set()
+    rejected:new Set(),
+    closest:null
   };
-  $("saveMissBtn").disabled=false;
-  show("gameScreen");
+
+  $("saveMissBtn").disabled=
+    false;
+
+  $("missedItem").value="";
+
+  $("distinguishQuestion").value="";
+
+  show(
+    "gameScreen"
+  );
+
   next();
 }
 
-function ranked(){
-  return[...state.pool].sort((a,b)=>b.score-a.score);
-}
+function next(){
 
-function val(c,k){
-  if(!(k in c.a))return c.learned?null:0;
-  return Number(c.a[k]);
-}
+  if(
+    state.q>=20
+    ||
+    !ranked().length
+  ){
 
-function cls(c,k){
-  const v=val(c,k);
-  return v===null?"unknown":v>=.75?"yes":v<=.25?"no":"sometimes";
-}
-
-function plausible(){
-  const r=ranked();
-  if(!r.length)return[];
-  let p=r.filter(c=>c.score>=r[0].score-8);
-
-  if(state.family){
-    const f=p.filter(c=>c.family===state.family&&!c.generic);
-    if(f.length)p=f;
+    return finish(
+      false
+    );
   }
 
-  return p;
-}
+  const q=
+    chooseQ();
 
-function info(k,a){
-  const b={yes:0,no:0,sometimes:0};
-  let n=0;
+  state.isGuess=
+    shouldGuess(q);
 
-  for(const c of a){
-    const x=cls(c,k);
-    if(x!=="unknown"){
-      b[x]++;
-      n++;
-    }
-  }
+  if(
+    state.isGuess
+    ||
+    !q
+  ){
 
-  if(n<2||Object.values(b).filter(Boolean).length<2)return-1;
-
-  let e=0;
-  for(const z of Object.values(b)){
-    if(z){
-      const p=z/n;
-      e-=p*Math.log2(p);
-    }
-  }
-
-  return e*(.45+.55*n/a.length);
-}
-
-function chooseQ(){
-  let a=plausible();
-  if(a.length<2)a=ranked().slice(0,12);
-
-  let best=null,bs=-1;
-
-  for(const[k,t]of QUESTIONS){
-    if(state.asked.has(k))continue;
-
-    let s=info(k,a);
-    if(s<0)continue;
+    const p=
+      guessPick();
 
     if(
-      state.family &&
-      a.filter(c=>c.family===state.family&&cls(c,k)!=="unknown").length>=2
+      !p
     ){
-      s+=.35;
+
+      return finish(
+        false
+      );
     }
 
-    if(s>bs){
-      bs=s;
-      best={key:k,text:t};
-    }
-  }
+    state.isGuess=
+      true;
 
-  return best;
-}
+    state.guess=
+      p.n;
 
-function guessPick(){
-  const r=ranked().filter(c=>!state.rejected.has(c.n));
-  if(!r.length)return null;
-
-  if(state.family){
-    const f=r.filter(c=>c.family===state.family&&!c.generic);
-    if(f.length)return f[0];
-  }
-
-  const t=r[0];
-
-  if(t.generic&&t.family){
-    const s=r.find(
-      c=>c.family===t.family&&!c.generic&&c.score>=t.score-4
-    );
-    if(s)return s;
-  }
-
-  return t;
-}
-
-function shouldGuess(q){
-  const r=ranked().filter(c=>!state.rejected.has(c.n));
-  const p=plausible();
-  const g=guessPick();
-
-  if(!r.length||!g)return false;
-  if(!q||state.q>=18)return true;
-  if(state.q<5)return false;
-
-  const z=r.find(c=>c.n!==g.n);
-  const lead=g.score-(z?.score??-999);
-
-  return(
-    (state.family&&p.length<=2&&lead>=3) ||
-    (state.q>=7&&p.length<=2&&lead>=4) ||
-    (state.q>=10&&lead>=7)
-  );
-}
-
-function article(n){
-  return/^[aeiou]/i.test(n)?"an":"a";
-}
-
-function next(){
-  if(state.q>=20||!ranked().length)return finish(false);
-
-  const q=chooseQ();
-  state.isGuess=shouldGuess(q);
-
-  if(state.isGuess||!q){
-    const p=guessPick();
-
-    if(!p)return finish(false);
-
-    state.isGuess=true;
-    state.guess=p.n;
     state.current={
       key:null,
-      text:`Are you thinking of ${article(p.n)} ${p.n}?`
+      text:
+        `Are you thinking of ${article(p.n)} ${p.n}?`
     };
 
-    $("qLabel").textContent="My Guess";
+    $("qLabel").textContent=
+      "My Guess";
 
   }else{
-    state.current=q;
-    state.asked.add(q.key);
+
+    state.current=
+      q;
+
+    state.asked.add(
+      q.key
+    );
+
     $("qLabel").textContent=
-      state.family?"Getting More Specific":"Question";
+      state.family
+        ? "Getting More Specific"
+        : "Question";
   }
 
   state.q++;
 
-  $("counter").textContent=`Question ${state.q} of 20`;
-  $("progressBar").style.width=`${state.q*5}%`;
-  $("questionText").textContent=state.current.text;
+  $("counter").textContent=
+    `Question ${state.q} of 20`;
 
-  if(!state.isGuess){
-    const n=plausible().length;
+  $("progressBar").style.width=
+    `${state.q*5}%`;
+
+  $("questionText").textContent=
+    state.current.text;
+
+  if(
+    !state.isGuess
+  ){
+
+    const n=
+      plausible().length;
+
     $("voiceStatus").textContent=
       n>1
-        ?`Narrowing it down — about ${n} strong possibilities remain.`
-        :"I think I’m close.";
+        ? `Narrowing it down — about ${n} strong possibilities remain.`
+        : "I think I’m close.";
+
   }else{
+
     $("voiceStatus").textContent="";
   }
 
-  setTimeout(()=>speak(state.current.text),100);
+  setTimeout(
+    ()=>speak(
+      state.current.text
+    ),
+    100
+  );
 }
 
 function score(c,k,r){
-  if(r==="unknown")return 0;
 
-  const e=cls(c,k);
+  if(
+    r==="unknown"
+  ){
+    return 0;
+  }
 
-  if(e==="unknown")return 0;
-  if(e===r)return 6;
-  if(e==="sometimes"||r==="sometimes")return-1;
+  const e=
+    cls(c,k);
 
-  return-5;
+  if(
+    e==="unknown"
+  ){
+    return 0;
+  }
+
+  if(
+    e===r
+  ){
+    return 6;
+  }
+
+  if(
+    e==="sometimes"
+    ||
+    r==="sometimes"
+  ){
+    return -1;
+  }
+
+  return -5;
 }
 
 function answer(v){
-  if(!state)return;
 
-  if(state.isGuess){
+  if(
+    !state
+  ){
+    return;
+  }
 
-    if(v==="yes"){
-      return finish(true);
+  if(
+    state.isGuess
+  ){
+
+    if(
+      v==="yes"
+    ){
+
+      return finish(
+        true
+      );
     }
 
-    if(v!=="no"){
+    if(
+      v!=="no"
+    ){
+
       $("voiceStatus").textContent=
         "For my guess, please choose Yes or No.";
+
       return;
     }
 
-    const g=state.pool.find(c=>c.n===state.guess);
-    state.rejected.add(state.guess);
-
-    if(g?.family){
-      const f=state.pool.filter(
+    const g=
+      state.pool.find(
         c=>
-          c.family===g.family &&
-          c.n!==g.n &&
-          !state.rejected.has(c.n)
+          c.n===
+          state.guess
       );
 
-      if(f.length){
-        state.family=g.family;
-        state.isGuess=false;
+    state.rejected.add(
+      state.guess
+    );
+
+    if(
+      g?.family
+    ){
+
+      const f=
+        state.pool.filter(
+          c=>
+            c.family===
+            g.family
+            &&
+            c.n!==g.n
+            &&
+            !state.rejected.has(
+              c.n
+            )
+        );
+
+      if(
+        f.length
+      ){
+
+        state.family=
+          g.family;
+
+        state.isGuess=
+          false;
 
         $("voiceStatus").textContent=
           g.generic
-            ?"Close — I’ll get more specific."
-            :"That was close — I’ll keep narrowing it down.";
+            ? "Close — I’ll get more specific."
+            : "That was close — I’ll keep narrowing it down.";
 
-        setTimeout(next,350);
+        setTimeout(
+          next,
+          350
+        );
+
         return;
       }
     }
 
-    state.pool=state.pool.filter(c=>c.n!==state.guess);
-    state.isGuess=false;
+    state.pool=
+      state.pool.filter(
+        c=>
+          c.n!==
+          state.guess
+      );
+
+    state.isGuess=
+      false;
+
     $("voiceStatus").textContent=
       "Not quite — I’ll keep guessing.";
 
-    setTimeout(next,250);
+    setTimeout(
+      next,
+      250
+    );
+
     return;
   }
 
-  const k=state.current.key;
+  const k=
+    state.current.key;
+
   state.answers[k]=v;
 
-  /*
-  THIS IS THE NEW FAMILY INTELLIGENCE.
+  if(
+    v==="yes"
+    &&
+    FAMILY_BY_Q[k]
+  ){
 
-  Saying YES to broad questions such as:
-  "Is it a bird?"
-  "Is it a type of table?"
-  "Is it a type of dog?"
-  "Is it a type of chair?"
-  "Is it a type of car?"
-  "Is it a type of boat?"
-
-  causes the game to concentrate on that family
-  and keep looking for the more specific answer.
-  */
-  if(v==="yes"&&FAMILY[k]){
-    state.family=FAMILY[k];
+    state.family=
+      FAMILY_BY_Q[k];
   }
 
-  for(const c of state.pool){
-    c.score+=score(c,k,v);
+  for(
+    const c
+    of state.pool
+  ){
+
+    c.score+=
+      score(
+        c,
+        k,
+        v
+      );
   }
 
   next();
 }
 
 function finish(win){
-  const s=stats();
 
-  s.games=(s.games||0)+1;
-  if(win)s.wins=(s.wins||0)+1;
+  const s=
+    stats();
 
-  saveStats(s);
-  counts();
-
-  $("missBox").style.display=win?"none":"block";
-  $("missedItem").value="";
+  s.games=
+    (
+      s.games
+      ||
+      0
+    )+1;
 
   if(win){
-    $("resultIcon").textContent="✓";
-    $("resultTitle").textContent="I got it!";
+
+    s.wins=
+      (
+        s.wins
+        ||
+        0
+      )+1;
+  }
+
+  save(
+    LS.stats,
+    s
+  );
+
+  counts();
+
+  $("missBox").style.display=
+    win
+      ? "none"
+      : "block";
+
+  if(win){
+
+    $("resultIcon").textContent=
+      "✓";
+
+    $("resultTitle").textContent=
+      "I got it!";
+
     $("resultText").textContent=
       `You were thinking of ${article(state.guess)} ${state.guess}. I got it in ${state.q} question${state.q===1?"":"s"}.`;
+
+    $("closestGuessLine").textContent="";
 
     speak(
       `I got it! You were thinking of ${article(state.guess)} ${state.guess}.`
     );
 
   }else{
-    $("resultIcon").textContent="?";
-    $("resultTitle").textContent="You stumped me.";
+
+    state.closest=
+      state.guess
+      ||
+      guessPick()?.n
+      ||
+      ranked()[0]?.n
+      ||
+      null;
+
+    $("resultIcon").textContent=
+      "?";
+
+    $("resultTitle").textContent=
+      "You stumped me.";
+
     $("resultText").textContent=
-      "Teach me what it was and I’ll remember your answers for next time.";
+      "Teach me what it was and I’ll use this round to learn it for next time.";
+
+    $("closestGuessLine").textContent=
+      state.closest
+        ? `My closest guess was ${state.closest}. Teach me one question that separates it from your answer.`
+        : "Teach me one yes/no question that would help next time.";
 
     speak(
       "You stumped me. Teach me what it was and I'll remember it."
     );
   }
 
-  show("resultScreen");
+  show(
+    "resultScreen"
+  );
+}
+
+function qFingerprint(t){
+
+  return String(t||"")
+    .trim()
+    .toLowerCase()
+    .replace(
+      /[^a-z0-9 ]/g,
+      ""
+    )
+    .replace(
+      /\s+/g,
+      " "
+    );
+}
+
+function qKey(t){
+
+  let h=
+    2166136261;
+
+  for(
+    const ch
+    of qFingerprint(t)
+  ){
+
+    h^=
+      ch.charCodeAt(0);
+
+    h=
+      Math.imul(
+        h,
+        16777619
+      );
+  }
+
+  return"userq_"+
+    (h>>>0)
+      .toString(36);
+}
+
+function addQuestion(text){
+
+  let t=
+    String(text||"")
+      .trim()
+      .replace(
+        /\s+/g,
+        " "
+      );
+
+  if(
+    !t
+  ){
+    return null;
+  }
+
+  if(
+    !t.endsWith("?")
+  ){
+
+    t+="?";
+  }
+
+  const a=
+    customQs();
+
+  const fp=
+    qFingerprint(t);
+
+  const old=
+    a.find(
+      q=>
+        qFingerprint(
+          q.text
+        )===fp
+    );
+
+  if(old){
+
+    return old.key;
+  }
+
+  const key=
+    qKey(t);
+
+  a.push({
+    key,
+    text:t
+  });
+
+  save(
+    LS.qs,
+    a.slice(-100)
+  );
+
+  return key;
+}
+
+function setOverride(
+  name,
+  key,
+  value
+){
+
+  const o=
+    overrides();
+
+  const n=
+    canon(name);
+
+  o[n]={
+    ...(o[n]||{}),
+    [key]:value
+  };
+
+  save(
+    LS.ov,
+    o
+  );
 }
 
 function teach(){
-  const n=$("missedItem").value.trim();
 
-  if(!n){
-    return toast("Type the item first.");
+  const raw=
+    $("missedItem")
+      .value
+      .trim();
+
+  if(
+    !raw
+  ){
+
+    return toast(
+      "Type the item first."
+    );
   }
 
-  const l=learned();
-  const a={};
+  const name=
+    canon(raw);
 
-  for(const[k,v]of Object.entries(state.answers)){
-    if(v!=="unknown"){
-      a[k]=v==="yes"?1:v==="no"?0:.5;
+  const known=
+    allCandidates()
+      .find(
+        c=>
+          canon(c.n)===
+          name
+      );
+
+  const attrs={};
+
+  for(
+    const[k,v]
+    of Object.entries(
+      state.answers
+    )
+  ){
+
+    if(
+      v==="yes"
+    ){
+
+      attrs[k]=1;
+
+    }else if(
+      v==="no"
+    ){
+
+      attrs[k]=0;
+
+    }else if(
+      v==="sometimes"
+    ){
+
+      attrs[k]=.5;
     }
   }
 
-  const item={
-    n,
-    cat:selected==="anything"
-      ?(ranked()[0]?.cat||"anything")
-      :selected,
-    a,
-    created:new Date().toISOString()
-  };
+  const text=
+    $("distinguishQuestion")
+      .value
+      .trim();
 
-  if(state.family){
-    item.family=state.family;
+  let ck=null;
+
+  if(
+    text
+    &&
+    state.closest
+    &&
+    canon(
+      state.closest
+    )!==name
+  ){
+
+    ck=
+      addQuestion(
+        text
+      );
+
+    if(ck){
+
+      attrs[ck]=1;
+
+      setOverride(
+        state.closest,
+        ck,
+        0
+      );
+    }
   }
 
-  const i=l.findIndex(
-    x=>x.n.toLowerCase()===n.toLowerCase()
-  );
+  if(
+    known
+    &&
+    !known.learned
+  ){
 
-  if(i>=0){
-    l[i]=item;
-  }else{
-    l.unshift(item);
-  }
+    for(
+      const[k,v]
+      of Object.entries(
+        attrs
+      )
+    ){
 
-  saveLearned(l.slice(0,100));
-  $("saveMissBtn").disabled=true;
+      setOverride(
+        known.n,
+        k,
+        v
+      );
+    }
 
-  toast("Learned! I’ll remember that.");
-  speak(`Got it. I'll remember ${n}.`);
-}
+    $("saveMissBtn").disabled=
+      true;
 
-function esc(s){
-  return String(s).replace(
-    /[&<>"']/g,
-    m=>({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      "\"":"&quot;",
-      "'":"&#39;"
-    }[m])
-  );
-}
+    toast(
+      ck
+        ? "Smarter! I learned a new distinguishing question."
+        : `Updated what I know about ${known.n}.`
+    );
 
-function renderLearned(){
-  const l=learned();
-  const b=$("learnedList");
-
-  if(!l.length){
-    b.innerHTML=
-      '<div style="color:#e4c3c3;padding:12px 0">No learned items yet.</div>';
     return;
   }
 
-  b.innerHTML=l.map(
-    (x,i)=>`
-      <div class="row">
-        <span>
-          <b>${esc(x.n)}</b>
-          <br>
-          <span style="color:#e4c3c3">
-            ${x.cat==="anything"?"Any category":x.cat}
-          </span>
-        </span>
-        <button class="mini" data-r="${i}">
-          Remove
-        </button>
-      </div>
-    `
-  ).join("");
+  const l=
+    learned();
 
-  b.querySelectorAll("[data-r]").forEach(
-    x=>x.onclick=()=>{
-      const a=learned();
-      a.splice(+x.dataset.r,1);
-      saveLearned(a);
-      renderLearned();
-    }
+  const item={
+    n:raw,
+    cat:
+      selected==="anything"
+        ? (
+            ranked()[0]?.cat
+            ||
+            "anything"
+          )
+        : selected,
+    a:attrs,
+    created:
+      new Date()
+        .toISOString()
+  };
+
+  if(
+    state.family
+  ){
+
+    item.family=
+      state.family;
+  }
+
+  const i=
+    l.findIndex(
+      x=>
+        canon(x.n)===
+        name
+    );
+
+  if(
+    i>=0
+  ){
+
+    item.a={
+      ...(l[i].a||{}),
+      ...attrs
+    };
+
+    l[i]=item;
+
+  }else{
+
+    l.unshift(
+      item
+    );
+  }
+
+  save(
+    LS.learn,
+    l.slice(
+      0,
+      100
+    )
+  );
+
+  counts();
+
+  $("saveMissBtn").disabled=
+    true;
+
+  toast(
+    ck
+      ? "Learned the item and a new question!"
+      : "Learned! I’ll remember that."
+  );
+}
+
+function esc(s){
+
+  return String(s)
+    .replace(
+      /[&<>"']/g,
+      m=>({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        "\"":"&quot;",
+        "'":"&#39;"
+      }[m])
+    );
+}
+
+function renderLearned(){
+
+  const l=
+    learned();
+
+  const b=
+    $("learnedList");
+
+  if(
+    !l.length
+  ){
+
+    b.innerHTML=
+      '<div style="color:#e4c3c3;padding:12px 0">No learned items yet.</div>';
+
+    return;
+  }
+
+  b.innerHTML=
+    l.map(
+      (x,i)=>
+        `
+        <div class="row">
+
+          <span>
+
+            <b>
+              ${esc(x.n)}
+            </b>
+
+            <br>
+
+            <span style="color:#e4c3c3">
+              ${
+                x.cat==="anything"
+                  ? "Any category"
+                  : x.cat
+              }
+            </span>
+
+          </span>
+
+          <button
+            class="mini"
+            data-r="${i}">
+            Remove
+          </button>
+
+        </div>
+        `
+    )
+    .join("");
+
+  b.querySelectorAll(
+    "[data-r]"
+  )
+  .forEach(
+    x=>
+      x.onclick=
+        ()=>{
+
+          const a=
+            learned();
+
+          a.splice(
+            +x.dataset.r,
+            1
+          );
+
+          save(
+            LS.learn,
+            a
+          );
+
+          counts();
+
+          renderLearned();
+        }
   );
 }
 
 function setupVoice(){
+
   const SR=
-    window.SpeechRecognition||
+    window.SpeechRecognition
+    ||
     window.webkitSpeechRecognition;
 
-  if(!SR){
-    $("micBtn").style.display="none";
+  if(
+    !SR
+  ){
+
+    $("micBtn").style.display=
+      "none";
+
     return;
   }
 
-  recognition=new SR();
-  recognition.lang="en-US";
-  recognition.interimResults=false;
+  recognition=
+    new SR();
 
-  recognition.onstart=()=>{
-    $("voiceStatus").textContent="Listening…";
-  };
+  recognition.lang=
+    "en-US";
 
-  recognition.onerror=()=>{
-    $("voiceStatus").textContent=
-      "I couldn't hear that. Try again.";
-  };
+  recognition.interimResults=
+    false;
 
-  recognition.onresult=e=>{
-    const h=
-      Array.from(e.results[0])
-        .map(x=>x.transcript.toLowerCase())
+  recognition.maxAlternatives=
+    3;
+
+  recognition.onstart=
+    ()=>{
+
+      $("voiceStatus").textContent=
+        "Listening… say yes, no, sometimes, or don't know.";
+    };
+
+  recognition.onerror=
+    ()=>{
+
+      $("voiceStatus").textContent=
+        "I couldn't hear that. Try again.";
+    };
+
+  recognition.onresult=
+    e=>{
+
+      const h=
+        Array.from(
+          e.results[0]
+        )
+        .map(
+          x=>
+            x.transcript
+              .toLowerCase()
+        )
         .join(" | ");
 
-    if(/\b(yes|yeah|yep|correct|right)\b/.test(h)){
-      answer("yes");
-    }else if(/\b(no|nope|nah|wrong)\b/.test(h)){
-      answer("no");
-    }else if(/\b(sometimes|maybe|occasionally)\b/.test(h)){
-      answer("sometimes");
-    }else if(/don't know|do not know|not sure|unknown/.test(h)){
-      answer("unknown");
-    }else{
-      $("voiceStatus").textContent=
-        "Please say yes, no, sometimes, or don't know.";
-    }
-  };
+      if(
+        /\b(yes|yeah|yep|correct|right)\b/
+          .test(h)
+      ){
+
+        answer(
+          "yes"
+        );
+
+      }else if(
+        /\b(no|nope|nah|wrong)\b/
+          .test(h)
+      ){
+
+        answer(
+          "no"
+        );
+
+      }else if(
+        /\b(sometimes|maybe|occasionally)\b/
+          .test(h)
+      ){
+
+        answer(
+          "sometimes"
+        );
+
+      }else if(
+        /don't know|do not know|not sure|unknown/
+          .test(h)
+      ){
+
+        answer(
+          "unknown"
+        );
+
+      }else{
+
+        $("voiceStatus").textContent=
+          "Please say yes, no, sometimes, or don't know.";
+      }
+    };
 }
 
-document.querySelectorAll(".category").forEach(
-  b=>b.onclick=()=>{
-    document.querySelectorAll(".category")
-      .forEach(x=>x.classList.remove("selected"));
+document
+  .querySelectorAll(
+    ".category"
+  )
+  .forEach(
+    b=>
+      b.onclick=
+        ()=>{
 
-    b.classList.add("selected");
-    selected=b.dataset.cat;
-  }
-);
+          document
+            .querySelectorAll(
+              ".category"
+            )
+            .forEach(
+              x=>
+                x.classList.remove(
+                  "selected"
+                )
+            );
 
-document.querySelectorAll(".answer").forEach(
-  b=>b.onclick=()=>answer(b.dataset.answer)
-);
+          b.classList.add(
+            "selected"
+          );
 
-$("startBtn").onclick=start;
+          selected=
+            b.dataset.cat;
+        }
+  );
 
-$("quitBtn").onclick=()=>{
-  show("startScreen");
-};
+document
+  .querySelectorAll(
+    ".answer"
+  )
+  .forEach(
+    b=>
+      b.onclick=
+        ()=>answer(
+          b.dataset.answer
+        )
+  );
 
-$("playAgainBtn").onclick=()=>{
-  show("startScreen");
-};
+$("startBtn").onclick=
+  start;
 
-$("repeatBtn").onclick=()=>{
-  if(state){
-    speak(state.current.text);
-  }
-};
+$("quitBtn").onclick=
+  ()=>{
 
-$("voiceToggle").onclick=()=>{
-  voiceOn=!voiceOn;
+    if(
+      "speechSynthesis"
+      in window
+    ){
 
-  $("voiceToggle").textContent=
-    voiceOn?"Voice On":"Voice Off";
+      speechSynthesis.cancel();
+    }
 
-  if(!voiceOn&&"speechSynthesis" in window){
-    speechSynthesis.cancel();
-  }
-};
-
-$("micBtn").onclick=()=>{
-  if(!recognition){
-    return toast(
-      "Voice answers aren't supported in this browser."
+    show(
+      "startScreen"
     );
-  }
+  };
 
-  try{
-    recognition.start();
-  }catch{}
-};
+$("playAgainBtn").onclick=
+  ()=>show(
+    "startScreen"
+  );
 
-$("saveMissBtn").onclick=teach;
+$("repeatBtn").onclick=
+  ()=>{
 
-$("learnedBtn").onclick=()=>{
-  renderLearned();
-  show("learnedScreen");
-};
+    if(state){
 
-$("backHomeBtn").onclick=()=>{
-  show("startScreen");
-};
+      speak(
+        state.current.text
+      );
+    }
+  };
 
-$("clearLearnedBtn").onclick=()=>{
-  if(
-    confirm(
-      "Clear everything the game has learned from you?"
-    )
-  ){
-    saveLearned([]);
+$("voiceToggle").onclick=
+  ()=>{
+
+    voiceOn=
+      !voiceOn;
+
+    $("voiceToggle").textContent=
+      voiceOn
+        ? "Voice On"
+        : "Voice Off";
+
+    $("voiceToggle")
+      .classList.toggle(
+        "on",
+        voiceOn
+      );
+
+    if(
+      !voiceOn
+      &&
+      "speechSynthesis"
+      in window
+    ){
+
+      speechSynthesis.cancel();
+    }
+  };
+
+$("micBtn").onclick=
+  ()=>{
+
+    if(
+      !recognition
+    ){
+
+      return toast(
+        "Voice answers aren't supported in this browser."
+      );
+    }
+
+    try{
+
+      recognition.start();
+
+    }catch{}
+  };
+
+$("saveMissBtn").onclick=
+  teach;
+
+$("learnedBtn").onclick=
+  ()=>{
+
     renderLearned();
-  }
-};
+
+    show(
+      "learnedScreen"
+    );
+  };
+
+$("backHomeBtn").onclick=
+  ()=>show(
+    "startScreen"
+  );
+
+$("clearLearnedBtn").onclick=
+  ()=>{
+
+    if(
+      confirm(
+        "Clear everything the game has learned from you?"
+      )
+    ){
+
+      save(
+        LS.learn,
+        []
+      );
+
+      save(
+        LS.qs,
+        []
+      );
+
+      save(
+        LS.ov,
+        {}
+      );
+
+      counts();
+
+      renderLearned();
+
+      toast(
+        "Learned intelligence cleared."
+      );
+    }
+  };
 
 setupVoice();
 counts();
+
+})();
 </script>
+
 </body>
 </html>
