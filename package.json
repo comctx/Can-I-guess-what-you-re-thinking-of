@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "20 Questions by DONCO-BAYCITY",
+  "scripts": {
+    "build": "mkdir -p www && cp index.html www/index.html && cp icon.png www/icon.png"
+  },
   "dependencies": {
     "@capacitor/core": "^7.4.3",
     "@capacitor/ios": "^7.4.3"
