@@ -42,6 +42,12 @@ h2{margin:0 0 10px;font-size:29px}
 .category{padding:14px;text-align:left;font-weight:750;background:#ffffff16;border:1px solid var(--line)}
 .category small{display:block;color:var(--muted);font-weight:400;margin-top:3px}
 .category.selected{background:#dc243054;box-shadow:inset 4px 0 #ff6872}
+.difficulty-wrap{margin-top:18px}
+.difficulty-title{font-weight:800;margin-bottom:8px}
+.difficulty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.difficulty{padding:11px 8px;background:#ffffff14;border:1px solid var(--line);font-weight:800}
+.difficulty small{display:block;color:var(--muted);font-weight:400;font-size:10px;margin-top:2px}
+.difficulty.selected{background:#7b1a24;box-shadow:inset 0 0 0 1px #ff7b85}
 .primary{width:100%;padding:15px;margin-top:12px;font-weight:800;font-size:16px;background:linear-gradient(#ee3440,#a7000b);border:1px solid #ffdcde70;box-shadow:0 9px 22px #28000059}
 .secondary{width:100%;padding:12px;margin-top:10px;font-weight:700}
 .learning{text-align:center;color:#dcb9bc;font-size:12px;margin-top:12px}
@@ -154,6 +160,15 @@ Vehicles
 Nature
 <small>Places & natural things</small>
 </button>
+</div>
+
+<div class="difficulty-wrap">
+<div class="difficulty-title">Choose difficulty</div>
+<div class="difficulty-grid">
+<button class="difficulty" data-level="easy">Easy<small>Guesses sooner</small></button>
+<button class="difficulty selected" data-level="normal">Normal<small>Balanced</small></button>
+<button class="difficulty" data-level="expert">Expert<small>More specific</small></button>
+</div>
 </div>
 
 <button id="startBtn" class="primary">
@@ -616,6 +631,7 @@ LS.ov,
 );
 
 let selected="anything";
+let difficulty="normal";
 let state=null;
 let voiceOn=true;
 let recognition=null;
@@ -1430,8 +1446,15 @@ state.q>=18
 return true;
 }
 
+const minGuessQ=
+difficulty==="easy"
+?4
+:difficulty==="expert"
+?7
+:5;
+
 if(
-state.q<5
+state.q<minGuessQ
 ){
 return false;
 }
@@ -1450,26 +1473,61 @@ z?.score
 -999
 );
 
+const familyLead=
+difficulty==="easy"
+?1
+:difficulty==="expert"
+?4
+:2;
+
+const narrowLead=
+difficulty==="easy"
+?3
+:difficulty==="expert"
+?6
+:4;
+
+const lateLead=
+difficulty==="easy"
+?5
+:difficulty==="expert"
+?10
+:7;
+
+const narrowQuestion=
+difficulty==="easy"
+?6
+:difficulty==="expert"
+?9
+:7;
+
+const lateQuestion=
+difficulty==="easy"
+?8
+:difficulty==="expert"
+?13
+:10;
+
 return(
 state.family
 &&
 p.length<=2
 &&
-lead>=2
+lead>=familyLead
 )
 ||
 (
-state.q>=7
+state.q>=narrowQuestion
 &&
 p.length<=2
 &&
-lead>=4
+lead>=narrowLead
 )
 ||
 (
-state.q>=10
+state.q>=lateQuestion
 &&
-lead>=7
+lead>=lateLead
 );
 }
 
@@ -1513,7 +1571,11 @@ $("confidenceBar").style.width=
 "8%";
 
 $("confidenceText").textContent=
-"Just getting started";
+difficulty==="expert"
+?"Expert mode — thinking deeper"
+:difficulty==="easy"
+?"Easy mode — quick guesses"
+:"Just getting started";
 
 next();
 }
@@ -2696,6 +2758,34 @@ b.classList.add(
 
 selected=
 b.dataset.cat;
+}
+);
+
+document
+.querySelectorAll(
+".difficulty"
+)
+.forEach(
+b=>
+b.onclick=
+()=>{
+
+document
+.querySelectorAll(
+".difficulty"
+)
+.forEach(
+x=>x.classList.remove(
+"selected"
+)
+);
+
+b.classList.add(
+"selected"
+);
+
+difficulty=
+b.dataset.level;
 }
 );
 
