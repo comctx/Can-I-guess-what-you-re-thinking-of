@@ -47,8 +47,13 @@ h2{margin:0 0 10px;font-size:29px}
 .learning{text-align:center;color:#dcb9bc;font-size:12px;margin-top:12px}
 .gamehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .counter{font-size:13px;color:#efd7d9}
-.progress{height:8px;border-radius:20px;background:#0005;overflow:hidden;margin-bottom:18px}
+.progress{height:8px;border-radius:20px;background:#0005;overflow:hidden;margin-bottom:12px}
 #progressBar{height:100%;width:5%;background:linear-gradient(90deg,#ff747c,#d20d19)}
+.confidence-wrap{margin:0 0 18px}
+.confidence-head{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:#efd7d9;margin-bottom:6px}
+.confidence-track{height:9px;border-radius:999px;background:#0005;overflow:hidden;border:1px solid #ffffff24}
+#confidenceBar{height:100%;width:8%;border-radius:999px;background:linear-gradient(90deg,#ffb36b,#ff6f7b,#ff2f43);transition:width .28s ease}
+#confidenceText{font-weight:800;color:#fff}
 .card{min-height:285px;border-radius:27px;padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#ff9ba2;font-weight:850;margin-bottom:12px}
 .question{font-size:28px;line-height:1.3;font-weight:800}
@@ -172,6 +177,16 @@ View Learned Items
 
 <div class="progress">
 <div id="progressBar"></div>
+</div>
+
+<div class="confidence-wrap" aria-live="polite">
+<div class="confidence-head">
+<span>How sure am I?</span>
+<span id="confidenceText">Just getting started</span>
+</div>
+<div class="confidence-track">
+<div id="confidenceBar"></div>
+</div>
 </div>
 
 <div class="card">
@@ -1254,7 +1269,13 @@ cls(c,k)!=="unknown"
 ).length>=2
 ){
 
-s+=.4;
+s+=.75;
+
+if(
+FAMILY_OWNER[k]===state.family
+){
+s+=.55;
+}
 }
 
 if(
@@ -1474,7 +1495,97 @@ show(
 "gameScreen"
 );
 
+$("confidenceBar").style.width=
+"8%";
+
+$("confidenceText").textContent=
+"Just getting started";
+
 next();
+}
+
+
+function confidencePct(){
+
+if(!state){
+return 5;
+}
+
+const r=
+ranked()
+.filter(c=>
+!state.rejected.has(c.n)
+);
+
+if(!r.length){
+return 5;
+}
+
+if(r.length===1){
+return 96;
+}
+
+const top=r[0].score;
+const second=r[1]?.score ?? top;
+const lead=Math.max(0,top-second);
+const strong=Math.max(1,plausible().length);
+
+let pct=10;
+
+pct+=Math.min(38,state.q*2.4);
+pct+=Math.min(34,lead*4);
+pct+=Math.max(0,18-(strong-1)*3);
+
+if(state.family){
+pct+=8;
+}
+
+if(state.isGuess){
+pct=Math.max(pct,82);
+}
+
+return Math.max(
+5,
+Math.min(
+98,
+Math.round(pct)
+)
+);
+}
+
+function updateConfidence(){
+
+const pct=
+confidencePct();
+
+$("confidenceBar").style.width=
+pct+"%";
+
+if(pct<25){
+
+$("confidenceText").textContent=
+"Just getting started";
+
+}else if(pct<45){
+
+$("confidenceText").textContent=
+pct+"% — narrowing it down";
+
+}else if(pct<65){
+
+$("confidenceText").textContent=
+pct+"% — getting warmer";
+
+}else if(pct<82){
+
+$("confidenceText").textContent=
+pct+"% — I’m getting close";
+
+}else{
+
+$("confidenceText").textContent=
+pct+"% — I think I know it";
+}
 }
 
 function next(){
@@ -1554,6 +1665,8 @@ $("progressBar").style.width=
 
 $("questionText").textContent=
 state.current.text;
+
+updateConfidence();
 
 if(
 !state.isGuess
