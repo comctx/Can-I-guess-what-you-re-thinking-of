@@ -62,6 +62,11 @@ h2{margin:0 0 10px;font-size:29px}
 .answer.yes{background:#11663f}
 .answer.no{background:#8d0812}
 .answer.sometimes{background:#7f5708}
+.answer.close{display:none;grid-column:1/-1;background:linear-gradient(135deg,#7d3fd1,#3e65d8);border:1px solid #c9b8ff88}
+.reasoning{display:none;text-align:left;margin:16px 0;padding:14px;border-radius:14px;background:#ffffff12;border:1px solid #ffffff2f}
+.reasoning b{display:block;margin-bottom:8px}
+.reasoning ul{margin:0;padding-left:20px;color:#efd2d2}
+.reasoning li{margin:5px 0}
 .mic{width:100%;padding:13px;margin-top:10px;font-weight:750;background:#190103;border:1px solid var(--line)}
 .status{min-height:21px;text-align:center;color:#e9c9cb;font-size:13px;margin-top:8px}
 .result{border-radius:27px;padding:28px 20px;text-align:center}
@@ -203,6 +208,7 @@ Hear Again
 <button class="answer no" data-answer="no">No</button>
 <button class="answer sometimes" data-answer="sometimes">Sometimes</button>
 <button class="answer" data-answer="unknown">Don’t Know</button>
+<button id="closeGuessBtn" class="answer close" type="button">Close — keep narrowing it down</button>
 </div>
 
 <button id="micBtn" class="mic">
@@ -221,6 +227,11 @@ Hear Again
 <h2 id="resultTitle">I got it!</h2>
 
 <p id="resultText" class="lead"></p>
+
+<div id="reasoningBox" class="reasoning">
+<b>How I figured it out</b>
+<ul id="reasoningList"></ul>
+</div>
 
 <div class="stats">
 
@@ -1491,6 +1502,9 @@ $("missedItem").value="";
 
 $("distinguishQuestion").value="";
 
+$("reasoningBox").style.display=
+"none";
+
 show(
 "gameScreen"
 );
@@ -1665,6 +1679,11 @@ $("progressBar").style.width=
 
 $("questionText").textContent=
 state.current.text;
+
+$("closeGuessBtn").style.display=
+state.isGuess
+?"block"
+:"none";
 
 updateConfidence();
 
@@ -1866,6 +1885,188 @@ v
 next();
 }
 
+
+function buildReasoning(){
+
+if(!state){
+return[];
+}
+
+const questionMap=
+Object.fromEntries(
+allQuestions()
+);
+
+const clues=[];
+
+for(
+const[k,v]
+of Object.entries(
+state.answers
+)
+){
+
+if(
+v==="unknown"
+){
+continue;
+}
+
+const text=
+questionMap[k];
+
+if(!text){
+continue;
+}
+
+clues.push({
+text,
+value:v
+});
+}
+
+const preferred=
+clues.filter(x=>x.value==="yes");
+
+const secondary=
+clues.filter(x=>x.value==="no");
+
+return preferred
+.slice(-3)
+.concat(
+secondary.slice(-1)
+)
+.slice(
+0,
+4
+);
+}
+
+function renderReasoning(){
+
+const box=
+$("reasoningBox");
+
+const list=
+$("reasoningList");
+
+const clues=
+buildReasoning();
+
+if(
+!clues.length
+){
+
+box.style.display=
+"none";
+
+list.innerHTML=
+"";
+
+return;
+}
+
+list.innerHTML=
+clues.map(x=>
+"<li>"+
+(x.value==="yes"
+?"Yes: "
+:"No: ")+
+esc(x.text)+
+"</li>"
+).join("");
+
+box.style.display=
+"block";
+}
+
+
+function closeGuess(){
+
+if(
+!state
+||
+!state.isGuess
+){
+return;
+}
+
+const g=
+state.pool.find(
+c=>
+c.n===
+state.guess
+);
+
+if(!g){
+return;
+}
+
+state.rejected.add(
+state.guess
+);
+
+if(
+g.family
+){
+
+state.family=
+g.family;
+
+for(
+const c
+of state.pool
+){
+
+if(
+c.family===
+g.family
+&&
+c.n!==g.n
+){
+
+c.score+=4;
+}
+}
+
+state.pool=
+state.pool.filter(
+c=>
+c.n!==g.n
+);
+
+state.isGuess=
+false;
+
+$("voiceStatus").textContent=
+"Good clue — I’m staying in the same family and getting more specific.";
+
+setTimeout(
+next,
+250
+);
+
+return;
+}
+
+state.pool=
+state.pool.filter(
+c=>
+c.n!==g.n
+);
+
+state.isGuess=
+false;
+
+$("voiceStatus").textContent=
+"That helps — I’ll stay close to that idea.";
+
+setTimeout(
+next,
+250
+);
+}
+
 function finish(win){
 
 const s=
@@ -1913,6 +2114,8 @@ $("resultText").textContent=
 
 $("closestGuessLine").textContent="";
 
+renderReasoning();
+
 speak(
 `I got it! You were thinking of ${article(state.guess)} ${state.guess}.`
 );
@@ -1927,6 +2130,9 @@ guessPick()?.n
 ranked()[0]?.n
 ||
 null;
+
+$("reasoningBox").style.display=
+"none";
 
 $("resultIcon").textContent=
 "?";
@@ -2504,6 +2710,9 @@ b.onclick=
 b.dataset.answer
 )
 );
+
+$("closeGuessBtn").onclick=
+closeGuess;
 
 $("startBtn").onclick=
 start;
