@@ -160,6 +160,21 @@ Vehicles
 Nature
 <small>Places & natural things</small>
 </button>
+
+<button class="category" data-cat="electronics">
+Electronics
+<small>Phones, screens & gadgets</small>
+</button>
+
+<button class="category" data-cat="tools">
+Tools
+<small>Workshop & hand tools</small>
+</button>
+
+<button class="category" data-cat="furniture">
+Furniture
+<small>Tables, chairs & more</small>
+</button>
 </div>
 
 <div class="difficulty-wrap">
@@ -545,6 +560,38 @@ nature:[
 "cold",
 "large",
 "small"
+],
+
+electronics:[
+"screen",
+"battery",
+"handheld",
+"electronic",
+"indoors",
+"small",
+"work",
+"kitchen"
+],
+
+tools:[
+"handheld",
+"metal",
+"garage",
+"battery",
+"electronic",
+"work",
+"small"
+],
+
+furniture:[
+"sit",
+"surface",
+"sleep",
+"livingroom",
+"bedroom",
+"dining",
+"drawers",
+"folding"
 ]
 
 };
@@ -825,8 +872,44 @@ score:0
 
 function pool(){
 
-return allCandidates()
-.filter(
+const all=
+allCandidates();
+
+if(selected==="electronics"){
+return all.filter(c=>
+c.cat==="household"
+&&
+(
+cls(c,"electronic")==="yes"
+||
+cls(c,"screen")==="yes"
+||
+cls(c,"battery")==="yes"
+)
+);
+}
+
+if(selected==="tools"){
+return all.filter(c=>
+c.cat==="household"
+&&
+(
+cls(c,"tool")==="yes"
+||
+cls(c,"garage")==="yes"
+)
+);
+}
+
+if(selected==="furniture"){
+return all.filter(c=>
+c.cat==="household"
+&&
+cls(c,"furniture")==="yes"
+);
+}
+
+return all.filter(
 c=>
 selected==="anything"
 ||
