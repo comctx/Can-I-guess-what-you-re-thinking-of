@@ -1038,64 +1038,118 @@ return p;
 
 function info(k,a){
 
+if(
+!a
+||
+a.length<2
+){
+return -1;
+}
+
+const best=
+Math.max(
+...a.map(c=>c.score||0)
+);
+
 const b={
 yes:0,
 no:0,
 sometimes:0
 };
 
-let n=0;
+let covered=0;
+let totalWeight=0;
 
 for(
-const c of a
+const c
+of a
 ){
 
 const x=
 cls(c,k);
 
+const w=
+Math.exp(
+((c.score||0)-best)/7
+);
+
+totalWeight+=w;
+
 if(
 x!=="unknown"
 ){
 
-b[x]++;
-
-n++;
+b[x]+=w;
+covered+=w;
 }
 }
 
 if(
-n<2
-||
-Object.values(b)
-.filter(Boolean)
-.length<2
+covered<=0
 ){
-
 return -1;
 }
 
-let e=0;
+const groups=
+Object.values(b)
+.filter(x=>x>0);
+
+if(
+groups.length<2
+){
+return -1;
+}
+
+let entropy=0;
 
 for(
 const z
-of Object.values(b)
+of groups
 ){
 
-if(z){
-
 const p=
-z/n;
+z/covered;
 
-e-=
+entropy-=
 p*
 Math.log2(p);
 }
-}
 
-return e*
+const largest=
+Math.max(
+...groups
+);
+
+const balance=
+1-
+largest/covered;
+
+const coverage=
+covered/
+Math.max(
+totalWeight,
+.0001
+);
+
+const splitPower=
+1-
+groups
+.map(x=>x/covered)
+.reduce(
+(sum,p)=>sum+p*p,
+0
+);
+
+return(
+entropy*1.05
++
+balance*1.35
++
+splitPower*.85
+)*
 (
-.45+
-.55*n/a.length
+.35+
+.65*coverage
 );
 }
 
@@ -1866,8 +1920,8 @@ plausible().length;
 
 $("voiceStatus").textContent=
 n>1
-?`Narrowing it down — about ${n} strong possibilities remain.`
-:"I think I’m close.";
+?`Narrowing it down — ${n} strong possibilities remain.`
+:"I think I’m very close.";
 
 }else{
 
@@ -1906,7 +1960,7 @@ return 0;
 if(
 e===r
 ){
-return 6;
+return 8;
 }
 
 if(
@@ -1914,10 +1968,143 @@ e==="sometimes"
 ||
 r==="sometimes"
 ){
-return -1;
+return -2;
 }
 
-return -5;
+return -7;
+}
+
+function tightenCandidates(){
+
+if(
+!state
+||
+state.q<4
+||
+state.pool.length<=10
+){
+return;
+}
+
+const r=
+ranked()
+.filter(c=>
+!state.rejected.has(c.n)
+);
+
+if(!r.length){
+return;
+}
+
+const top=
+r[0].score;
+
+const gap=
+difficulty==="easy"
+?15
+:difficulty==="expert"
+?23
+:19;
+
+let keep=
+r.filter(c=>
+c.score>=top-gap
+);
+
+const minKeep=
+difficulty==="expert"
+?12
+:8;
+
+if(
+keep.length<minKeep
+){
+
+keep=
+r.slice(
+0,
+Math.min(
+minKeep,
+r.length
+)
+);
+}
+
+const maxKeep=
+difficulty==="easy"
+?32
+:difficulty==="expert"
+?60
+:44;
+
+state.pool=
+keep.slice(
+0,
+maxKeep
+);
+}
+
+function inferFamily(){
+
+if(
+!state
+||
+state.family
+||
+state.q<4
+){
+return;
+}
+
+const top=
+ranked()
+.filter(c=>
+!state.rejected.has(c.n)
+)
+.slice(
+0,
+5
+);
+
+if(top.length<3){
+return;
+}
+
+const families=
+top
+.map(c=>c.family)
+.filter(Boolean);
+
+if(families.length<3){
+return;
+}
+
+const counts={};
+
+for(
+const fam
+of families
+){
+
+counts[fam]=
+(counts[fam]||0)+1;
+}
+
+const winner=
+Object.entries(counts)
+.sort(
+(a,b)=>b[1]-a[1]
+)[0];
+
+if(
+winner
+&&
+winner[1]>=3
+){
+
+state.family=
+winner[0];
+}
 }
 
 function answer(v){
@@ -2051,6 +2238,10 @@ k,
 v
 );
 }
+
+inferFamily();
+
+tightenCandidates();
 
 next();
 }
